@@ -1,0 +1,204 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gold: #d4a03c;
+  --gold-light: #f0d48a;
+  --gold-dark: #b9832c;
+  --cream: #f7f2e3;
+  --ink: #0b2a20;
+}
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  color: var(--ink);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(
+      ellipse 90% 55% at 50% -8%,
+      rgba(227, 181, 74, 0.14) 0%,
+      rgba(227, 181, 74, 0) 60%
+    ),
+    radial-gradient(
+      ellipse 80% 45% at 50% 105%,
+      rgba(18, 63, 48, 0.14) 0%,
+      rgba(18, 63, 48, 0) 60%
+    ),
+    linear-gradient(180deg, #fdfbf4 0%, #f7f2e3 40%, #f2ebd7 100%);
+  background-attachment: scroll;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("/images/floral-bg.png");
+  background-size: 420px;
+  background-repeat: repeat;
+  background-position: center;
+  opacity: 0.05;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f7f2e3;
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #e3b54a, #0b2a20);
+  border-radius: 8px;
+}
+
+::selection {
+  background: #e3b54a;
+  color: #fff;
+}
+
+@layer components {
+  .gold-text {
+    background: linear-gradient(
+      120deg,
+      #a97918 0%,
+      #e3b54a 25%,
+      #fff3c4 50%,
+      #e3b54a 75%,
+      #a97918 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+  }
+
+  .gold-text-animated {
+    animation: shimmer 4s linear infinite;
+  }
+
+  .gold-border {
+    border: 1px solid transparent;
+    background:
+      linear-gradient(#fdfbf4, #fdfbf4) padding-box,
+      linear-gradient(135deg, #d4a03c, #f0d48a, #b9832c) border-box;
+  }
+
+  .glass {
+    background: rgba(253, 251, 244, 0.6);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(212, 160, 60, 0.3);
+  }
+
+  .glass-dark {
+    background: rgba(11, 42, 32, 0.55);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(240, 212, 138, 0.25);
+  }
+
+  .luxury-shadow {
+    box-shadow: 0 20px 60px -15px rgba(11, 42, 32, 0.35);
+  }
+
+  .ornament {
+    background: radial-gradient(
+        circle at 50% 50%,
+        transparent 42%,
+        #d4a03c 44%,
+        #d4a03c 46%,
+        transparent 48%
+      )
+      repeat-x;
+  }
+
+  .btn-luxury {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, #d4a03c 0%, #f0d48a 50%, #b9832c 100%);
+    background-size: 200% auto;
+    color: #0b2a20;
+    transition: all 0.5s ease;
+    box-shadow: 0 10px 30px -10px rgba(212, 160, 60, 0.6);
+  }
+
+  .btn-luxury:hover {
+    background-position: right center;
+    box-shadow: 0 15px 40px -10px rgba(212, 160, 60, 0.8);
+    transform: translateY(-2px);
+  }
+
+  .btn-luxury::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 30%,
+      rgba(255, 255, 255, 0.5) 50%,
+      transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
+  }
+
+  .btn-luxury:hover::after {
+    transform: translateX(100%);
+  }
+
+  .divider-floral {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  .divider-floral::before,
+  .divider-floral::after {
+    content: "";
+    height: 1px;
+    width: 80px;
+    background: linear-gradient(90deg, transparent, #d4a03c, transparent);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% center;
+  }
+  100% {
+    background-position: -200% center;
+  }
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+@media (display-mode: standalone) {
+  .fa-whatsapp {
+    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .fa-stack {
+    bottom: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+  .fa-install {
+    bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
