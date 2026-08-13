@@ -50,8 +50,11 @@ export default defineConfig(({ mode }) => {
             },
             {
               urlPattern: ({ url }) => {
-                const origin = apiOrigin ? url.origin === apiOrigin : false;
-                return origin && /^\/(couple|story|events|venue|theme)\b/.test(url.pathname);
+                if (!apiOrigin) return false;
+                const isApi = apiOrigin.startsWith("/")
+                  ? url.pathname.startsWith(apiOrigin)
+                  : url.origin === apiOrigin;
+                return isApi && /^\/(couple|story|events|venue|theme)\b/.test(url.pathname);
               },
               handler: "NetworkFirst",
               options: {
@@ -76,7 +79,7 @@ export default defineConfig(({ mode }) => {
               attrs: { rel: "preload", href: "/images/groom.jpg", as: "image" }
             }
           ];
-          if (apiOrigin) {
+          if (apiOrigin && /^https?:\/\//.test(apiOrigin)) {
             const host = apiOrigin.replace(/^https?:\/\//, "").split("/")[0];
             tags.push(
               { tag: "link", attrs: { rel: "preconnect", href: apiOrigin, crossorigin: "" } },
