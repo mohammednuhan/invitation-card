@@ -170,15 +170,6 @@ export default function Hero({ data }) {
       </div>
 
       <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
-        className="pointer-events-none absolute bottom-16 left-1/2 z-[5] -translate-x-1/2 sm:bottom-20"
-      >
-        <CoupleAnimation />
-      </motion.div>
-
-      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.8, duration: 1 }}

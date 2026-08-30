@@ -8,8 +8,7 @@ import {
   FaSeedling,
   FaHandHoldingHeart,
   FaUtensils,
-  FaMapMarkerAlt,
-  FaDirections
+  FaMapMarkerAlt
 } from "react-icons/fa";
 import { itemFadeUp, container } from "../../animations/variants";
 
@@ -19,21 +18,6 @@ const ICON_MAP = {
   flower: FaSeedling,
   hand: FaHandHoldingHeart,
   plate: FaUtensils
-};
-
-const LOCATION_MAP = {
-  Nikah: {
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3627.5!2d75.7873!3d26.9124!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDU0JzQ0LjYiTiA3NcKwNDcnMTQuMyJF!5e0!3m2!1sen!2sin!4v1234567890",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=The+Royal+Heritage+Palace+Jaipur+Rajasthan"
-  },
-  Walima: {
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.5!2d75.5646!3d13.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDE4JzU0LjciTiA3NcKwMzMnNTIuNiJF!5e0!3m2!1sen!2sin!4v1234567890",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Beekanahalli+Chikkamagaluru+Karnataka+577102"
-  },
-  Haldi: {
-    mapEmbed: "https://www.google.com/maps?q=Mohammed+Meehan+Residence+Sector+14&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Mohammed+Meehan+Residence+Sector+14"
-  }
 };
 
 export default function Events({ data }) {
@@ -49,7 +33,7 @@ export default function Events({ data }) {
         <SectionTitle
           eyebrow="Mark your calendar"
           title="Wedding Events"
-          subtitle="Five beautiful ceremonies to celebrate our union."
+          subtitle="Three beautiful ceremonies to celebrate our union."
         />
 
         <motion.div
@@ -61,7 +45,6 @@ export default function Events({ data }) {
         >
           {data.events.map((ev, i) => {
             const Icon = ICON_MAP[ev.icon] || FaGlassCheers;
-            const loc = LOCATION_MAP[ev.title];
             return (
               <motion.div
                 key={i}
@@ -112,22 +95,8 @@ export default function Events({ data }) {
                     </p>
                   </div>
 
-                  {loc && (
-                    <div className="mt-4 overflow-hidden rounded-xl border border-gold-200/60">
-                      <iframe
-                        title={`${ev.title} location`}
-                        src={loc.mapEmbed}
-                        className="h-36 w-full border-0"
-                        loading="lazy"
-                        allowFullScreen
-                        referrerPolicy="no-referrer-when-downgrade"
-                      />
-                    </div>
-                  )}
-
-                  <div className="mt-4 flex flex-wrap items-center gap-3">
-                    {ev.dressCode && (
-                    <div className="flex items-center gap-2 border-t border-gold-200/60 pt-4">
+                  {ev.dressCode && (
+                    <div className="mt-4 flex items-center gap-2 border-t border-gold-200/60 pt-4">
                       <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-gold-700/80">
                         Dress code
                       </span>
@@ -135,19 +104,7 @@ export default function Events({ data }) {
                         {ev.dressCode}
                       </span>
                     </div>
-                    )}
-                    {loc && (
-                      <a
-                        href={loc.mapsLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="ml-auto mt-4 flex items-center gap-2 rounded-full border border-gold-300 bg-gold-50 px-4 py-2 font-sans text-xs font-semibold uppercase tracking-wider text-gold-700 transition hover:bg-gold-100"
-                      >
-                        <FaDirections />
-                        Get Directions
-                      </a>
-                    )}
-                  </div>
+                  )}
                 </div>
               </motion.div>
             );

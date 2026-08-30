@@ -14,18 +14,16 @@ const VENUES = {
     venue: "The Royal Heritage Palace",
     address: "12, MG Road, Jaipur, Rajasthan 302001",
     landmark: "Opposite City Museum, near Central Park",
-    parking: "Valet parking available at the main entrance",
     mapEmbed: "https://www.google.com/maps?q=The+Royal+Heritage+Palace+Jaipur+Rajasthan&output=embed",
     mapsLink: "https://www.google.com/maps/search/?api=1&query=The+Royal+Heritage+Palace+Jaipur+Rajasthan"
   },
   walima: {
     name: "Walima",
     venue: "Beekanahalli, Chikkamagaluru",
-    address: "Beekanahalli (Rural), Chikkamagaluru, Karnataka 577102",
-    landmark: "Beekanahalli Village, Chikkamagaluru District",
-    parking: "Parking available at the venue",
-    mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.5!2d75.5646!3d13.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDE4JzU0LjciTiA3NcKwMzMnNTIuNiJF!5e0!3m2!1sen!2sin!4v1234567890",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Beekanahalli+Chikkamagaluru+Karnataka+577102"
+    address: "8QPW+CW, Beekanahalli (Rural), Chikkamagaluru, Karnataka 577102",
+    landmark: "CN WINDSOR, Chikmagaluru",
+    mapEmbed: "https://www.google.com/maps?q=8QPW%2BCW+Beekanahalli+Chikkamagaluru+Karnataka+577102&output=embed",
+    mapsLink: "https://share.google/xAUqcNx4NCZhs0ltG"
   }
 };
 
