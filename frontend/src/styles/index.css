@@ -8,14 +8,20 @@
   --gold-dark: #b9832c;
   --cream: #f7f2e3;
   --ink: #0b2a20;
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
 }
 
 * {
   -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -23,7 +29,9 @@ body {
   color: var(--ink);
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background-color: var(--cream);
+  overscroll-behavior-y: contain;
   background-image:
     radial-gradient(
       ellipse 90% 55% at 50% -8%,
@@ -53,7 +61,7 @@ body::before {
 }
 
 ::-webkit-scrollbar {
-  width: 8px;
+  width: 6px;
 }
 ::-webkit-scrollbar-track {
   background: #f7f2e3;
@@ -138,7 +146,11 @@ body::before {
   .btn-luxury:hover {
     background-position: right center;
     box-shadow: 0 15px 40px -10px rgba(212, 160, 60, 0.8);
-    transform: translateY(-2px);
+  }
+
+  .btn-luxury:active {
+    transform: scale(0.97);
+    transition: transform 0.1s;
   }
 
   .btn-luxury::after {
@@ -191,14 +203,57 @@ body::before {
   overflow: hidden;
 }
 
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .luxury-shadow {
+    box-shadow: 0 10px 30px -10px rgba(11, 42, 32, 0.25);
+  }
+
+  .gold-border {
+    border-width: 1px;
+  }
+}
+
+/* Safe area support for PWA / standalone mode */
 @media (display-mode: standalone) {
+  body {
+    padding-top: var(--sat);
+    padding-bottom: var(--sab);
+  }
+
   .fa-whatsapp {
-    bottom: calc(1rem + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(1rem + var(--sab)) !important;
   }
   .fa-stack {
-    bottom: calc(5rem + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(5rem + var(--sab)) !important;
   }
   .fa-install {
-    bottom: calc(6.25rem + env(safe-area-inset-bottom, 0px)) !important;
+    bottom: calc(6.25rem + var(--sab)) !important;
   }
+}
+
+/* Prevent overscroll bounce on iOS */
+@supports (-webkit-touch-callout: none) {
+  body {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Mobile keyboard push-up fix */
+input:focus,
+textarea:focus,
+select:focus {
+  font-size: 16px !important;
 }

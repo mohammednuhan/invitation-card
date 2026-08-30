@@ -162,4 +162,4 @@ The PWA is fully automatic - no extra build step. Icons are in `frontend/public/
 - **Theme colours**: edit `frontend/tailwind.config.js` and `frontend/src/styles/index.css`.
 - **Invitation slug**: change the slug in the admin Couple tab. The invitation lives at `/your-slug`.
 
-See `DEPLOYMENT.md` for the full production guide (Vercel + Render + Mongo Atlas).
+See `DEPLOYMENT.md` for the full production guide. The app is deploy-ready for **Vercel** (frontend + API serverless in one project) with a MongoDB Atlas database.

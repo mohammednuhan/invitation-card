@@ -2,17 +2,27 @@
   "name": "luxury-wedding-invitation",
   "version": "1.0.0",
   "private": true,
+  "type": "module",
   "description": "Premium luxury digital wedding invitation website with React + Express + MongoDB",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
   "scripts": {
-    "install:all": "npm --prefix frontend install && npm --prefix backend install",
+    "install:all": "npm install",
     "dev:frontend": "npm --prefix frontend run dev",
     "dev:backend": "npm --prefix backend run dev",
     "dev": "concurrently -n FRONTEND,BACKEND -c yellow,cyan \"npm run dev:frontend\" \"npm run dev:backend\"",
+    "build": "npm --prefix frontend run build",
     "build:frontend": "npm --prefix frontend run build",
     "start:backend": "npm --prefix backend run start",
     "seed": "npm --prefix backend run seed"
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.13.0",
+    "prisma": "^6.13.0"
   }
 }

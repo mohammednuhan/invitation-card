@@ -1,21 +1,29 @@
-import mongoose from "mongoose";
+import pg from "pg";
 import dotenv from "dotenv";
 
 dotenv.config();
 
+const { Pool } = pg;
+
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }
+});
+
 const connectDB = async () => {
-  const uri = process.env.MONGO_URI;
-  if (!uri) {
-    console.error("MONGO_URI is not defined in .env file");
+  if (!process.env.DATABASE_URL) {
+    console.error("DATABASE_URL is not defined in .env file");
     process.exit(1);
   }
   try {
-    const conn = await mongoose.connect(uri);
-    console.log(`MongoDB connected: ${conn.connection.host}`);
+    const client = await pool.connect();
+    console.log("PostgreSQL connected successfully");
+    client.release();
   } catch (err) {
-    console.error(`Error connecting to MongoDB: ${err.message}`);
+    console.error(`Error connecting to PostgreSQL: ${err.message}`);
     process.exit(1);
   }
 };
 
+export { pool };
 export default connectDB;

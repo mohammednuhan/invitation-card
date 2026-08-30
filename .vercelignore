@@ -1,0 +1,26 @@
+# Files/folders excluded from the Vercel build & serverless bundle.
+# (node_modules and .env are always handled by Vercel itself.)
+
+.env
+.env.local
+.env.*.local
+node_modules
+
+# Build output (regenerated during the Vercel build)
+dist
+frontend/dist
+
+# Runtime-only local data - never deployed
+backend/uploads/*
+!backend/uploads/.gitkeep
+
+# Local helper scripts not needed in production
+backend/test-api.js
+frontend/scripts
+
+# Dev tooling / logs
+*.log
+.git
+.vercel
+README.md
+DEPLOYMENT.md

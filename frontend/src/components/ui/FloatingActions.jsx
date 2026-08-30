@@ -22,6 +22,8 @@ export default function FloatingActions() {
     } catch {
       const ta = document.createElement("textarea");
       ta.value = inviteUrl;
+      ta.style.position = "fixed";
+      ta.style.left = "-9999px";
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
@@ -31,23 +33,27 @@ export default function FloatingActions() {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const shareWhatsApp = () => {
+    const msg = `You are cordially invited to the wedding of ${data.couple.bride.name} & ${data.couple.groom.name}!\n\nJoin us to celebrate our special day.\n\n${inviteUrl}`;
+    const phone = (data.rsvp?.whatsapp || "").replace(/[^0-9]/g, "");
+    const url = phone
+      ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`
+      : `https://wa.me/?text=${encodeURIComponent(msg)}`;
+    window.open(url, "_blank");
+  };
+
   const share = async () => {
     if (navigator.share) {
       try {
         await navigator.share({
           title: `Wedding Invitation - ${data.couple.bride.name} & ${data.couple.groom.name}`,
-          text: "You are cordially invited to our wedding!",
+          text: `You are cordially invited to the wedding of ${data.couple.bride.name} & ${data.couple.groom.name}!`,
           url: inviteUrl
         });
         return;
       } catch {}
     }
-    window.open(
-      `https://wa.me/?text=${encodeURIComponent(
-        `You are invited to the wedding of ${data.couple.bride.name} & ${data.couple.groom.name}! ${inviteUrl}`
-      )}`,
-      "_blank"
-    );
+    shareWhatsApp();
   };
 
   const hasValidDate = (() => {
@@ -105,16 +111,20 @@ export default function FloatingActions() {
   return (
     <>
       <a
-        href={`https://wa.me/${data.rsvp.whatsapp}`}
+        href={`https://wa.me/${(data.rsvp?.whatsapp || "").replace(/[^0-9]/g, "")}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="fa-whatsapp fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg transition hover:scale-110"
+        className="fa-whatsapp fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg transition active:scale-90"
+        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
         title="Chat with us on WhatsApp"
       >
         <FaWhatsapp size={26} />
       </a>
 
-      <div className="fa-stack fixed bottom-20 right-4 z-[60] flex flex-col items-end gap-2 md:bottom-24 md:right-6">
+      <div
+        className="fa-stack fixed bottom-20 right-4 z-[60] flex flex-col items-end gap-2 md:bottom-24 md:right-6"
+        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
+      >
         <AnimatePresence>
           {open && (
             <motion.div
@@ -125,26 +135,26 @@ export default function FloatingActions() {
             >
               <button
                 onClick={googleCal}
-                className="glass-dark flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-cream-100 shadow-luxury transition hover:bg-gold-500"
+                className="glass-dark flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-medium text-cream-100 shadow-luxury transition active:scale-95"
               >
                 <FaCalendarPlus /> Google Calendar
               </button>
               <button
                 onClick={downloadIcs}
-                className="glass-dark flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-cream-100 shadow-luxury transition hover:bg-gold-500"
+                className="glass-dark flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-medium text-cream-100 shadow-luxury transition active:scale-95"
               >
                 <FaRegCalendarAlt /> Reminder (.ics)
               </button>
               <button
                 onClick={copyLink}
-                className="glass-dark flex items-center gap-2 rounded-full px-4 py-2 text-xs font-medium text-cream-100 shadow-luxury transition hover:bg-gold-500"
+                className="glass-dark flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-medium text-cream-100 shadow-luxury transition active:scale-95"
               >
                 {copied ? <FaCheck /> : <FaLink />}
                 {copied ? "Link copied!" : "Copy link"}
               </button>
               <button
                 onClick={share}
-                className="btn-luxury flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-wider"
+                className="btn-luxury flex items-center gap-2 rounded-full px-4 py-2.5 text-xs font-semibold uppercase tracking-wider active:scale-95"
               >
                 <FaShareAlt /> Share
               </button>
@@ -152,7 +162,6 @@ export default function FloatingActions() {
           )}
         </AnimatePresence>
         <motion.button
-          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={() => setOpen((o) => !o)}
           className="btn-luxury flex h-14 w-14 items-center justify-center rounded-2xl"

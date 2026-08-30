@@ -17,6 +17,7 @@ import FloatingActions from "../components/ui/FloatingActions";
 import InstallPrompt from "../components/ui/InstallPrompt";
 import LazySection from "../components/ui/LazySection";
 import GoldenParticles from "../components/effects/GoldenParticles";
+import CoupleAnimation from "../components/effects/CoupleAnimation";
 
 export default function Invitation() {
   const { data } = useData();
@@ -72,6 +73,48 @@ export default function Invitation() {
             className="relative"
           >
             <Hero data={data} />
+
+            <section className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 py-12">
+              <GoldenParticles count={25} />
+              <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
+                <motion.p
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8 }}
+                  className="mb-2 font-serif text-sm uppercase tracking-[0.5em] text-gold-600"
+                >
+                  Together Forever
+                </motion.p>
+                <motion.h2
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.2 }}
+                  className="mb-4 font-script text-4xl text-ink-900 md:text-5xl"
+                >
+                  {data.couple.groom.name} & {data.couple.bride.name}
+                </motion.h2>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: 0.4 }}
+                  className="mb-6 font-serif text-base italic text-ink-800/60"
+                >
+                  Two hearts, one beautiful journey
+                </motion.p>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 1, delay: 0.3 }}
+                >
+                  <CoupleAnimation />
+                </motion.div>
+              </div>
+            </section>
+
             <ScratchReveal data={data} />
             <LazySection>
               <Story data={data} />
