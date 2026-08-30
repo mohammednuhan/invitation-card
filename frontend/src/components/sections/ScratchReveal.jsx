@@ -215,7 +215,7 @@ function drawCover(ctx, w, h, couple) {
   ctx.fillText("\uD83D\uDD13", cx, h * 0.82);
 }
 
-export default function ScratchReveal({ data }) {
+export default function ScratchReveal({ data, onReveal }) {
   const canvasRef = useRef(null);
   const maskRef = useRef(null);
   const drawing = useRef(false);
@@ -362,6 +362,7 @@ export default function ScratchReveal({ data }) {
   const reveal = () => {
     if (revealed) return;
     setRevealed(true);
+    onReveal?.();
     setTimeout(() => {
       confetti({
         particleCount: 50,

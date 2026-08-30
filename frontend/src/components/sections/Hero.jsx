@@ -166,42 +166,6 @@ export default function Hero({ data }) {
               </p>
             </motion.div>
           </div>
-
-          <motion.div variants={itemFadeUp} className="flex flex-col items-center">
-            <p className="font-sans text-xs uppercase tracking-[0.4em] text-gold-200/80">
-              We are getting married
-            </p>
-            <p className="mt-2 font-display text-2xl font-semibold text-cream-50 md:text-3xl">
-              {fmtDate(couple.date)}
-            </p>
-            <p className="mt-2 font-serif text-sm italic tracking-widest text-gold-300/90">
-              {couple.venueName}
-            </p>
-          </motion.div>
-
-          <motion.div
-            variants={itemFadeUp}
-            className="mt-6 flex gap-2 text-center sm:gap-4 md:gap-6"
-          >
-            {[
-              { label: "Days", value: countdown.days },
-              { label: "Hours", value: countdown.hours },
-              { label: "Minutes", value: countdown.minutes },
-              { label: "Seconds", value: countdown.seconds }
-            ].map((t) => (
-              <div
-                key={t.label}
-                className="glass-dark flex min-w-[60px] flex-col items-center rounded-xl px-3 py-2 sm:min-w-[70px] sm:rounded-2xl sm:px-4 sm:py-3 md:min-w-[90px]"
-              >
-                <span className="font-display text-2xl font-bold text-gold-300 sm:text-3xl md:text-4xl">
-                  {String(t.value).padStart(2, "0")}
-                </span>
-                <span className="mt-1 font-sans text-[8px] uppercase tracking-[0.2em] text-cream-200/70 sm:text-[10px] sm:tracking-[0.25em]">
-                  {t.label}
-                </span>
-              </div>
-            ))}
-          </motion.div>
         </motion.div>
       </div>
 
