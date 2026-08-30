@@ -15,7 +15,7 @@ export default function Loader({ text = "Crafting your invitation..." }) {
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
-          className="relative h-28 w-28"
+          className="relative h-20 w-20 sm:h-28 sm:w-28"
         >
           <svg viewBox="0 0 120 120" className="absolute inset-0 h-full w-full">
             <circle

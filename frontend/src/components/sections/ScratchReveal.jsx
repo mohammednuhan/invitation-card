@@ -283,12 +283,12 @@ export default function ScratchReveal({ data }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
     const ctx = canvas.getContext("2d");
-    const size = Math.max(28, Math.min(rect.width, rect.height) * 0.06) * dpr;
+    const isMobile = window.innerWidth < 768;
+    const size = (isMobile ? 40 : 28) + Math.min(rect.width, rect.height) * 0.06;
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x * dpr, y * dpr, size, 0, Math.PI * 2);
+    ctx.arc(x, y, size, 0, Math.PI * 2);
     ctx.fill();
     ctx.globalCompositeOperation = "source-over";
   };
@@ -297,17 +297,17 @@ export default function ScratchReveal({ data }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
-    const dpr = window.devicePixelRatio || 1;
     const ctx = canvas.getContext("2d");
-    const radius = Math.max(28, Math.min(rect.width, rect.height) * 0.06) * dpr;
+    const isMobile = window.innerWidth < 768;
+    const radius = (isMobile ? 40 : 28) + Math.min(rect.width, rect.height) * 0.06;
 
     ctx.globalCompositeOperation = "destination-out";
     ctx.lineWidth = radius * 2;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
     ctx.beginPath();
-    ctx.moveTo(from.x * dpr, from.y * dpr);
-    ctx.lineTo(to.x * dpr, to.y * dpr);
+    ctx.moveTo(from.x, from.y);
+    ctx.lineTo(to.x, to.y);
     ctx.stroke();
     ctx.globalCompositeOperation = "source-over";
   };

@@ -58,7 +58,7 @@ export default function OpeningScreen({ data, onOpen }) {
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1.4, delay: 0.3 }}
             >
-              <p className="font-script text-6xl text-gold-300 md:text-7xl">
+              <p className="font-script text-4xl text-gold-300 sm:text-6xl md:text-7xl">
                 {"\u0628\u0650\u0633\u0652\u0645\u0650 \u0627\u0644\u0644\u0651\u064e\u0647\u0650"}
               </p>
             </motion.div>
@@ -128,21 +128,21 @@ export default function OpeningScreen({ data, onOpen }) {
             </motion.p>
 
             <div className="mt-10">
-              <h2 className="font-script text-6xl leading-tight text-cream-50 drop-shadow-[0_0_30px_rgba(227,181,74,0.35)] md:text-8xl">
+              <h2 className="font-script text-4xl leading-tight text-cream-50 drop-shadow-[0_0_30px_rgba(227,181,74,0.35)] sm:text-6xl md:text-8xl">
                 {couple.groom.name}
               </h2>
-              <div className="my-4 flex items-center justify-center gap-4">
-                <span className="h-px w-14 bg-gradient-to-r from-transparent to-gold-400" />
+              <div className="my-3 flex items-center justify-center gap-3 sm:my-4 sm:gap-4">
+                <span className="h-px w-10 bg-gradient-to-r from-transparent to-gold-400 sm:w-14" />
                 <motion.span
                   animate={{ scale: [1, 1.25, 1] }}
                   transition={{ duration: 1.8, repeat: Infinity }}
-                  className="font-serif text-2xl text-gold-300 md:text-3xl"
+                  className="font-serif text-xl text-gold-300 sm:text-2xl md:text-3xl"
                 >
                   {"\u2661"}
                 </motion.span>
-                <span className="h-px w-14 bg-gradient-to-l from-transparent to-gold-400" />
+                <span className="h-px w-10 bg-gradient-to-l from-transparent to-gold-400 sm:w-14" />
               </div>
-              <h2 className="font-script text-6xl leading-tight text-cream-50 drop-shadow-[0_0_30px_rgba(227,181,74,0.35)] md:text-8xl">
+              <h2 className="font-script text-4xl leading-tight text-cream-50 drop-shadow-[0_0_30px_rgba(227,181,74,0.35)] sm:text-6xl md:text-8xl">
                 {couple.bride.name}
               </h2>
             </div>

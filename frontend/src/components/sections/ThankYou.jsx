@@ -31,7 +31,7 @@ export default function ThankYou({ data }) {
     <section
       id="thankyou"
       ref={ref}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-ink-950 via-ink-800 to-ink-950 py-24 text-center"
+      className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-ink-950 via-ink-800 to-ink-950 py-16 text-center sm:py-24"
     >
       <GoldenParticles count={90} />
       <FallingPetals count={16} />
@@ -42,14 +42,14 @@ export default function ThankYou({ data }) {
           data-thank
           animate={{ scale: [1, 1.15, 1] }}
           transition={{ duration: 3, repeat: Infinity }}
-          className="mx-auto mb-8 flex h-20 w-20 items-center justify-center rounded-full border-2 border-gold-400/60 text-3xl text-gold-300 shadow-glow"
+          className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full border-2 border-gold-400/60 text-2xl text-gold-300 shadow-glow sm:mb-8 sm:h-20 sm:w-20 sm:text-3xl"
         >
           {"\u2666"}
         </motion.div>
 
         <h2
           data-thank
-          className="font-script text-6xl text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.35)] md:text-8xl"
+          className="font-script text-5xl text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.35)] sm:text-6xl md:text-8xl"
         >
           Thank You
         </h2>
