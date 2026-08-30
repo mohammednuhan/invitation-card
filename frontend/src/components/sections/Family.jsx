@@ -1,14 +1,15 @@
 import React from "react";
 import { motion } from "framer-motion";
 import SectionTitle from "../ui/SectionTitle";
-import { FaUserTie, FaUser, FaUserFriends, FaUserAstronaut } from "react-icons/fa";
+import { FaUserTie, FaUser, FaUserFriends, FaUserAstronaut, FaGraduationCap } from "react-icons/fa";
 import { itemFadeUp, container } from "../../animations/variants";
 
 const RELATION_ICON = {
   father: FaUserTie,
   mother: FaUser,
   brother: FaUserFriends,
-  sister: FaUserAstronaut
+  sister: FaUserAstronaut,
+  education: FaGraduationCap
 };
 
 const getIcon = (rel) => {

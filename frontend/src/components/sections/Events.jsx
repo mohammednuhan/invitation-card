@@ -29,6 +29,10 @@ const LOCATION_MAP = {
   Walima: {
     mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3895.5!2d75.5646!3d13.3152!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDE4JzU0LjciTiA3NcKwMzMnNTIuNiJF!5e0!3m2!1sen!2sin!4v1234567890",
     mapsLink: "https://www.google.com/maps/search/?api=1&query=Beekanahalli+Chikkamagaluru+Karnataka+577102"
+  },
+  Haldi: {
+    mapEmbed: "https://www.google.com/maps?q=Mohammed+Meehan+Residence+Sector+14&output=embed",
+    mapsLink: "https://www.google.com/maps/search/?api=1&query=Mohammed+Meehan+Residence+Sector+14"
   }
 };
 
@@ -122,6 +126,7 @@ export default function Events({ data }) {
                   )}
 
                   <div className="mt-4 flex flex-wrap items-center gap-3">
+                    {ev.dressCode && (
                     <div className="flex items-center gap-2 border-t border-gold-200/60 pt-4">
                       <span className="font-sans text-[10px] uppercase tracking-[0.25em] text-gold-700/80">
                         Dress code
@@ -130,6 +135,7 @@ export default function Events({ data }) {
                         {ev.dressCode}
                       </span>
                     </div>
+                    )}
                     {loc && (
                       <a
                         href={loc.mapsLink}

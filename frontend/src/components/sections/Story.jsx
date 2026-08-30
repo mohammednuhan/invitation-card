@@ -2,18 +2,20 @@ import React from "react";
 import { motion } from "framer-motion";
 import SectionTitle from "../ui/SectionTitle";
 import { itemFromLeft, itemFromRight, itemFadeScale } from "../../animations/variants";
-import { FaHeart, FaRing, FaPrayingHands, FaGlassCheers, FaEnvelopeOpen } from "react-icons/fa";
+import { FaHeart, FaRing, FaPrayingHands, FaGlassCheers, FaEnvelopeOpen, FaSeedling } from "react-icons/fa";
 
 const ICONS = {
   heart: FaHeart,
   ring: FaRing,
   pray: FaPrayingHands,
   glass: FaGlassCheers,
-  open: FaEnvelopeOpen
+  open: FaEnvelopeOpen,
+  flower: FaSeedling
 };
 
 const getIcon = (title) => {
   const t = title.toLowerCase();
+  if (t.includes("haldi")) return ICONS.flower;
   if (t.includes("met") || t.includes("proposal")) return ICONS.heart;
   if (t.includes("engage")) return ICONS.ring;
   if (t.includes("nikah") || t.includes("nikkah")) return ICONS.pray;

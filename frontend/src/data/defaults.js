@@ -1,19 +1,19 @@
 export const DEFAULT_DATA = {
   slug: "nuhan",
   couple: {
-    bride: {
-      name: "Ariba",
-      fullName: "Ariba",
-      father: "",
-      image: "/images/bride.jpg",
-      bio: "The one whose smile made every ordinary day feel extraordinary."
-    },
     groom: {
       name: "Mohammed Meehan",
       fullName: "Mohammed Meehan",
       father: "",
-      image: "/images/groom.jpg",
+      image: "/images/groom.svg",
       bio: "The one whose calm heart became my home and my forever prayer."
+    },
+    bride: {
+      name: "Ariba Muqthar",
+      fullName: "Ariba Muqthar",
+      father: "",
+      image: "/images/bride.svg",
+      bio: "The one whose smile made every ordinary day feel extraordinary."
     },
     date: "2026-12-20T12:00:00+05:30",
     venueName: "The Royal Heritage Palace",
@@ -21,6 +21,12 @@ export const DEFAULT_DATA = {
     themeWord: "With the blessings of Allah"
   },
   story: [
+    {
+      title: "Haldi",
+      date: "December 18, 2026",
+      text: "A joyful celebration filled with turmeric, laughter, and blessings as we prepare for the big day.",
+      image: "/images/story-1.jpg"
+    },
     {
       title: "Nikah",
       date: "December 20, 2026",
@@ -36,63 +42,42 @@ export const DEFAULT_DATA = {
   ],
   events: [
     {
-      title: "Nikah",
-      icon: "rings",
-      date: "20 Dec 2026",
-      time: "12:00 PM",
-      venue: "The Royal Heritage Palace",
-      dressCode: "Formal / Traditional"
-    },
-    {
-      title: "Reception",
-      icon: "glass",
-      date: "20 Dec 2026",
-      time: "07:00 PM Onwards",
-      venue: "The Royal Heritage Palace",
-      dressCode: "Evening Wear / Cocktail"
-    },
-    {
       title: "Haldi",
       icon: "flower",
       date: "18 Dec 2026",
       time: "10:00 AM - 01:00 PM",
-      venue: "Mohammed Meehan's Residence, Sector 14",
-      dressCode: "Yellow / Bright Colors"
+      venue: "Mohammed Meehan's Residence, Sector 14"
     },
     {
-      title: "Mehendi",
-      icon: "hand",
-      date: "19 Dec 2026",
-      time: "04:00 PM - 08:00 PM",
-      venue: "Ariba's Residence, Civil Lines",
-      dressCode: "Green / Pastel"
+      title: "Nikah",
+      icon: "rings",
+      date: "20 Dec 2026",
+      time: "12:00 PM",
+      venue: "The Royal Heritage Palace, Jaipur, Rajasthan"
     },
     {
       title: "Walima",
       icon: "plate",
       date: "21 Dec 2026",
       time: "01:00 PM",
-      venue: "8QPW+CW, Beekanahalli (Rural), Chikkamagaluru, Karnataka 577102",
-      dressCode: "Formal / Ethnic"
+      venue: "Beekanahalli, Chikkamagaluru, Karnataka 577102"
     }
   ],
   family: {
-    bride: {
-      name: "Ariba's Family",
-      members: [
-        { relation: "Father", name: "Md. Rahmat Ali", image: "" },
-        { relation: "Mother", name: "Rubina Khatoon", image: "" },
-        { relation: "Brother", name: "Arman Ali", image: "" },
-        { relation: "Sister", name: "Sana Khatoon", image: "" }
-      ]
-    },
     groom: {
       name: "Mohammed Meehan's Family",
       members: [
-        { relation: "Father", name: "Md. Abdul Rahman", image: "" },
-        { relation: "Mother", name: "Noorjahan Begum", image: "" },
-        { relation: "Brother", name: "Faiz Rahman", image: "" },
-        { relation: "Sister", name: "Maryam Rahman", image: "" }
+        { relation: "Father", name: "Shakeel Ahmed", image: "" },
+        { relation: "Mother", name: "Jowhar Sultana", image: "" },
+        { relation: "Education", name: "Mechanical Engineering", image: "" }
+      ]
+    },
+    bride: {
+      name: "Ariba Muqthar's Family",
+      members: [
+        { relation: "Father", name: "Muqthar Ahmed", image: "" },
+        { relation: "Mother", name: "Jasmin", image: "" },
+        { relation: "Education", name: "Bcom, MBA", image: "" }
       ]
     }
   },
@@ -116,7 +101,7 @@ export const DEFAULT_DATA = {
 };
 
 export const FALLBACK_IMAGES = {
-  bride: "/images/bride.jpg",
-  groom: "/images/groom.jpg",
+  bride: "/images/bride.svg",
+  groom: "/images/groom.svg",
   story: "/images/story-1.jpg"
 };

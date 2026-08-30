@@ -283,12 +283,12 @@ export default function ScratchReveal({ data, onReveal }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
     const ctx = canvas.getContext("2d");
-    const isMobile = window.innerWidth < 768;
-    const size = (isMobile ? 40 : 28) + Math.min(rect.width, rect.height) * 0.06;
+    const size = Math.max(28, Math.min(rect.width, rect.height) * 0.06) * dpr;
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.arc(x * dpr, y * dpr, size, 0, Math.PI * 2);
     ctx.fill();
     ctx.globalCompositeOperation = "source-over";
   };
@@ -425,45 +425,54 @@ export default function ScratchReveal({ data, onReveal }) {
             style={{ clipPath: "url(#scratchArchClip)" }}
           >
             <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-[#124d36] via-[#0a2e23] to-[#03160e] px-4 text-center">
-              <svg
-                viewBox="0 0 24 24"
-                className="mb-6 h-7 w-7 text-gold-300"
-                fill="currentColor"
-                aria-hidden="true"
-              >
-                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-              </svg>
-              <div className="mb-6 flex items-center gap-5 md:gap-7">
-                <div className="flex flex-col items-center">
-                  <img
-                    src={couple.groom.image}
-                    alt={couple.groom.name}
-                    className="h-20 w-20 rounded-full object-cover ring-2 ring-gold-400/80 md:h-24 md:w-24"
-                    onError={(e) => (e.target.src = "/images/groom.jpg")}
-                  />
-                  <p className="mt-2 font-script text-xl text-gold-200 md:text-2xl">
-                    {couple.groom.name}
-                  </p>
+              {/* Groom side */}
+              <div className="mb-4 flex flex-col items-center">
+                <div className="relative">
+                  <div className="h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-28 sm:w-24">
+                    <img
+                      src={couple.groom.image}
+                      alt={couple.groom.name}
+                      className="h-full w-full object-cover"
+                      onError={(e) => (e.target.src = "/images/groom.svg")}
+                    />
+                  </div>
+                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-lg text-gold-300">
+                    {"\u2693"}
+                  </span>
                 </div>
-                <span className="font-script text-3xl text-gold-300 md:text-4xl">
-                  {"\u2661"}
-                </span>
-                <div className="flex flex-col items-center">
-                  <img
-                    src={couple.bride.image}
-                    alt={couple.bride.name}
-                    className="h-20 w-20 rounded-full object-cover ring-2 ring-gold-400/80 md:h-24 md:w-24"
-                    onError={(e) => (e.target.src = "/images/bride.jpg")}
-                  />
-                  <p className="mt-2 font-script text-xl text-gold-200 md:text-2xl">
-                    {couple.bride.name}
-                  </p>
-                </div>
+                <p className="mt-3 font-script text-2xl text-gold-200 sm:text-3xl">
+                  {couple.groom.name.split(" ").pop()}
+                </p>
               </div>
-              <p className="font-script text-3xl text-gold-200 md:text-4xl">
-                Together Forever
-              </p>
-              <p className="mt-3 font-serif text-[10px] uppercase tracking-[0.35em] text-gold-400/80">
+
+              {/* Heart divider */}
+              <div className="my-2 flex items-center gap-3">
+                <span className="h-px w-12 bg-gold-400/40" />
+                <span className="font-script text-2xl text-gold-300">{"\u2661"}</span>
+                <span className="h-px w-12 bg-gold-400/40" />
+              </div>
+
+              {/* Bride side */}
+              <div className="mt-4 flex flex-col items-center">
+                <div className="relative">
+                  <div className="h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-28 sm:w-24">
+                    <img
+                      src={couple.bride.image}
+                      alt={couple.bride.name}
+                      className="h-full w-full object-cover"
+                      onError={(e) => (e.target.src = "/images/bride.svg")}
+                    />
+                  </div>
+                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-lg text-gold-300">
+                    {"\u2693"}
+                  </span>
+                </div>
+                <p className="mt-3 font-script text-2xl text-gold-200 sm:text-3xl">
+                  {couple.bride.name.split(" ")[0]}
+                </p>
+              </div>
+
+              <p className="mt-4 font-serif text-[9px] uppercase tracking-[0.35em] text-gold-400/80">
                 Nikah {"\u2022"} Walima
               </p>
             </div>

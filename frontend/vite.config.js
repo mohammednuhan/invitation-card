@@ -13,8 +13,8 @@ export default defineConfig(({ mode }) => {
         registerType: "autoUpdate",
         includeAssets: ["favicon.svg", "icons/apple-touch-icon.png"],
         manifest: {
-          name: "Ariba & Mohammed Meehan | Wedding Invitation",
-          short_name: "A & M Wedding",
+          name: "Mohammed Meehan & Ariba Muqthar | Wedding Invitation",
+          short_name: "M & A Wedding",
           description:
             "With the blessings of Allah, you are cordially invited to our wedding celebration.",
           start_url: "/",
