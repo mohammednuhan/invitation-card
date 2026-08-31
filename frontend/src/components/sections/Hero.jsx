@@ -97,14 +97,15 @@ export default function Hero({ data }) {
         >
           <motion.p
             variants={itemBlur}
-            className="mb-6 font-serif text-sm uppercase tracking-[0.5em] text-gold-300 md:text-base"
+            className="mb-8 font-serif text-xs uppercase tracking-[0.5em] text-gold-300 md:text-base"
           >
             With the blessings of Allah
           </motion.p>
 
-          <div className="mb-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-5 sm:gap-x-8 md:gap-x-14">
-            <motion.div variants={itemFadeUp} className="relative">
-              <div className="relative h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-36 sm:w-28 md:h-44 md:w-36">
+          {/* Portraits side-by-side on all screens */}
+          <div className="mb-8 flex items-end justify-center gap-x-6 sm:gap-x-10 md:gap-x-16">
+            <motion.div variants={itemFadeUp} className="flex flex-col items-center">
+              <div className="h-28 w-24 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-36 sm:w-28 md:h-44 md:w-36">
                 <img
                   src={couple.groom.image}
                   alt={couple.groom.name}
@@ -116,36 +117,26 @@ export default function Hero({ data }) {
                   }}
                 />
               </div>
-              <p className="mt-2 text-center font-script text-lg text-gold-200 sm:text-2xl md:text-3xl">
+              <p className="mt-2 text-center font-script text-lg text-gold-200 sm:text-xl md:text-2xl">
                 {couple.groom.name}
               </p>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="flex flex-col items-center">
+            <motion.div
+              variants={itemFadeUp}
+              className="mb-8 flex flex-col items-center md:mb-10"
+            >
               <motion.span
                 animate={{ rotate: [0, 8, -8, 0] }}
                 transition={{ duration: 6, repeat: Infinity }}
-                className="font-script text-3xl text-gold-300 md:text-5xl"
+                className="font-script text-2xl text-gold-300 md:text-3xl"
               >
                 {"\u2666"}
               </motion.span>
-              <h1 className="mt-2 flex flex-col items-center font-script leading-tight text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.4)]">
-                <span className="text-3xl sm:text-5xl md:text-6xl">
-                  {couple.groom.name}
-                </span>
-                <span className="my-1 flex items-center gap-3 text-xl text-gold-300 sm:my-2 sm:text-2xl">
-                  <span className="h-px w-8 bg-gold-400/60 sm:w-12" />
-                  {"\u2661"}
-                  <span className="h-px w-8 bg-gold-400/60 sm:w-12" />
-                </span>
-                <span className="text-3xl sm:text-5xl md:text-6xl">
-                  {couple.bride.name}
-                </span>
-              </h1>
             </motion.div>
 
-            <motion.div variants={itemFadeUp} className="relative">
-              <div className="relative h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-36 sm:w-28 md:h-44 md:w-36">
+            <motion.div variants={itemFadeUp} className="flex flex-col items-center">
+              <div className="h-28 w-24 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-36 sm:w-28 md:h-44 md:w-36">
                 <img
                   src={couple.bride.image}
                   alt={couple.bride.name}
@@ -157,11 +148,28 @@ export default function Hero({ data }) {
                   }}
                 />
               </div>
-              <p className="mt-2 text-center font-script text-lg text-gold-200 sm:text-2xl md:text-3xl">
+              <p className="mt-2 text-center font-script text-lg text-gold-200 sm:text-xl md:text-2xl">
                 {couple.bride.name}
               </p>
             </motion.div>
           </div>
+
+          {/* Names stacked below on their own row */}
+          <motion.div variants={itemFadeUp} className="mb-4 flex flex-col items-center">
+            <h1 className="flex flex-col items-center font-script leading-tight text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.4)]">
+              <span className="text-3xl sm:text-5xl md:text-6xl">
+                {couple.groom.fullName || couple.groom.name}
+              </span>
+              <span className="my-2 flex items-center gap-3 text-xl text-gold-300 sm:my-3 sm:text-2xl">
+                <span className="h-px w-10 bg-gold-400/60 sm:w-14" />
+                {"\u2661"}
+                <span className="h-px w-10 bg-gold-400/60 sm:w-14" />
+              </span>
+              <span className="text-3xl sm:text-5xl md:text-6xl">
+                {couple.bride.fullName || couple.bride.name}
+              </span>
+            </h1>
+          </motion.div>
         </motion.div>
       </div>
 
