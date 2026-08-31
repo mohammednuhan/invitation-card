@@ -436,9 +436,6 @@ export default function ScratchReveal({ data, onReveal }) {
                       onError={(e) => (e.target.src = "/images/groom.svg")}
                     />
                   </div>
-                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-lg text-gold-300">
-                    {"\u2693"}
-                  </span>
                 </div>
                 <p className="mt-3 font-script text-2xl text-gold-200 sm:text-3xl">
                   {couple.groom.name.split(" ").pop()}
@@ -463,9 +460,6 @@ export default function ScratchReveal({ data, onReveal }) {
                       onError={(e) => (e.target.src = "/images/bride.svg")}
                     />
                   </div>
-                  <span className="absolute -top-2 left-1/2 -translate-x-1/2 text-lg text-gold-300">
-                    {"\u2693"}
-                  </span>
                 </div>
                 <p className="mt-3 font-script text-2xl text-gold-200 sm:text-3xl">
                   {couple.bride.name.split(" ")[0]}

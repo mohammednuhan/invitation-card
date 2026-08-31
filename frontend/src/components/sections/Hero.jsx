@@ -116,15 +116,8 @@ export default function Hero({ data }) {
                   }}
                 />
               </div>
-              <motion.span
-                animate={{ y: [-6, 6, -6] }}
-                transition={{ duration: 4, repeat: Infinity }}
-                className="absolute -top-3 left-1/2 -translate-x-1/2 text-xl text-gold-300 sm:-top-4 sm:text-2xl"
-              >
-                {"\u2693"}
-              </motion.span>
               <p className="mt-2 text-center font-script text-lg text-gold-200 sm:text-2xl md:text-3xl">
-                Meehan
+                {couple.groom.name}
               </p>
             </motion.div>
 
@@ -136,8 +129,18 @@ export default function Hero({ data }) {
               >
                 {"\u2666"}
               </motion.span>
-              <h1 className="mt-2 font-script text-3xl leading-tight text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.4)] sm:text-5xl md:text-8xl">
-                {couple.groom.name} {"\u2661"} {couple.bride.name}
+              <h1 className="mt-2 flex flex-col items-center font-script leading-tight text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.4)]">
+                <span className="text-3xl sm:text-5xl md:text-6xl">
+                  {couple.groom.name}
+                </span>
+                <span className="my-1 flex items-center gap-3 text-xl text-gold-300 sm:my-2 sm:text-2xl">
+                  <span className="h-px w-8 bg-gold-400/60 sm:w-12" />
+                  {"\u2661"}
+                  <span className="h-px w-8 bg-gold-400/60 sm:w-12" />
+                </span>
+                <span className="text-3xl sm:text-5xl md:text-6xl">
+                  {couple.bride.name}
+                </span>
               </h1>
             </motion.div>
 
@@ -154,15 +157,8 @@ export default function Hero({ data }) {
                   }}
                 />
               </div>
-              <motion.span
-                animate={{ y: [-6, 6, -6] }}
-                transition={{ duration: 4, repeat: Infinity, delay: 1 }}
-                className="absolute -top-3 left-1/2 -translate-x-1/2 text-xl text-gold-300 sm:-top-4 sm:text-2xl"
-              >
-                {"\u2693"}
-              </motion.span>
               <p className="mt-2 text-center font-script text-lg text-gold-200 sm:text-2xl md:text-3xl">
-                Ariba
+                {couple.bride.name}
               </p>
             </motion.div>
           </div>

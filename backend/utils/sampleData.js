@@ -12,8 +12,8 @@ export const DEFAULT_COUPLE = {
     image: ""
   },
   date: "2026-12-20T12:00:00+05:30",
-  venueName: "The Royal Heritage Palace",
-  venueAddress: "12, MG Road, Jaipur, Rajasthan 302001",
+  venueName: "Koppa, Chikamagaluru",
+  venueAddress: "Koppa, Chikamagaluru, Karnataka, India",
   themeWord: "With the blessings of Allah"
 };
 
@@ -51,7 +51,7 @@ export const SAMPLE_EVENTS = [
     icon: "rings",
     date: "20 Dec 2026",
     time: "12:00 PM",
-    venue: "The Royal Heritage Palace, Jaipur, Rajasthan"
+    venue: "Koppa, Chikamagaluru, Karnataka"
   },
   {
     title: "Walima",
@@ -84,10 +84,10 @@ export const SAMPLE_FAMILY = [
 ];
 
 export const SAMPLE_VENUE = {
-  name: "The Royal Heritage Palace",
-  address: "12, MG Road, Jaipur, Rajasthan 302001",
-  landmark: "Opposite City Museum, near Central Park",
-  parking: "Valet parking available at the main entrance",
-  mapEmbed: "https://www.google.com/maps?q=Jaipur&output=embed",
-  mapsLink: "https://www.google.com/maps/search/?api=1&query=Jaipur"
+  name: "Koppa, Chikamagaluru",
+  address: "Koppa, Chikamagaluru, Karnataka, India",
+  landmark: "Koppa town, Chikamagaluru district",
+  parking: "Parking available near the venue",
+  mapEmbed: "https://www.google.com/maps?q=Koppa,Chikmagalur,Karnataka&output=embed",
+  mapsLink: "https://www.google.com/maps/search/?api=1&query=Koppa,+Chikmagalur,+Karnataka"
 };
