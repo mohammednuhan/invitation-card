@@ -220,6 +220,9 @@ export default function Invitation() {
                 <p className="font-script text-2xl text-gold-300">
                   Made with {"\u2665"} for our forever
                 </p>
+                <p className="mt-6 border-t border-gold-400/15 pt-5 font-sans text-[11px] uppercase tracking-[0.25em] text-cream-200/50">
+                  Managed by Mohammed Nuhan
+                </p>
               </div>
             </footer>
           </motion.div>
