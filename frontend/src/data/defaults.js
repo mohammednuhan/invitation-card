@@ -91,7 +91,7 @@ export const DEFAULT_DATA = {
     mapsLink: "https://www.google.com/maps/search/?api=1&query=Koppa,+Chikmagalur,+Karnataka"
   },
   rsvp: {
-    whatsapp: "919876543210"
+    whatsapp: "917019536523"
   },
   theme: {
     primary: "#d4a03c",

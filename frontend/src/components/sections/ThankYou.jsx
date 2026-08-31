@@ -1,9 +1,15 @@
 import React, { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
+import { FaInstagram } from "react-icons/fa";
 import { gsap } from "../../animations/gsap";
 import GoldenParticles from "../effects/GoldenParticles";
 import FallingPetals from "../effects/FallingPetals";
 import FloatingHearts from "../effects/FloatingHearts";
+
+const GROOM_IG =
+  "https://www.instagram.com/mhd_meehan?igsi=MXAydjhjYWN4NTFjMQ==";
+const BRIDE_IG =
+  "https://www.instagram.com/ari_ba02?igsi=MXZ3cHpwdmJ6bmVmaQ==";
 
 export default function ThankYou({ data }) {
   const ref = useRef(null);
@@ -64,10 +70,65 @@ export default function ThankYou({ data }) {
           with you.
         </p>
 
-        <p
-          data-thank
-          className="mt-10 font-script text-4xl text-gold-300 md:text-5xl"
-        >
+        <div data-thank className="mt-10 flex items-end justify-center gap-5 sm:gap-8">
+          <div className="flex flex-col items-center">
+            <div className="relative">
+              <img
+                src={couple.groom.image}
+                alt={couple.groom.name}
+                loading="lazy"
+                decoding="async"
+                className="h-28 w-24 rounded-t-full rounded-b-2xl border-2 border-gold-400/60 object-cover shadow-glow sm:h-32 sm:w-28"
+                onError={(e) => {
+                  e.target.src = "/images/groom.svg";
+                }}
+              />
+            </div>
+            <p className="mt-3 font-script text-lg text-gold-200 sm:text-xl">
+              {couple.groom.name}
+            </p>
+            <a
+              href={GROOM_IG}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Groom on Instagram"
+              aria-label="Groom on Instagram"
+              className="mt-2 flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/40 text-gold-300 transition hover:border-gold-300 hover:text-gold-100 active:scale-90"
+            >
+              <FaInstagram size={18} />
+            </a>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <div className="relative">
+              <img
+                src={couple.bride.image}
+                alt={couple.bride.name}
+                loading="lazy"
+                decoding="async"
+                className="h-28 w-24 rounded-t-full rounded-b-2xl border-2 border-gold-400/60 object-cover shadow-glow sm:h-32 sm:w-28"
+                onError={(e) => {
+                  e.target.src = "/images/bride.svg";
+                }}
+              />
+            </div>
+            <p className="mt-3 font-script text-lg text-gold-200 sm:text-xl">
+              {couple.bride.name}
+            </p>
+            <a
+              href={BRIDE_IG}
+              target="_blank"
+              rel="noopener noreferrer"
+              title="Bride on Instagram"
+              aria-label="Bride on Instagram"
+              className="mt-2 flex h-10 w-10 items-center justify-center rounded-full border border-gold-400/40 text-gold-300 transition hover:border-gold-300 hover:text-gold-100 active:scale-90"
+            >
+              <FaInstagram size={18} />
+            </a>
+          </div>
+        </div>
+
+        <p data-thank className="mt-8 font-script text-3xl text-gold-300 sm:text-4xl">
           {couple.groom.name} {"\u2661"} {couple.bride.name}
         </p>
 
@@ -78,12 +139,7 @@ export default function ThankYou({ data }) {
           See you at our wedding
         </p>
 
-        {/* <div data-thank className="mt-12 flex items-center justify-center gap-4">
-          <span className="h-px w-16 bg-gradient-to-r from-transparent to-gold-400" />
-          <span className="font-script text-2xl text-gold-300">{"\u2693"}</span>
-          <span className="h-px w-16 bg-gradient-to-l from-transparent to-gold-400" />
-        </div> */}
-      </div>
+        </div>
     </section>
   );
 }

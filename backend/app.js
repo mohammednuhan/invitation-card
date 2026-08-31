@@ -26,9 +26,18 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
-app.get("/", (req, res) =>
-  res.json({ status: "ok", service: "Luxury Wedding API" })
-);
+if (config.isProduction) {
+  const distPath = path.join(__dirname, "..", "frontend", "dist");
+  app.use(express.static(distPath));
+  app.get("/", (req, res) => res.sendFile(path.join(distPath, "index.html")));
+  app.get(/^\/(?!api|uploads).*/, (req, res) =>
+    res.sendFile(path.join(distPath, "index.html"))
+  );
+} else {
+  app.get("/", (req, res) =>
+    res.json({ status: "ok", service: "Luxury Wedding API" })
+  );
+}
 
 app.use("/api", authRoutes);
 app.use("/api/couple", coupleRoutes);

@@ -15,6 +15,7 @@ export default function FloatingActions() {
   const [copied, setCopied] = useState(false);
   const { data } = useData();
   const inviteUrl = window.location.href;
+  const waPhone = (data.rsvp?.whatsapp || "917019536523").replace(/[^0-9]/g, "");
 
   const copyLink = async () => {
     try {
@@ -35,9 +36,8 @@ export default function FloatingActions() {
 
   const shareWhatsApp = () => {
     const msg = `You are cordially invited to the wedding of ${data.couple.bride.name} & ${data.couple.groom.name}!\n\nJoin us to celebrate our special day.\n\n${inviteUrl}`;
-    const phone = (data.rsvp?.whatsapp || "").replace(/[^0-9]/g, "");
-    const url = phone
-      ? `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`
+    const url = waPhone
+      ? `https://wa.me/${waPhone}?text=${encodeURIComponent(msg)}`
       : `https://wa.me/?text=${encodeURIComponent(msg)}`;
     window.open(url, "_blank");
   };
@@ -111,7 +111,7 @@ export default function FloatingActions() {
   return (
     <>
       <a
-        href={`https://wa.me/${(data.rsvp?.whatsapp || "").replace(/[^0-9]/g, "")}`}
+        href={`https://wa.me/${waPhone}`}
         target="_blank"
         rel="noopener noreferrer"
         className="fa-whatsapp fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg transition active:scale-90"

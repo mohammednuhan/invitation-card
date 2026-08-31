@@ -216,9 +216,11 @@ export default function Invitation() {
 
             <footer className="relative overflow-hidden bg-ink-900 py-10 text-center">
               <GoldenParticles count={20} />
-              <p className="relative z-10 font-script text-2xl text-gold-300">
-                Made with {"\u2665"} for our forever
-              </p>
+              <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-6">
+                <p className="font-script text-2xl text-gold-300">
+                  Made with {"\u2665"} for our forever
+                </p>
+              </div>
             </footer>
           </motion.div>
         )}
