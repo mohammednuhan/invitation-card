@@ -59,7 +59,7 @@ export default function Family({ data }) {
                 <div className="mx-auto mt-3 h-px w-24 bg-gradient-to-r from-transparent via-gold-400 to-transparent" />
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-wrap justify-center gap-4">
                 {family.members.map((m, i) => {
                   const Icon = getIcon(m.relation);
                   return (
@@ -67,7 +67,7 @@ export default function Family({ data }) {
                       key={i}
                       variants={itemFadeUp}
                       whileHover={{ y: -4 }}
-                      className="flex flex-col items-center rounded-2xl border border-gold-200/60 bg-cream-50 p-5 text-center transition-shadow hover:shadow-gold"
+                      className="flex w-full flex-col items-center rounded-2xl border border-gold-200/60 bg-cream-50 p-5 text-center transition-shadow hover:shadow-gold sm:w-[calc(50%-0.5rem)]"
                     >
                       {m.image ? (
                         <img

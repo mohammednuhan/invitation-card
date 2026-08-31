@@ -112,7 +112,7 @@ export default function Events({ data }) {
 
           <motion.div
             variants={itemFadeUp}
-            className="flex flex-col items-center justify-center rounded-3xl bg-gradient-to-br from-gold-400 to-gold-600 p-8 text-center text-white shadow-gold"
+            className="flex flex-col items-center justify-center rounded-3xl bg-gradient-to-br from-gold-400 to-gold-600 p-8 text-center text-white shadow-gold sm:col-span-2 lg:col-span-3"
           >
             <p className="font-script text-5xl">{"\u2666"}</p>
             <h3 className="mt-3 font-script text-4xl text-white">
