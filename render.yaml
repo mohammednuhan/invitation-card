@@ -7,7 +7,7 @@ services:
     buildCommand: npm install
     startCommand: npm run start
     envVars:
-      - key: MONGO_URI
+      - key: DATABASE_URL
         sync: false
       - key: JWT_SECRET
         sync: false

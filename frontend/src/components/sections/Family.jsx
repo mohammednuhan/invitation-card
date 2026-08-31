@@ -73,6 +73,8 @@ export default function Family({ data }) {
                         <img
                           src={m.image}
                           alt={m.name}
+                          loading="lazy"
+                          decoding="async"
                           className="mb-3 h-16 w-16 rounded-full object-cover ring-2 ring-gold-300"
                         />
                       ) : (

@@ -72,11 +72,11 @@ export default defineConfig(({ mode }) => {
           let tags = [
             {
               tag: "link",
-              attrs: { rel: "preload", href: "/images/bride.jpg", as: "image" }
+              attrs: { rel: "preload", href: "/images/bride.svg", as: "image" }
             },
             {
               tag: "link",
-              attrs: { rel: "preload", href: "/images/groom.jpg", as: "image" }
+              attrs: { rel: "preload", href: "/images/groom.svg", as: "image" }
             }
           ];
           if (apiOrigin && /^https?:\/\//.test(apiOrigin)) {

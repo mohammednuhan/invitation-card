@@ -102,7 +102,7 @@ export default function Hero({ data }) {
             With the blessings of Allah
           </motion.p>
 
-          <div className="mb-6 flex items-center gap-4 sm:gap-8 md:gap-14">
+          <div className="mb-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-5 sm:gap-x-8 md:gap-x-14">
             <motion.div variants={itemFadeUp} className="relative">
               <div className="relative h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-36 sm:w-28 md:h-44 md:w-36">
                 <img

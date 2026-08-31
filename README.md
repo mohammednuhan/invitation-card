@@ -2,7 +2,7 @@
 
 A premium, luxury, interactive digital wedding invitation website - the kind that goes viral on Instagram. It opens with a magical loading sequence (Bismillah -> couple names -> "Open Invitation"), then reveals a full animated wedding experience with a **scratch-to-reveal** coin, story timeline, events, countdown, floating WhatsApp/share buttons and a complete admin panel.
 
-**Stack:** React 19 - Vite - TailwindCSS - Framer Motion - GSAP - Lenis - canvas-confetti - Node.js - Express - MongoDB - Mongoose - JWT - Multer
+**Stack:** React 19 - Vite - TailwindCSS - Framer Motion - GSAP - Lenis - canvas-confetti - Node.js - Express - PostgreSQL - `pg` - JWT - Multer
 
 ## Features
 
@@ -31,7 +31,7 @@ A premium, luxury, interactive digital wedding invitation website - the kind tha
 
 ### 1. Prerequisites
 - Node.js 18+ (LTS recommended)
-- A MongoDB database (local `mongod` or a free [Mongo Atlas](https://www.mongodb.com/atlas) cluster)
+- A PostgreSQL database (local Postgres, a free [Neon](https://neon.tech) serverless cluster, or any hosted Postgres)
 
 ### 2. Install dependencies
 
@@ -45,7 +45,7 @@ npm run install:all
 
 ```env
 PORT=5000
-MONGO_URI=mongodb+srv://<user>:<password>@<cluster>.mongodb.net/wedding
+DATABASE_URL=postgresql://<user>:<password>@<host>.neon.tech/neondb?sslmode=require
 JWT_SECRET=<long random string>
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin123
@@ -107,7 +107,7 @@ npm run dev
     ├── config/                   # db + env config
     ├── controllers/              # all route handlers
     ├── middleware/               # JWT auth, Multer upload
-    ├── models/                   # Mongoose models
+    ├── models/                   # (removed - backend uses raw pg/SQL queries)
     ├── routes/                   # API routes
     ├── uploads/                  # uploaded images (gitignored)
     ├── utils/                    # sample data

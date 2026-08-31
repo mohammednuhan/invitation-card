@@ -7,27 +7,30 @@ import {
 } from "react-icons/fa";
 import SectionTitle from "../ui/SectionTitle";
 import { itemFadeUp, container } from "../../animations/variants";
+import { DEFAULT_DATA } from "../../data/defaults";
 
-const VENUES = {
-  nikah: {
-    name: "Nikah & Reception",
-    venue: "The Royal Heritage Palace",
-    address: "12, MG Road, Jaipur, Rajasthan 302001",
-    landmark: "Opposite City Museum, near Central Park",
-    mapEmbed: "https://www.google.com/maps?q=The+Royal+Heritage+Palace+Jaipur+Rajasthan&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=The+Royal+Heritage+Palace+Jaipur+Rajasthan"
-  },
-  walima: {
-    name: "Walima",
-    venue: "Beekanahalli, Chikkamagaluru",
-    address: "8QPW+CW, Beekanahalli (Rural), Chikkamagaluru, Karnataka 577102",
-    landmark: "CN WINDSOR, Chikmagaluru",
-    mapEmbed: "https://www.google.com/maps?q=8QPW%2BCW+Beekanahalli+Chikkamagaluru+Karnataka+577102&output=embed",
-    mapsLink: "https://share.google/xAUqcNx4NCZhs0ltG"
-  }
+const WALIMA_VENUE = {
+  name: "Walima",
+  venue: "C.N Conventional Hall",
+  address: "Beekanahalli, Chikkamagaluru, Karnataka, India",
+  landmark: "CN WINDSOR, Chikmagaluru",
+  mapEmbed:
+    "https://www.google.com/maps?q=C.N+Conventional+Hall,+Beekanahalli,+Chikkamagaluru,+Karnataka&output=embed",
+  mapsLink: "https://maps.app.goo.gl/zhiJudu6TQiQjW5L9"
 };
 
 export default function Venue({ data }) {
+  const nikah = {
+    name: "Nikah & Reception",
+    venue: data.venue.name || DEFAULT_DATA.venue.name,
+    address: data.venue.address || DEFAULT_DATA.venue.address,
+    landmark: data.venue.landmark || DEFAULT_DATA.venue.landmark,
+    mapEmbed: data.venue.mapEmbed || DEFAULT_DATA.venue.mapEmbed,
+    mapsLink: data.venue.mapsLink || DEFAULT_DATA.venue.mapsLink
+  };
+
+  const cards = [nikah, WALIMA_VENUE];
+
   return (
     <section
       id="venue"
@@ -47,9 +50,9 @@ export default function Venue({ data }) {
           viewport={{ once: true, amount: 0.2 }}
           className="grid gap-8 lg:grid-cols-2"
         >
-          {Object.entries(VENUES).map(([key, v]) => (
+          {cards.map((v) => (
             <motion.div
-              key={key}
+              key={v.name}
               variants={itemFadeUp}
               className="overflow-hidden rounded-3xl gold-border luxury-shadow bg-white/70 backdrop-blur"
             >

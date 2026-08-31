@@ -432,6 +432,8 @@ export default function ScratchReveal({ data, onReveal }) {
                     <img
                       src={couple.groom.image}
                       alt={couple.groom.name}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover"
                       onError={(e) => (e.target.src = "/images/groom.svg")}
                     />
@@ -456,6 +458,8 @@ export default function ScratchReveal({ data, onReveal }) {
                     <img
                       src={couple.bride.image}
                       alt={couple.bride.name}
+                      loading="lazy"
+                      decoding="async"
                       className="h-full w-full object-cover"
                       onError={(e) => (e.target.src = "/images/bride.svg")}
                     />

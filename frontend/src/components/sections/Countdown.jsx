@@ -20,7 +20,7 @@ export default function Countdown({ data }) {
     >
       <GoldenParticles count={60} />
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
-        <img src="/images/islamic-bg.png" alt="" className="h-full w-full object-cover" />
+        <img src="/images/islamic-bg.png" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
       </div>
 
       <motion.div

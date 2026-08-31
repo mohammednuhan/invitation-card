@@ -31,7 +31,7 @@ export default function Story({ data }) {
       className="relative overflow-hidden bg-gradient-to-b from-cream-50 to-ink-900 py-24"
     >
       <div className="pointer-events-none absolute inset-0 opacity-[0.04]">
-        <img src="/images/islamic-bg.png" alt="" className="h-full w-full object-cover" />
+        <img src="/images/islamic-bg.png" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
       </div>
       <div className="relative z-10 mx-auto max-w-4xl px-6">
         <SectionTitle

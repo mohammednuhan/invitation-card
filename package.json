@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Premium luxury digital wedding invitation website with React + Express + MongoDB",
+  "description": "Premium luxury digital wedding invitation website with React + Express + PostgreSQL",
   "workspaces": [
     "frontend",
     "backend"
@@ -20,9 +20,5 @@
   },
   "devDependencies": {
     "concurrently": "^9.1.0"
-  },
-  "dependencies": {
-    "@prisma/client": "^6.13.0",
-    "prisma": "^6.13.0"
   }
 }

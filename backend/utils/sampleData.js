@@ -58,7 +58,7 @@ export const SAMPLE_EVENTS = [
     icon: "plate",
     date: "21 Dec 2026",
     time: "01:00 PM",
-    venue: "Beekanahalli, Chikkamagaluru, Karnataka 577102"
+    venue: "C.N Conventional Hall, Beekanahalli, Chikkamagaluru, Karnataka"
   }
 ];
 

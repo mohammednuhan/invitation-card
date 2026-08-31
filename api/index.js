@@ -1,26 +1,28 @@
-import mongoose from "mongoose";
+import { pool } from "../backend/config/db.js";
 import app from "../backend/app.js";
 
-let connPromise = null;
+let readyPromise = null;
 
-async function connect() {
-  if (mongoose.connection.readyState === 1) return;
-  if (!connPromise) {
-    const uri = process.env.MONGO_URI;
-    if (!uri) {
-      throw new Error("MONGO_URI is not set. Add it to the Vercel project environment.");
-    }
-    connPromise = mongoose.connect(uri, { bufferCommands: false });
+async function ensureReady() {
+  if (!process.env.DATABASE_URL) {
+    throw new Error(
+      "DATABASE_URL is not set. Add it to the Vercel project environment."
+    );
   }
-  await connPromise;
+  if (!readyPromise) {
+    readyPromise = pool.query("SELECT 1").catch((err) => {
+      readyPromise = null;
+      throw err;
+    });
+  }
+  await readyPromise;
 }
 
 export default async function handler(req, res) {
   try {
-    await connect();
+    await ensureReady();
   } catch (err) {
-    connPromise = null;
-    console.error("MongoDB connection failed:", err.message);
+    console.error("Database connection failed:", err.message);
     res.status(500).json({ message: "Database connection failed" });
     return;
   }
