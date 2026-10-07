@@ -121,7 +121,7 @@ function DateReveal({ data }) {
 
 export default function Invitation() {
   const { data } = useData();
-  const [opened, setOpened] = useState(false);
+  const [gateState, setGateState] = useState("closed");
   const [showLoader, setShowLoader] = useState(true);
   const [scratchRevealed, setScratchRevealed] = useState(false);
 
@@ -132,8 +132,22 @@ export default function Invitation() {
     return () => clearTimeout(t);
   }, []);
 
+  useEffect(() => {
+    if (gateState === "done") return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    window.scrollTo(0, 0);
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [gateState]);
+
+  const handleOpening = useCallback(() => {
+    setGateState((s) => (s === "closed" ? "opening" : s));
+  }, []);
+
   const handleOpen = useCallback(() => {
-    setOpened(true);
+    setGateState("done");
   }, []);
 
   const handleScratchReveal = useCallback(() => {
@@ -162,14 +176,19 @@ export default function Invitation() {
         {showLoader && <Loader key="loader" />}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {!opened && !showLoader && (
-          <OpeningScreen key="opening" data={data} onOpen={handleOpen} />
+      <AnimatePresence mode="wait">
+        {gateState !== "done" && !showLoader && (
+          <OpeningScreen
+            key="opening"
+            data={data}
+            onOpening={handleOpening}
+            onOpen={handleOpen}
+          />
         )}
       </AnimatePresence>
 
       <AnimatePresence>
-        {opened && (
+        {gateState !== "closed" && (
           <motion.div
             key="content"
             initial={{ opacity: 0 }}
