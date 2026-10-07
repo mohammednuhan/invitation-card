@@ -354,7 +354,7 @@ export default function ScratchReveal({ data, onReveal }) {
     const pct = scratchPercent(ctx, canvas.width, canvas.height);
     percentRef.current = pct;
     setProgress(Math.min(100, Math.round(pct * 100)));
-    if (pct > 0.4) {
+    if (pct > 0.25) {
       reveal();
     }
   };

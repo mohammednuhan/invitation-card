@@ -213,12 +213,32 @@ export default function Invitation() {
               )}
             </AnimatePresence>
 
-            <LazySection>
-              <Story data={data} />
-            </LazySection>
-            <LazySection>
-              <Events data={data} />
-            </LazySection>
+            <AnimatePresence>
+              {scratchRevealed && (
+                <>
+                  <motion.div
+                    key="story-reveal"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.05 }}
+                  >
+                    <LazySection>
+                      <Story data={data} />
+                    </LazySection>
+                  </motion.div>
+                  <motion.div
+                    key="events-reveal"
+                    initial={{ opacity: 0, y: 24 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1], delay: 0.15 }}
+                  >
+                    <LazySection>
+                      <Events data={data} />
+                    </LazySection>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
             <LazySection>
               <Family data={data} />
             </LazySection>
