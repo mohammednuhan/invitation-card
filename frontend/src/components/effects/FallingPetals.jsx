@@ -16,6 +16,14 @@ export default function FallingPetals({ count: countProp = 16, className = "" })
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
+    const io = new IntersectionObserver((entries) => {
+      container.style.animationPlayState = "";
+      container.querySelectorAll("div").forEach((p) => {
+        p.style.animationPlayState = entries[0].isIntersecting ? "running" : "paused";
+      });
+    });
+    io.observe(container);
+
     const petals = [];
     const resize = () => {};
 
@@ -49,6 +57,7 @@ export default function FallingPetals({ count: countProp = 16, className = "" })
     }
 
     return () => {
+      io.disconnect();
       petals.forEach((p) => p.remove());
       resize();
     };

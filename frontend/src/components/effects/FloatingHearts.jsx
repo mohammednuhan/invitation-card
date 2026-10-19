@@ -38,7 +38,17 @@ export default function FloatingHearts({ count: countProp = 12, className = "" }
       hearts.push(h);
     }
 
-    return () => hearts.forEach((h) => h.remove());
+    const io = new IntersectionObserver((entries) => {
+      container.querySelectorAll("div").forEach((el) => {
+        el.style.animationPlayState = entries[0].isIntersecting ? "running" : "paused";
+      });
+    });
+    io.observe(container);
+
+    return () => {
+      io.disconnect();
+      hearts.forEach((h) => h.remove());
+    };
   }, [countProp]);
 
   return (

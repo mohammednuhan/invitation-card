@@ -222,6 +222,7 @@ export default function ScratchReveal({ data, onReveal }) {
   const lastPoint = useRef(null);
   const percentRef = useRef(0);
   const isScratching = useRef(false);
+  const lastCheckRef = useRef(0);
   const [revealed, setRevealed] = useState(false);
   const [progress, setProgress] = useState(0);
   const { couple } = data;
@@ -345,16 +346,20 @@ export default function ScratchReveal({ data, onReveal }) {
     isScratching.current = false;
     drawing.current = false;
     lastPoint.current = null;
+    checkProgress(true);
   };
 
-  const checkProgress = () => {
+  const checkProgress = (force = false) => {
     const canvas = canvasRef.current;
     if (!canvas) return;
+    const now = performance.now();
+    if (!force && now - lastCheckRef.current < 120) return;
+    lastCheckRef.current = now;
     const ctx = canvas.getContext("2d");
     const pct = scratchPercent(ctx, canvas.width, canvas.height);
     percentRef.current = pct;
     setProgress(Math.min(100, Math.round(pct * 100)));
-    if (pct > 0.25) {
+    if (pct > 0.15) {
       reveal();
     }
   };

@@ -11,7 +11,8 @@ export default function GoldenParticles({
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let raf;
+    let raf = 0;
+    let running = false;
     let particles = [];
     const size = { width: 0, height: 0 };
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -49,6 +50,7 @@ export default function GoldenParticles({
     );
 
     const draw = () => {
+      if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       particles.forEach((p, i) => {
         p.x += p.vx;
@@ -72,6 +74,16 @@ export default function GoldenParticles({
       raf = requestAnimationFrame(draw);
     };
 
+    const start = () => {
+      if (running || reduce) return;
+      running = true;
+      raf = requestAnimationFrame(draw);
+    };
+    const stop = () => {
+      running = false;
+      cancelAnimationFrame(raf);
+    };
+
     if (reduce) {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       ctx.font = "24px serif";
@@ -80,11 +92,25 @@ export default function GoldenParticles({
       ctx.textBaseline = "middle";
       ctx.fillText("\u2666", size.width / 2, size.height / 2);
     } else {
-      draw();
+      const io = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) start();
+          else stop();
+        },
+        { threshold: 0 }
+      );
+      io.observe(canvas);
+      start();
+
+      return () => {
+        io.disconnect();
+        stop();
+        window.removeEventListener("resize", resize);
+      };
     }
 
     return () => {
-      cancelAnimationFrame(raf);
+      stop();
       window.removeEventListener("resize", resize);
     };
   }, [count, speed]);
