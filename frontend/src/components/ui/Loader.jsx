@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import GoldenParticles from "../effects/GoldenParticles";
 
-export default function Loader({ text = "Crafting your invitation..." }) {
+export default function Loader({ text = "Starting in the name of Allah" }) {
   return (
     <motion.div
       key="loader"

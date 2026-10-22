@@ -20,6 +20,9 @@ const ICON_MAP = {
   plate: FaUtensils
 };
 
+const mapsSearchUrl = (place) =>
+  `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place)}`;
+
 export default function Events({ data }) {
   return (
     <section
@@ -91,7 +94,15 @@ export default function Events({ data }) {
                     </p>
                     <p className="flex items-start gap-3">
                       <FaMapMarkerAlt className="mt-1 shrink-0 text-gold-500" />
-                      <span>{ev.venue}</span>
+                      <a
+                        href={mapsSearchUrl(ev.venue)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open in Google Maps"
+                        className="underline decoration-gold-400/50 underline-offset-2 transition hover:text-gold-700 hover:decoration-gold-600"
+                      >
+                        {ev.venue}
+                      </a>
                     </p>
                   </div>
 

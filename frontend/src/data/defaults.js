@@ -16,8 +16,8 @@ export const DEFAULT_DATA = {
       bio: "The one whose smile made every ordinary day feel extraordinary."
     },
     date: "2026-12-20T12:00:00+05:30",
-    venueName: "Koppa, Chikamagaluru",
-    venueAddress: "Koppa, Chikamagaluru, Karnataka, India",
+    venueName: "Bantara Bhavana",
+    venueAddress: "Hirikere, Koppa Haripura Road, Koppa, Karnataka 577126",
     themeWord: "With the blessings of Allah"
   },
   story: [
@@ -53,7 +53,7 @@ export const DEFAULT_DATA = {
       icon: "rings",
       date: "20 Dec 2026",
       time: "12:00 PM",
-      venue: "Koppa, Chikamagaluru, Karnataka"
+      venue: "Bantara Bhavana, Hirikere, Koppa Haripura Road, Koppa"
     },
     {
       title: "Walima",
@@ -82,13 +82,14 @@ export const DEFAULT_DATA = {
     }
   },
   venue: {
-    name: "Koppa, Chikamagaluru",
-    address: "Koppa, Chikamagaluru, Karnataka, India",
-    landmark: "Koppa town, Chikamagaluru district",
+    name: "Bantara Bhavana",
+    address: "Hirikere, Koppa Haripura Road, Koppa, Karnataka 577126",
+    landmark: "G8MR+F58, Koppa Rural, Addada",
     parking: "Parking available near the venue",
     mapEmbed:
-      "https://www.google.com/maps?q=Koppa,Chikmagalur,Karnataka&output=embed",
-    mapsLink: "https://www.google.com/maps/search/?api=1&query=Koppa,+Chikmagalur,+Karnataka"
+      "https://www.google.com/maps?q=G8MR%2BF58%2C%20Koppa%20Rural%2C%20Addada%2C%20Karnataka%20577126&output=embed",
+    mapsLink:
+      "https://www.google.com/maps/search/?api=1&query=G8MR%2BF58%2C%20Koppa%20Rural%2C%20Addada%2C%20Karnataka%20577126"
   },
   rsvp: {
     whatsapp: "917019536523"
