@@ -94,15 +94,19 @@ export default function Events({ data }) {
                     </p>
                     <p className="flex items-start gap-3">
                       <FaMapMarkerAlt className="mt-1 shrink-0 text-gold-500" />
-                      <a
-                        href={mapsSearchUrl(ev.venue)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        title="Open in Google Maps"
-                        className="underline decoration-gold-400/50 underline-offset-2 transition hover:text-gold-700 hover:decoration-gold-600"
-                      >
-                        {ev.venue}
-                      </a>
+                      {/^home$/i.test((ev.venue || "").trim()) ? (
+                        <span>{ev.venue}</span>
+                      ) : (
+                        <a
+                          href={mapsSearchUrl(ev.venue)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          title="Open in Google Maps"
+                          className="underline decoration-gold-400/50 underline-offset-2 transition hover:text-gold-700 hover:decoration-gold-600"
+                        >
+                          {ev.venue}
+                        </a>
+                      )}
                     </p>
                   </div>
 

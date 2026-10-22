@@ -131,21 +131,9 @@ function HeartCrest({ initials, unlocking }) {
       transition={{ duration: unlocking ? 0.7 : 1.1, ease: [0.22, 1, 0.36, 1] }}
       className="relative flex h-[clamp(9.5rem,min(44vw,34vh),16rem)] w-[clamp(9.5rem,min(44vw,34vh),16rem)] items-center justify-center"
     >
-      <motion.svg
+      <svg
         viewBox="0 0 100 92"
-        className="absolute inset-0 h-full w-full"
-        animate={
-          unlocking
-            ? {}
-            : {
-                filter: [
-                  "drop-shadow(0 0 16px rgba(227,181,74,0.35))",
-                  "drop-shadow(0 0 44px rgba(227,181,74,0.8))",
-                  "drop-shadow(0 0 16px rgba(227,181,74,0.35))"
-                ]
-              }
-        }
-        transition={{ duration: 2.4, repeat: Infinity }}
+        className="absolute inset-0 h-full w-full drop-shadow-[0_0_26px_rgba(227,181,74,0.55)]"
         aria-hidden="true"
       >
         <defs>
@@ -168,7 +156,7 @@ function HeartCrest({ initials, unlocking }) {
           opacity="0.55"
           transform="translate(4 4) scale(0.92)"
         />
-      </motion.svg>
+      </svg>
 
       <motion.div
         animate={{ y: [0, -5, 0] }}
@@ -251,7 +239,7 @@ function Valance({ lifting }) {
     <motion.div
       animate={lifting ? { y: "-110%" } : { y: "0%" }}
       transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1], delay: 0.35 }}
-      className="absolute inset-x-0 top-0 z-10 pt-[env(safe-area-inset-top)]"
+      className="absolute inset-x-0 top-0 z-10 pt-[env(safe-area-inset-top)] will-change-transform"
     >
       <div
         className="relative w-full"
@@ -318,8 +306,8 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
 
   return (
     <motion.div
-      exit={{ opacity: 0, scale: 1.06, filter: "blur(8px)" }}
-      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
       onClick={handleUnlock}
       role="button"
       tabIndex={0}
@@ -359,7 +347,7 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
           animate={isUnlocked ? { scaleX: 0.12, x: "-6%" } : { scaleX: 1, x: "0%" }}
           transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.15 }}
           style={{ ...curtainFabric, transformOrigin: "left center" }}
-          className="relative h-full w-1/2 border-r border-gold-500/40"
+          className="relative h-full w-1/2 border-r border-gold-500/40 will-change-transform"
         >
           <div className="absolute inset-y-0 right-0 w-[3px] bg-gradient-to-b from-gold-400 via-gold-500 to-gold-700" />
           <div className="absolute bottom-0 right-0 h-12 w-full bg-gradient-to-t from-black/55 to-transparent" />
@@ -369,7 +357,7 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
           animate={isUnlocked ? { scaleX: 0.12, x: "6%" } : { scaleX: 1, x: "0%" }}
           transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.15 }}
           style={{ ...curtainFabric, transformOrigin: "right center" }}
-          className="relative h-full w-1/2 border-l border-gold-500/40"
+          className="relative h-full w-1/2 border-l border-gold-500/40 will-change-transform"
         >
           <div className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-gold-400 via-gold-500 to-gold-700" />
           <div className="absolute bottom-0 left-0 h-12 w-full bg-gradient-to-t from-black/55 to-transparent" />

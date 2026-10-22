@@ -130,6 +130,7 @@ export default function Invitation() {
   const { data } = useData();
   const [gateState, setGateState] = useState("closed");
   const [showLoader, setShowLoader] = useState(true);
+  const [contentReady, setContentReady] = useState(false);
   const [scratchRevealed, setScratchRevealed] = useState(false);
 
   useLenis();
@@ -138,6 +139,14 @@ export default function Invitation() {
     const t = setTimeout(() => setShowLoader(false), 1300);
     return () => clearTimeout(t);
   }, []);
+
+  // Pre-mount the invitation behind the gate so tapping "Open" doesn't have to
+  // build the whole page (Hero canvas, scratch canvas, etc.) in the same frame.
+  useEffect(() => {
+    if (showLoader) return;
+    const t = setTimeout(() => setContentReady(true), 120);
+    return () => clearTimeout(t);
+  }, [showLoader]);
 
   useEffect(() => {
     if (gateState === "done") return;
@@ -194,15 +203,12 @@ export default function Invitation() {
         )}
       </AnimatePresence>
 
-      <AnimatePresence>
-        {gateState !== "closed" && (
-          <motion.div
-            key="content"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="relative"
-          >
+      {contentReady && (
+        <div
+          className="relative"
+          aria-hidden={gateState !== "done"}
+          style={{ pointerEvents: gateState === "done" ? "auto" : "none" }}
+        >
             <Hero data={data} />
 
             <ScratchReveal data={data} onReveal={handleScratchReveal} />
@@ -258,7 +264,7 @@ export default function Invitation() {
 
             <FloatingActions />
 
-            <InstallPrompt />
+            {gateState === "done" && <InstallPrompt />}
 
             <footer className="relative overflow-hidden bg-ink-900 py-10 text-center">
               <GoldenParticles count={20} />
@@ -271,9 +277,8 @@ export default function Invitation() {
                 </p>
               </div>
             </footer>
-          </motion.div>
-        )}
-      </AnimatePresence>
+        </div>
+      )}
     </>
   );
 }
