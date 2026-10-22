@@ -12,6 +12,10 @@ export default function Hero({ data }) {
   const parallaxRef = useRef(null);
 
   useEffect(() => {
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (reduce || isMobile) return;
+
     const ctx = gsap.context(() => {
       gsap.fromTo(
         parallaxRef.current,
@@ -19,11 +23,13 @@ export default function Hero({ data }) {
         {
           yPercent: 12,
           ease: "none",
+          force3D: true,
           scrollTrigger: {
             trigger: heroRef.current,
             start: "top top",
             end: "bottom top",
-            scrub: true
+            scrub: 0.6,
+            invalidateOnRefresh: true
           }
         }
       );
@@ -111,6 +117,7 @@ export default function Hero({ data }) {
                   alt={couple.groom.name}
                   loading="eager"
                   decoding="async"
+                  fetchPriority="high"
                   className="h-full w-full object-cover"
                   onError={(e) => {
                     e.target.src = "/images/groom.svg";
@@ -129,7 +136,7 @@ export default function Hero({ data }) {
               <motion.span
                 animate={{ rotate: [0, 8, -8, 0] }}
                 transition={{ duration: 6, repeat: Infinity }}
-                className="font-script text-2xl text-gold-300 md:text-3xl"
+                className="will-change-transform font-script text-2xl text-gold-300 md:text-3xl"
               >
                 {"\u2666"}
               </motion.span>
@@ -142,6 +149,7 @@ export default function Hero({ data }) {
                   alt={couple.bride.name}
                   loading="eager"
                   decoding="async"
+                  fetchPriority="high"
                   className="h-full w-full object-cover"
                   onError={(e) => {
                     e.target.src = "/images/bride.svg";
@@ -155,20 +163,47 @@ export default function Hero({ data }) {
           </div>
 
           {/* Names stacked below on their own row */}
-          <motion.div variants={itemFadeUp} className="mb-4 flex flex-col items-center">
-            <h1 className="flex flex-col items-center font-script leading-tight text-cream-50 drop-shadow-[0_0_40px_rgba(227,181,74,0.4)]">
-              <span className="text-3xl sm:text-5xl md:text-6xl">
+          <motion.div variants={itemFadeUp} className="mb-4 flex w-full max-w-2xl flex-col items-center px-1">
+            <h1 className="flex w-full flex-col items-center font-script leading-tight">
+              <span className="max-w-full break-words bg-gradient-to-b from-cream-50 via-cream-100 to-gold-200 bg-clip-text text-center text-3xl text-transparent drop-shadow-[0_2px_30px_rgba(227,181,74,0.45)] sm:text-5xl md:text-6xl">
                 {couple.groom.fullName || couple.groom.name}
               </span>
-              <span className="my-2 flex items-center gap-3 text-xl text-gold-300 sm:my-3 sm:text-2xl">
-                <span className="h-px w-10 bg-gold-400/60 sm:w-14" />
-                {"\u2661"}
-                <span className="h-px w-10 bg-gold-400/60 sm:w-14" />
+
+              {/* Centered, styled "weds to" divider */}
+              <span className="my-3 flex w-full items-center justify-center gap-2 sm:my-4 sm:gap-3">
+                <span className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
+                  <span className="h-px min-w-0 flex-1 bg-gradient-to-r from-transparent via-gold-400/40 to-gold-400/80" />
+                  <span className="h-1 w-1 shrink-0 rotate-45 bg-gold-400/80" />
+                </span>
+
+                <span className="mr-[-0.45em] shrink-0 whitespace-nowrap bg-gradient-to-r from-gold-200 via-cream-50 to-gold-300 bg-clip-text font-serif text-[11px] font-medium uppercase italic tracking-[0.45em] text-transparent drop-shadow-[0_0_14px_rgba(227,181,74,0.55)] sm:text-sm">
+                  weds to
+                </span>
+
+                <span className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
+                  <span className="h-1 w-1 shrink-0 rotate-45 bg-gold-400/80" />
+                  <span className="h-px min-w-0 flex-1 bg-gradient-to-l from-transparent via-gold-400/40 to-gold-400/80" />
+                </span>
               </span>
-              <span className="text-3xl sm:text-5xl md:text-6xl">
+
+              <span className="max-w-full break-words bg-gradient-to-b from-gold-200 via-cream-100 to-cream-50 bg-clip-text text-center text-3xl text-transparent drop-shadow-[0_2px_30px_rgba(227,181,74,0.45)] sm:text-5xl md:text-6xl">
                 {couple.bride.fullName || couple.bride.name}
               </span>
             </h1>
+
+            {/* Ornament flourish */}
+            <motion.span
+              initial={{ opacity: 0, scale: 0.7 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.1, duration: 0.7, ease: "easeOut" }}
+              className="mt-4 flex items-center gap-2.5 text-gold-300/80 sm:mt-5"
+            >
+              <span className="h-1 w-1 rotate-45 bg-gold-400/70" />
+              <span className="font-script text-lg leading-none sm:text-xl">
+                {"\u2661"}
+              </span>
+              <span className="h-1 w-1 rotate-45 bg-gold-400/70" />
+            </motion.span>
           </motion.div>
         </motion.div>
       </div>

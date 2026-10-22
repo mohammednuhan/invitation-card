@@ -17,7 +17,7 @@ export const DEFAULT_DATA = {
     },
     date: "2026-12-20T12:00:00+05:30",
     venueName: "Bantara Bhavana",
-    venueAddress: "Hirikere, Koppa Haripura Road, Koppa, Karnataka 577126",
+    venueAddress: "Bantara Bhavana, Koppa",
     themeWord: "With the blessings of Allah"
   },
   story: [
@@ -53,14 +53,14 @@ export const DEFAULT_DATA = {
       icon: "rings",
       date: "20 Dec 2026",
       time: "12:00 PM",
-      venue: "Bantara Bhavana, Hirikere, Koppa Haripura Road, Koppa"
+      venue: "Bantara Bhavana, Koppa"
     },
     {
       title: "Walima",
       icon: "plate",
       date: "21 Dec 2026",
       time: "01:00 PM",
-      venue: "C.N Conventional Hall, Beekanahalli, Chikkamagaluru, Karnataka"
+      venue: "CN Windsor, Chikmagaluru"
     }
   ],
   family: {
@@ -83,13 +83,13 @@ export const DEFAULT_DATA = {
   },
   venue: {
     name: "Bantara Bhavana",
-    address: "Hirikere, Koppa Haripura Road, Koppa, Karnataka 577126",
-    landmark: "G8MR+F58, Koppa Rural, Addada",
+    address: "Bantara Bhavana, Koppa",
+    landmark: "Bantara Bhavana, Koppa",
     parking: "Parking available near the venue",
     mapEmbed:
-      "https://www.google.com/maps?q=G8MR%2BF58%2C%20Koppa%20Rural%2C%20Addada%2C%20Karnataka%20577126&output=embed",
+      "https://www.google.com/maps?q=Bantara%20Bhavana%2C%20Koppa%2C%20Karnataka&output=embed",
     mapsLink:
-      "https://www.google.com/maps/search/?api=1&query=G8MR%2BF58%2C%20Koppa%20Rural%2C%20Addada%2C%20Karnataka%20577126"
+      "https://www.google.com/maps/search/?api=1&query=Bantara%20Bhavana%2C%20Koppa%2C%20Karnataka"
   },
   rsvp: {
     whatsapp: "917019536523"

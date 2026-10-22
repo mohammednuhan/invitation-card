@@ -9,14 +9,15 @@ import SectionTitle from "../ui/SectionTitle";
 import { itemFadeUp, container } from "../../animations/variants";
 import { DEFAULT_DATA } from "../../data/defaults";
 
-const WALIMA_VENUE = {
+export const WALIMA_VENUE = {
   name: "Walima",
-  venue: "C.N Conventional Hall",
-  address: "Beekanahalli, Chikkamagaluru, Karnataka, India",
-  landmark: "CN WINDSOR, Chikmagaluru",
+  venue: "CN Windsor",
+  address: "CN Windsor, Chikmagaluru",
+  landmark: "CN Windsor, Chikmagaluru",
   mapEmbed:
-    "https://www.google.com/maps?q=C.N+Conventional+Hall,+Beekanahalli,+Chikkamagaluru,+Karnataka&output=embed",
-  mapsLink: "https://maps.app.goo.gl/zhiJudu6TQiQjW5L9"
+    "https://www.google.com/maps?q=CN%20Windsor%2C%20Chikkamagaluru%2C%20Karnataka&output=embed",
+  mapsLink:
+    "https://www.google.com/maps/search/?api=1&query=CN%20Windsor%2C%20Chikkamagaluru%2C%20Karnataka"
 };
 
 export default function Venue({ data }) {
@@ -83,16 +84,27 @@ export default function Venue({ data }) {
                     <FaLandmark className="mt-0.5 text-gold-600" />
                     <div>
                       <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-gold-600">Address</p>
-                      <p className="font-serif text-sm text-ink-800">{v.address}</p>
+                      <a
+                        href={v.mapsLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        title="Open in Google Maps"
+                        className="font-serif text-sm text-ink-800 underline decoration-gold-400/50 underline-offset-2 transition hover:text-gold-700 hover:decoration-gold-600"
+                      >
+                        {v.address}
+                      </a>
                     </div>
                   </div>
-                  <div className="flex items-start gap-3 rounded-xl border border-gold-200/60 bg-white/60 p-3">
-                    <FaLandmark className="mt-0.5 text-gold-600" />
-                    <div>
-                      <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-gold-600">Landmark</p>
-                      <p className="font-serif text-sm text-ink-800">{v.landmark}</p>
-                    </div>
-                  </div>
+                  {v.landmark &&
+                    v.landmark.trim().toLowerCase() !== v.address.trim().toLowerCase() && (
+                      <div className="flex items-start gap-3 rounded-xl border border-gold-200/60 bg-white/60 p-3">
+                        <FaLandmark className="mt-0.5 text-gold-600" />
+                        <div>
+                          <p className="font-sans text-[9px] uppercase tracking-[0.25em] text-gold-600">Landmark</p>
+                          <p className="font-serif text-sm text-ink-800">{v.landmark}</p>
+                        </div>
+                      </div>
+                    )}
                 </div>
 
                 <a

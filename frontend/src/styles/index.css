@@ -22,6 +22,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  overscroll-behavior-x: none;
 }
 
 body {
@@ -211,6 +212,23 @@ body::before {
 
   .gold-border {
     border-width: 1px;
+  }
+
+  /* Cheaper blur: full-strength backdrop-filter repaints on every scroll
+     frame and is a major jank source on mobile GPUs. */
+  .glass {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  .glass-dark {
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+  }
+
+  /* Promote animated layers to their own compositor layer */
+  .gold-text-animated {
+    will-change: background-position;
   }
 }
 
