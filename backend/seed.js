@@ -180,7 +180,7 @@ const seed = async () => {
   console.log("Couple seeded");
 
   const img = (n) => `/images/${n}`;
-  const storyImgs = { Nikah: "story-4.jpg", Walima: "story-5.jpg" };
+  const storyImgs = { Nikah: "story-4.jpg", Valima: "story-5.jpg" };
   for (const s of SAMPLE_STORY) {
     await pool.query(
       "INSERT INTO stories (title, date, text, image) VALUES ($1,$2,$3,$4)",

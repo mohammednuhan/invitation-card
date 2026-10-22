@@ -476,7 +476,7 @@ export default function ScratchReveal({ data, onReveal }) {
               </div>
 
               <p className="mt-4 font-serif text-[9px] uppercase tracking-[0.35em] text-gold-400/80">
-                Nikah {"\u2022"} Walima
+                Nikah {"\u2022"} Valima
               </p>
             </div>
           </div>

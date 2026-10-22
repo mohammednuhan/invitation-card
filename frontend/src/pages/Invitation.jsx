@@ -11,7 +11,7 @@ import ScratchReveal from "../components/sections/ScratchReveal";
 import Story from "../components/sections/Story";
 import Events from "../components/sections/Events";
 import Family from "../components/sections/Family";
-import Venue, { WALIMA_VENUE } from "../components/sections/Venue";
+import Venue, { VALIMA_VENUE } from "../components/sections/Venue";
 import ThankYou from "../components/sections/ThankYou";
 import FloatingActions from "../components/ui/FloatingActions";
 import InstallPrompt from "../components/ui/InstallPrompt";
@@ -73,9 +73,9 @@ function DateReveal({ data }) {
             </p>
             <p className="flex flex-wrap items-center justify-center gap-2">
               <span className="rounded-full border border-gold-400/50 bg-gold-400/10 px-2.5 py-0.5 font-sans text-[9px] uppercase tracking-[0.2em] text-gold-700">
-                Walima
+                Valima
               </span>
-              <span>{WALIMA_VENUE.address}</span>
+              <span>{VALIMA_VENUE.address}</span>
             </p>
           </div>
         </motion.div>

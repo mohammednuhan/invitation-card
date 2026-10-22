@@ -9,8 +9,8 @@ import SectionTitle from "../ui/SectionTitle";
 import { itemFadeUp, container } from "../../animations/variants";
 import { DEFAULT_DATA } from "../../data/defaults";
 
-export const WALIMA_VENUE = {
-  name: "Walima",
+export const VALIMA_VENUE = {
+  name: "Valima",
   venue: "CN Windsor",
   address: "CN Windsor, Chikmagaluru",
   landmark: "CN Windsor, Chikmagaluru",
@@ -30,7 +30,7 @@ export default function Venue({ data }) {
     mapsLink: data.venue.mapsLink || DEFAULT_DATA.venue.mapsLink
   };
 
-  const cards = [nikah, WALIMA_VENUE];
+  const cards = [nikah, VALIMA_VENUE];
 
   return (
     <section

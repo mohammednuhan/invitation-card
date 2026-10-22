@@ -11,7 +11,7 @@ A premium, luxury, interactive digital wedding invitation website - the kind tha
 - **Luxury hero** with bride/groom photos, wedding date, live countdown, venue, scroll indicator
 - **Scratch-to-reveal coin** - scratch the golden coin to reveal the couple photo with confetti + glow
 - **Our Story** animated alternating timeline
-- **Wedding Events** - Nikah, Reception, Haldi, Mehendi, Walima luxury cards
+- **Wedding Events** - Nikah, Reception, Haldi, Mehendi, Valima luxury cards
 - **Large realtime countdown** (days / hours / minutes / seconds)
 - **Family** cards for bride and groom
 - **Venue** with embedded Google Map + Get Directions

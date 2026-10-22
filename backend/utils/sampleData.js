@@ -31,7 +31,7 @@ export const SAMPLE_STORY = [
     image: ""
   },
   {
-    title: "Walima",
+    title: "Valima",
     date: "December 21, 2026",
     text: "A grand celebration of two hearts, two souls, and two families becoming one.",
     image: ""
@@ -43,18 +43,18 @@ export const SAMPLE_EVENTS = [
     title: "Haldi",
     icon: "flower",
     date: "18 Dec 2026",
-    time: "10:00 AM - 01:00 PM",
+    time: "8:00 PM",
     venue: "Mohammed Meehan's Residence, Sector 14"
   },
   {
     title: "Nikah",
     icon: "rings",
     date: "20 Dec 2026",
-    time: "12:00 PM",
+    time: "11:30 AM",
     venue: "Bantara Bhavana, Koppa"
   },
   {
-    title: "Walima",
+    title: "Valima",
     icon: "plate",
     date: "21 Dec 2026",
     time: "01:00 PM",

@@ -19,7 +19,7 @@ const getIcon = (title) => {
   if (t.includes("met") || t.includes("proposal")) return ICONS.heart;
   if (t.includes("engage")) return ICONS.ring;
   if (t.includes("nikah") || t.includes("nikkah")) return ICONS.pray;
-  if (t.includes("walima") || t.includes("wedding") || t.includes("reception"))
+  if (t.includes("valima") || t.includes("walima") || t.includes("wedding") || t.includes("reception"))
     return ICONS.glass;
   return ICONS.open;
 };
