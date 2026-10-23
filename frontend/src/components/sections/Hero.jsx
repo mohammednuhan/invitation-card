@@ -47,28 +47,28 @@ export default function Hero({ data }) {
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#03140e]">
         {/* Ambient fill so the screen stays covered edge to edge */}
         <img
-          src="/images/hero-couple.jpg?v=10"
+          src="/images/hero-couple.jpg?v=11"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full scale-[1.14] object-cover object-[55%_30%] blur-[6px] sm:object-[52%_28%]"
+          className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[50%_30%] blur-[6px]"
         />
         <div className="absolute inset-0 bg-emerald-950/62" />
 
         {/* Full-bleed photograph centered on screen */}
         <img
-          src="/images/hero-couple.jpg?v=10"
-          srcSet="/images/hero-couple-mobile.jpg?v=10 1300w, /images/hero-couple.jpg?v=10 2163w"
+          src="/images/hero-couple.jpg?v=11"
+          srcSet="/images/hero-couple-mobile.jpg?v=11 1400w, /images/hero-couple.jpg?v=11 2286w"
           sizes="100vw"
           alt=""
           loading="eager"
           decoding="async"
           fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover object-[55%_28%] sm:object-[52%_26%]"
+          className="absolute inset-0 h-full w-full object-cover object-center"
           style={{
             maskImage:
-              "linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, #000 10%, #000 90%, transparent 100%)"
+              "linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%)"
           }}
         />
 
