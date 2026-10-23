@@ -54,12 +54,37 @@ export default {
         "spin-slow": "spin 20s linear infinite",
         float: "float 6s ease-in-out infinite",
         shimmer: "shimmer 3s linear infinite",
-        "pulse-gold": "pulseGold 3s ease-in-out infinite"
+        "pulse-gold": "pulseGold 3s ease-in-out infinite",
+        "couple-sway": "coupleSway 11s ease-in-out infinite",
+        "veil-flutter": "veilFlutter 6s ease-in-out infinite",
+        "heart-pulse": "heartPulse 4.5s ease-in-out infinite",
+        bokeh: "bokehTwinkle 8s ease-in-out infinite",
+        kenburns: "kenburns 26s ease-in-out infinite alternate"
       },
       keyframes: {
+        kenburns: {
+          "0%": { transform: "scale(1) translate3d(0, 0, 0)" },
+          "100%": { transform: "scale(1.06) translate3d(0, -1.5%, 0)" }
+        },
         float: {
           "0%, 100%": { transform: "translateY(0)" },
           "50%": { transform: "translateY(-15px)" }
+        },
+        coupleSway: {
+          "0%, 100%": { transform: "translateY(0) scale(1)" },
+          "50%": { transform: "translateY(-2px) scale(1.004)" }
+        },
+        veilFlutter: {
+          "0%, 100%": { transform: "rotate(0deg) skewX(0deg)" },
+          "50%": { transform: "rotate(0.4deg) skewX(-0.4deg)" }
+        },
+        heartPulse: {
+          "0%, 100%": { opacity: 0.35, transform: "scale(1)" },
+          "50%": { opacity: 0.7, transform: "scale(1.08)" }
+        },
+        bokehTwinkle: {
+          "0%, 100%": { opacity: 0.22 },
+          "50%": { opacity: 0.5 }
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% center" },
