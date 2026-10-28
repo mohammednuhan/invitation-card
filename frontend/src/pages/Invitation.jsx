@@ -7,6 +7,7 @@ import { useCountdown } from "../hooks/useCountdown";
 import Loader from "../components/ui/Loader";
 import OpeningScreen from "../components/OpeningScreen";
 import Hero from "../components/sections/Hero";
+import QuranVerse from "../components/sections/QuranVerse";
 import ScratchReveal from "../components/sections/ScratchReveal";
 import Events from "../components/sections/Events";
 import Family from "../components/sections/Family";
@@ -395,6 +396,8 @@ export default function Invitation() {
           style={{ pointerEvents: gateState === "done" ? "auto" : "none" }}
         >
             <Hero data={data} paused={gateState !== "done"} />
+
+            <QuranVerse />
 
             <ScratchReveal data={data} onReveal={handleScratchReveal} />
 

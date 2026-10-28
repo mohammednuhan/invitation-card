@@ -39,7 +39,8 @@ export default {
         script: ["'Great Vibes'", "cursive"],
         display: ["'Playfair Display'", "serif"],
         serif: ["'Cormorant Garamond'", "serif"],
-        sans: ["'Poppins'", "sans-serif"]
+        sans: ["'Poppins'", "sans-serif"],
+        arabic: ["'Aref Ruqaa'", "'Scheherazade New'", "'Amiri'", "serif"]
       },
       boxShadow: {
         gold: "0 10px 40px -10px rgba(212,160,60,0.45)",
