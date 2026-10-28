@@ -14,8 +14,10 @@ import Venue, { VALIMA_VENUE } from "../components/sections/Venue";
 import ThankYou from "../components/sections/ThankYou";
 import FloatingActions from "../components/ui/FloatingActions";
 import InstallPrompt from "../components/ui/InstallPrompt";
+import MusicToggle from "../components/ui/MusicToggle";
 import LazySection from "../components/ui/LazySection";
 import GoldenParticles from "../components/effects/GoldenParticles";
+import { stopMusic } from "../lib/music";
 
 function HeartDate({ n, className = "" }) {
   return (
@@ -320,6 +322,9 @@ export default function Invitation() {
     return () => clearTimeout(t);
   }, []);
 
+  // Stop the music if the guest leaves the invitation (e.g. opens admin).
+  useEffect(() => () => stopMusic(), []);
+
   // Pre-mount the invitation behind the gate so tapping "Open" doesn't have to
   // build the whole page (Hero canvas, scratch canvas, etc.) in the same frame.
   useEffect(() => {
@@ -456,6 +461,7 @@ export default function Invitation() {
             <FloatingActions />
 
             {gateState === "done" && <InstallPrompt />}
+            {gateState === "done" && <MusicToggle />}
 
             <footer className="relative overflow-hidden bg-ink-900 py-10 text-center">
               <GoldenParticles count={20} />
@@ -463,8 +469,9 @@ export default function Invitation() {
                 <p className="font-script text-2xl text-gold-300">
                   Made with {"\u2665"} for our forever
                 </p>
-                <p className="mt-6 border-t border-gold-400/15 pt-5 font-sans text-[11px] uppercase tracking-[0.25em] text-cream-200/50">
-                  Managed by Mohammed Nuhan
+                <p className="mt-6 max-w-xl border-t border-gold-400/15 pt-5 font-serif text-sm italic leading-relaxed text-cream-200/80 sm:text-base">
+                  Your duas are precious to us. May Allah bless our union in this
+                  Dunya and reunite us in Jannatul Firdaus.
                 </p>
               </div>
             </footer>

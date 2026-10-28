@@ -2,6 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GoldenParticles from "./effects/GoldenParticles";
 import { IslamicPattern } from "./effects/Ornaments";
+import { playMusic, preloadMusic } from "../lib/music";
 
 const HEART_PATH =
   "M50 88 C20 66 4 47 4 28 C4 12 16 3 28 3 C38 3 46 10 50 19 C54 10 62 3 72 3 C84 3 96 12 96 28 C96 47 80 66 50 88 Z";
@@ -678,6 +679,12 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [celebrate, setCelebrate] = useState(false);
 
+  // Warm the audio cache while the guest is looking at the gate, so the track
+  // starts instantly on the tap.
+  useEffect(() => {
+    preloadMusic();
+  }, []);
+
   // Let the curtain start moving before mounting dozens of animated props,
   // otherwise the tap frame does all the work at once and stutters on phones.
   useEffect(() => {
@@ -691,6 +698,9 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
 
   const handleUnlock = () => {
     if (isUnlocked) return;
+    // Must happen inside the tap handler: mobile browsers only allow audio
+    // to start from a real user gesture.
+    playMusic();
     setIsUnlocked(true);
     onOpening?.();
     setTimeout(() => onOpen?.(), 2400);

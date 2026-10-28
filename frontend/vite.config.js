@@ -36,10 +36,21 @@ export default defineConfig(({ mode }) => {
           ]
         },
         workbox: {
-          globPatterns: ["**/*.{js,css,html,svg,png,ico,woff2,wav,mp3,webmanifest}"],
+          globPatterns: ["**/*.{js,css,html,svg,png,ico,woff2,webmanifest}"],
+          // The soundtrack is ~5 MB — cache it on first play instead of forcing
+          // every install to download it up front.
+          globIgnores: ["**/music/**"],
           cleanupOutdatedCaches: true,
           navigateFallback: "/index.html",
           runtimeCaching: [
+            {
+              urlPattern: /\/music\/.*\.(mp3|mpeg|m4a|ogg|wav)$/,
+              handler: "CacheFirst",
+              options: {
+                cacheName: "wedding-audio",
+                expiration: { maxEntries: 3, maxAgeSeconds: 60 * 60 * 24 * 60 }
+              }
+            },
             {
               urlPattern: /\/images\/.*\.(png|jpe?g|svg|webp)$/,
               handler: "StaleWhileRevalidate",

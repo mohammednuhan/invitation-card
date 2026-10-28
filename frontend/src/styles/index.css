@@ -241,14 +241,11 @@ body::before {
     padding-bottom: var(--sab);
   }
 
-  .fa-whatsapp {
+  .fa-stack {
     bottom: calc(1rem + var(--sab)) !important;
   }
-  .fa-stack {
-    bottom: calc(5rem + var(--sab)) !important;
-  }
   .fa-install {
-    bottom: calc(6.25rem + var(--sab)) !important;
+    bottom: calc(5.25rem + var(--sab)) !important;
   }
 }
 

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
-import SectionTitle from "../ui/SectionTitle";
 import GoldenParticles from "../effects/GoldenParticles";
 
 const ARCH_PATH =
@@ -116,48 +115,72 @@ function drawLantern(ctx, x, y, s) {
 }
 
 function drawSeal(ctx, cx, cy, R, gInit, bInit) {
-  const sealR = R * 0.3;
-  const grad = ctx.createRadialGradient(cx, cy, sealR * 0.2, cx, cy, sealR);
-  grad.addColorStop(0, "#7a5226");
-  grad.addColorStop(1, "#3c2608");
+  const sealR = R * 0.33;
 
   ctx.save();
+
+  const halo = ctx.createRadialGradient(cx, cy, sealR * 0.55, cx, cy, sealR * 1.4);
+  halo.addColorStop(0, "rgba(227,181,74,0.24)");
+  halo.addColorStop(1, "rgba(227,181,74,0)");
+  ctx.beginPath();
+  ctx.arc(cx, cy, sealR * 1.4, 0, Math.PI * 2);
+  ctx.fillStyle = halo;
+  ctx.fill();
+
   for (let i = 0; i < 10; i++) {
     const a = (i / 10) * Math.PI * 2;
     drawDiamond(
       ctx,
-      cx + Math.cos(a) * sealR * 1.32,
-      cy + Math.sin(a) * sealR * 1.32,
-      Math.max(1.5, sealR * 0.06),
+      cx + Math.cos(a) * sealR * 1.3,
+      cy + Math.sin(a) * sealR * 1.3,
+      Math.max(1.5, sealR * 0.055),
       "#e3b54a",
-      0.35
+      0.4
     );
   }
 
+  const disc = ctx.createRadialGradient(cx, cy - sealR * 0.25, sealR * 0.1, cx, cy, sealR);
+  disc.addColorStop(0, "#1a5741");
+  disc.addColorStop(0.7, "#0d3a2b");
+  disc.addColorStop(1, "#04180f");
   ctx.beginPath();
   ctx.arc(cx, cy, sealR, 0, Math.PI * 2);
-  ctx.fillStyle = grad;
+  ctx.fillStyle = disc;
   ctx.fill();
-  ctx.strokeStyle = "#e3b54a";
-  ctx.lineWidth = Math.max(1.5, sealR * 0.05);
+
+  const ring = ctx.createLinearGradient(cx, cy - sealR, cx, cy + sealR);
+  ring.addColorStop(0, "#f7e7bd");
+  ring.addColorStop(0.5, "#e3b54a");
+  ring.addColorStop(1, "#8f5f22");
+  ctx.strokeStyle = ring;
+  ctx.lineWidth = Math.max(1.5, sealR * 0.055);
   ctx.stroke();
 
-  ctx.strokeStyle = "rgba(227,181,74,0.5)";
-  ctx.lineWidth = Math.max(1, sealR * 0.03);
   ctx.beginPath();
-  ctx.arc(cx, cy, sealR * 0.82, 0, Math.PI * 2);
+  ctx.arc(cx, cy, sealR * 0.84, 0, Math.PI * 2);
+  ctx.strokeStyle = "rgba(227,181,74,0.45)";
+  ctx.lineWidth = Math.max(1, sealR * 0.022);
   ctx.stroke();
+
+  const textGrad = ctx.createLinearGradient(cx, cy - sealR * 0.5, cx, cy + sealR * 0.5);
+  textGrad.addColorStop(0, "#fff8e1");
+  textGrad.addColorStop(0.55, "#f0d48a");
+  textGrad.addColorStop(1, "#c08f2e");
 
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = "#f0d48a";
-  ctx.font = `700 ${sealR * 0.36}px Poppins, sans-serif`;
-  ctx.fillText(gInit, cx - sealR * 0.36, cy);
-  ctx.fillText(bInit, cx + sealR * 0.36, cy);
+  ctx.font = `600 ${sealR * 0.52}px 'Playfair Display', Georgia, serif`;
+  ctx.fillStyle = textGrad;
+  ctx.shadowColor = "rgba(0,0,0,0.5)";
+  ctx.shadowBlur = sealR * 0.08;
+  ctx.fillText(gInit, cx - sealR * 0.46, cy + sealR * 0.02);
+  ctx.fillText(bInit, cx + sealR * 0.46, cy + sealR * 0.02);
+  ctx.shadowBlur = 0;
 
-  ctx.fillStyle = "#e3b54a";
-  ctx.font = `${sealR * 0.24}px 'Segoe UI Symbol'`;
-  ctx.fillText("\u2665", cx, cy);
+  ctx.font = `italic ${sealR * 0.3}px 'Cormorant Garamond', Georgia, serif`;
+  ctx.fillStyle = "#dfa890";
+  ctx.fillText("\u0026", cx, cy + sealR * 0.08);
+
   ctx.restore();
 }
 
@@ -205,14 +228,12 @@ function drawCover(ctx, w, h, couple) {
 
   drawSeal(ctx, cx, h * 0.5, R, gInit, bInit);
 
+  // Simple, clean prompt — one line of plain serif text.
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = "rgba(255,243,196,0.92)";
-  ctx.font = `600 ${Math.max(11, w * 0.055)}px Poppins, sans-serif`;
-  ctx.fillText("SCRATCH TO REVEAL", cx, h * 0.72);
-  ctx.fillStyle = "#f0d48a";
-  ctx.font = `${Math.max(12, w * 0.06)}px 'Segoe UI Symbol'`;
-  ctx.fillText("\uD83D\uDD13", cx, h * 0.82);
+  ctx.fillStyle = "#f5e5bb";
+  ctx.font = `500 ${Math.max(18, w * 0.088)}px 'Playfair Display', Georgia, serif`;
+  ctx.fillText("Scratch to Reveal", cx, h * 0.75);
 }
 
 export default function ScratchReveal({ data, onReveal }) {
@@ -223,6 +244,7 @@ export default function ScratchReveal({ data, onReveal }) {
   const drawing = useRef(false);
   const lastPoint = useRef(null);
   const percentRef = useRef(0);
+  const touchedRef = useRef(false);
   const isScratching = useRef(false);
   const lastCheckRef = useRef(0);
   const [revealed, setRevealed] = useState(false);
@@ -296,9 +318,23 @@ export default function ScratchReveal({ data, onReveal }) {
 
   useEffect(() => {
     setupCover();
+
+    // Redraw once the display faces are actually available, otherwise the
+    // canvas seal/title can fall back to Georgia.
+    let cancelled = false;
+    if (document.fonts?.ready) {
+      document.fonts.ready.then(() => {
+        if (cancelled || touchedRef.current) return;
+        setupCover();
+      });
+    }
+
     const onResize = () => setupCover();
     window.addEventListener("resize", onResize);
-    return () => window.removeEventListener("resize", onResize);
+    return () => {
+      cancelled = true;
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
 
   const eraseAt = (x, y) => {
@@ -346,6 +382,7 @@ export default function ScratchReveal({ data, onReveal }) {
 
   const start = (e) => {
     e.preventDefault();
+    touchedRef.current = true;
     isScratching.current = true;
     drawing.current = true;
     lastPoint.current = getPos(e);
@@ -430,11 +467,25 @@ export default function ScratchReveal({ data, onReveal }) {
     >
       <GoldenParticles count={18} />
       <div className="relative z-10 mx-auto max-w-4xl px-6">
-        <SectionTitle
-          eyebrow="A moment of magic"
-          title="Scratch to Reveal"
-          subtitle="Run your finger across the golden arch to unlock a memory we treasure."
-        />
+        <motion.div
+          initial={{ opacity: 0, y: 26 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+          className="mb-12 text-center sm:mb-14"
+        >
+          <p className="font-sans text-[10px] font-medium uppercase tracking-[0.42em] text-gold-600/80 sm:text-xs">
+            A moment of magic
+          </p>
+
+          <h2 className="mt-4 font-display text-[2rem] font-medium leading-tight text-ink-900 sm:text-4xl md:text-5xl">
+            Scratch to Reveal
+          </h2>
+
+          <p className="mx-auto mt-3 max-w-md font-serif text-sm leading-relaxed text-ink-700/75 sm:text-base">
+            Run your finger across the golden arch to unlock a memory we treasure.
+          </p>
+        </motion.div>
 
         <div className="relative mx-auto" style={{ width: "min(80vw, 400px)", aspectRatio: "3/4" }}>
           <svg width="0" height="0" style={{ position: "absolute" }} aria-hidden="true">

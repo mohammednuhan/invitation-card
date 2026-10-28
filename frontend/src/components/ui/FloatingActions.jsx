@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaWhatsapp,
   FaShareAlt,
   FaLink,
   FaCalendarPlus,
@@ -110,19 +109,8 @@ export default function FloatingActions() {
 
   return (
     <>
-      <a
-        href={`https://wa.me/${waPhone}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fa-whatsapp fixed bottom-4 right-4 z-[60] flex h-14 w-14 items-center justify-center rounded-2xl bg-[#25D366] text-white shadow-lg transition active:scale-90"
-        style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
-        title="Chat with us on WhatsApp"
-      >
-        <FaWhatsapp size={26} />
-      </a>
-
       <div
-        className="fa-stack fixed bottom-20 right-4 z-[60] flex flex-col items-end gap-2 md:bottom-24 md:right-6"
+        className="fa-stack fixed bottom-4 right-4 z-[60] flex flex-col items-end gap-2 md:bottom-6 md:right-6"
         style={{ paddingBottom: "env(safe-area-inset-bottom, 0px)" }}
       >
         <AnimatePresence>
