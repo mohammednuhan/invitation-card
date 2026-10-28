@@ -6,7 +6,7 @@
   --gold: #d4a03c;
   --gold-light: #f0d48a;
   --gold-dark: #b9832c;
-  --cream: #f7f2e3;
+  --cream: #fdf9ee;
   --ink: #0b2a20;
   --sat: env(safe-area-inset-top, 0px);
   --sab: env(safe-area-inset-bottom, 0px);
@@ -36,15 +36,15 @@ body {
   background-image:
     radial-gradient(
       ellipse 90% 55% at 50% -8%,
-      rgba(227, 181, 74, 0.14) 0%,
-      rgba(227, 181, 74, 0) 60%
+      rgba(240, 200, 110, 0.22) 0%,
+      rgba(240, 200, 110, 0) 62%
     ),
     radial-gradient(
       ellipse 80% 45% at 50% 105%,
-      rgba(18, 63, 48, 0.14) 0%,
+      rgba(18, 63, 48, 0.08) 0%,
       rgba(18, 63, 48, 0) 60%
     ),
-    linear-gradient(180deg, #fdfbf4 0%, #f7f2e3 40%, #f2ebd7 100%);
+    linear-gradient(180deg, #fffefb 0%, #fdf9ee 40%, #faf2df 100%);
   background-attachment: scroll;
 }
 

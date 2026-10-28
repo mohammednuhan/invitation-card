@@ -6,20 +6,25 @@ import { IslamicPattern } from "./effects/Ornaments";
 const HEART_PATH =
   "M50 88 C20 66 4 47 4 28 C4 12 16 3 28 3 C38 3 46 10 50 19 C54 10 62 3 72 3 C84 3 96 12 96 28 C96 47 80 66 50 88 Z";
 
+const PETAL_COLORS = ["#eccb77", "#dfa890", "#f4e0ac", "#cc8f75", "#f7d9c4"];
+const BALLOON_COLORS = ["#e3b54a", "#f4e0ac", "#dfa890", "#cc8f75", "#1d5945", "#eccb77"];
+
 const curtainFabric = {
   backgroundImage: `
+    radial-gradient(ellipse 130% 45% at 30% 8%, rgba(244,224,172,0.20) 0%, rgba(244,224,172,0) 62%),
     repeating-linear-gradient(
       90deg,
-      rgba(0,0,0,0.58) 0px,
-      rgba(0,0,0,0.4) 7px,
-      rgba(240,212,138,0.10) 15px,
-      rgba(240,212,138,0.22) 21px,
-      rgba(0,0,0,0.36) 29px,
-      rgba(0,0,0,0.58) 36px
+      rgba(0,0,0,0.56) 0px,
+      rgba(0,0,0,0.30) 9px,
+      rgba(240,212,138,0.10) 17px,
+      rgba(240,212,138,0.26) 23px,
+      rgba(0,0,0,0.34) 31px,
+      rgba(0,0,0,0.56) 40px
     ),
-    linear-gradient(180deg, #164734 0%, #0f3527 42%, #062018 100%)
+    linear-gradient(180deg, #1a5741 0%, #123f30 42%, #061e15 100%)
   `,
-  boxShadow: "inset 0 0 90px rgba(0,0,0,0.6)"
+  boxShadow:
+    "inset 0 0 130px rgba(0,0,0,0.65), inset 0 0 46px rgba(227,181,74,0.10)"
 };
 
 function Flower({ size = 20, petal = "#eccb77", core = "#d4a03c", className = "", rotate = 0 }) {
@@ -72,54 +77,140 @@ function Tassel({ className = "" }) {
       <path d="M13 0 V26" stroke="#d4a03c" strokeWidth="2" />
       <circle cx="13" cy="30" r="5" fill="#e3b54a" />
       <path d="M6 34 H20 L17 40 H9 Z" fill="#b9832c" />
-      <path d="M8 40 L7 58 M12 40 L12 60 M16 40 L17 58" stroke="#e3b54a" strokeWidth="2.4" strokeLinecap="round" />
+      <path
+        d="M8 40 L7 58 M12 40 L12 60 M16 40 L17 58"
+        stroke="#e3b54a"
+        strokeWidth="2.4"
+        strokeLinecap="round"
+      />
+    </svg>
+  );
+}
+
+function HeartMotif({ size = 14, opacity = 0.55, color = "#e3b54a", className = "" }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 100 92"
+      className={className}
+      style={{ opacity }}
+      aria-hidden="true"
+    >
+      <path d={HEART_PATH} fill="none" stroke={color} strokeWidth="6" />
     </svg>
   );
 }
 
 function ArchFrame() {
   return (
-    <svg
-      viewBox="0 0 300 460"
-      className="pointer-events-none absolute left-1/2 top-1/2 h-[min(88vh,620px)] w-[min(84vw,430px)] -translate-x-1/2 -translate-y-1/2"
-      fill="none"
-      aria-hidden="true"
-    >
-      <defs>
-        <linearGradient id="gateArchGold" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="#f4e0ac" />
-          <stop offset="0.5" stopColor="#e3b54a" />
-          <stop offset="1" stopColor="#946427" />
-        </linearGradient>
-      </defs>
-      <path
-        d="M18 452 V176 C18 96 78 44 150 8 C222 44 282 96 282 176 V452"
-        stroke="url(#gateArchGold)"
-        strokeWidth="2.6"
-      />
-      <path
-        d="M34 452 V182 C34 108 88 60 150 28 C212 60 266 108 266 182 V452"
-        stroke="url(#gateArchGold)"
-        strokeWidth="1.3"
-        opacity="0.7"
-      />
-      <path
-        d="M50 452 V188 C50 120 98 76 150 48 C202 76 250 120 250 188 V452"
-        stroke="url(#gateArchGold)"
-        strokeWidth="0.8"
-        opacity="0.35"
-      />
-      <path d="M150 0 l10 14 -10 14 -10 -14 Z" fill="url(#gateArchGold)" />
-      <circle cx="150" cy="60" r="3.4" fill="#e3b54a" />
-      <circle cx="34" cy="250" r="3" fill="#d4a03c" opacity="0.8" />
-      <circle cx="266" cy="250" r="3" fill="#d4a03c" opacity="0.8" />
-      <circle cx="34" cy="330" r="2.4" fill="#d4a03c" opacity="0.6" />
-      <circle cx="266" cy="330" r="2.4" fill="#d4a03c" opacity="0.6" />
-    </svg>
+    <div className="pointer-events-none absolute left-1/2 top-1/2 h-[min(88vh,620px)] w-[min(84vw,430px)] -translate-x-1/2 -translate-y-1/2">
+      <svg viewBox="0 0 300 460" className="h-full w-full" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="gateArchGold" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stopColor="#f7e7bd" />
+            <stop offset="0.45" stopColor="#e3b54a" />
+            <stop offset="1" stopColor="#8f5f22" />
+          </linearGradient>
+        </defs>
+
+        {/* outer ogee arch */}
+        <path
+          d="M150 8 C104 42 22 94 22 194 V452"
+          stroke="url(#gateArchGold)"
+          strokeWidth="2.8"
+          strokeLinecap="round"
+        />
+        <path
+          d="M150 8 C196 42 278 94 278 194 V452"
+          stroke="url(#gateArchGold)"
+          strokeWidth="2.8"
+          strokeLinecap="round"
+        />
+
+        {/* inner arch */}
+        <path
+          d="M150 40 C114 66 46 108 46 200 V452"
+          stroke="url(#gateArchGold)"
+          strokeWidth="1.1"
+          opacity="0.65"
+        />
+        <path
+          d="M150 40 C186 66 254 108 254 200 V452"
+          stroke="url(#gateArchGold)"
+          strokeWidth="1.1"
+          opacity="0.65"
+        />
+
+        {/* beaded inner arch */}
+        <path
+          d="M150 96 C126 112 78 142 78 206 V452"
+          stroke="#f4e0ac"
+          strokeWidth="3.6"
+          strokeLinecap="round"
+          strokeDasharray="0.1 10"
+          opacity="0.5"
+        />
+        <path
+          d="M150 96 C174 112 222 142 222 206 V452"
+          stroke="#f4e0ac"
+          strokeWidth="3.6"
+          strokeLinecap="round"
+          strokeDasharray="0.1 10"
+          opacity="0.5"
+        />
+
+        {/* apex heart */}
+        <path d={HEART_PATH} transform="translate(136 0) scale(0.28)" fill="none" stroke="url(#gateArchGold)" strokeWidth="7" />
+
+        {/* hanging lanterns */}
+        {[44, 256].map((x) => (
+          <g key={x}>
+            <path d={`M${x} 236 v16`} stroke="#e3b54a" strokeWidth="1" opacity="0.8" />
+            <path d={`M${x - 8} 252 h16 l-3 4 h-10 z`} fill="#e3b54a" opacity="0.65" />
+            <ellipse
+              cx={x}
+              cy="268"
+              rx="8.5"
+              ry="12.5"
+              fill="rgba(227,181,74,0.16)"
+              stroke="url(#gateArchGold)"
+              strokeWidth="1.1"
+            />
+            <ellipse cx={x} cy="268" rx="3.4" ry="6" fill="#f4e0ac" opacity="0.55" />
+            <path d={`M${x} 280 v8`} stroke="#e3b54a" strokeWidth="0.9" opacity="0.7" />
+          </g>
+        ))}
+
+        {/* gold nail heads along the posts */}
+        {[300, 340, 380, 420].map((y) => (
+          <g key={y}>
+            <circle cx="22" cy={y} r="2.2" fill="#e3b54a" opacity="0.55" />
+            <circle cx="278" cy={y} r="2.2" fill="#e3b54a" opacity="0.55" />
+          </g>
+        ))}
+      </svg>
+
+      {/* floral clusters at the foot of the gate */}
+      <div className="absolute -bottom-2 -left-2">
+        <div className="relative h-16 w-16">
+          <Leaf className="absolute bottom-6 left-3" rotate={40} />
+          <Flower size={30} rotate={-18} className="absolute bottom-0 left-0" />
+          <Flower size={21} petal="#dfa890" rotate={28} className="absolute bottom-5 left-7" />
+        </div>
+      </div>
+      <div className="absolute -bottom-2 -right-2">
+        <div className="relative h-16 w-16">
+          <Leaf className="absolute bottom-6 right-3" rotate={140} />
+          <Flower size={30} rotate={18} className="absolute bottom-0 right-0" />
+          <Flower size={21} petal="#dfa890" rotate={-28} className="absolute bottom-5 right-7" />
+        </div>
+      </div>
+    </div>
   );
 }
 
-function HeartCrest({ initials, unlocking }) {
+function HeartCrest({ groomInitial, brideInitial, unlocking }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.72 }}
@@ -131,6 +222,35 @@ function HeartCrest({ initials, unlocking }) {
       transition={{ duration: unlocking ? 0.7 : 1.1, ease: [0.22, 1, 0.36, 1] }}
       className="relative flex h-[clamp(9.5rem,min(44vw,34vh),16rem)] w-[clamp(9.5rem,min(44vw,34vh),16rem)] items-center justify-center"
     >
+      {/* floral halo */}
+      <div className="pointer-events-none absolute inset-0">
+        {[-150, -120, -90, -60, -30].map((deg, i) => {
+          const rad = (deg * Math.PI) / 180;
+          const r = 50;
+          const x = 50 + Math.cos(rad) * r;
+          const y = 50 + Math.sin(rad) * r * 0.92;
+          return (
+            <span
+              key={deg}
+              className="absolute -translate-x-1/2 -translate-y-1/2"
+              style={{ left: `${x}%`, top: `${y}%` }}
+            >
+              <motion.span
+                animate={{ rotate: [0, i % 2 === 0 ? 8 : -8, 0] }}
+                transition={{ duration: 5 + i * 0.4, repeat: Infinity, ease: "easeInOut" }}
+                className="block"
+              >
+                <Flower
+                  size={i === 2 ? 26 : 21}
+                  petal={i % 2 === 0 ? "#eccb77" : "#dfa890"}
+                  rotate={i * 37}
+                />
+              </motion.span>
+            </span>
+          );
+        })}
+      </div>
+
       <svg
         viewBox="0 0 100 92"
         className="absolute inset-0 h-full w-full drop-shadow-[0_0_26px_rgba(227,181,74,0.55)]"
@@ -143,8 +263,8 @@ function HeartCrest({ initials, unlocking }) {
             <stop offset="100%" stopColor="#946427" />
           </linearGradient>
           <linearGradient id="crest-fill" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(22,71,52,0.95)" />
-            <stop offset="100%" stopColor="rgba(6,32,24,0.97)" />
+            <stop offset="0%" stopColor="rgba(26,87,65,0.96)" />
+            <stop offset="100%" stopColor="rgba(6,32,24,0.98)" />
           </linearGradient>
         </defs>
         <path d={HEART_PATH} fill="url(#crest-fill)" stroke="url(#crest-gold)" strokeWidth="2.8" />
@@ -156,80 +276,197 @@ function HeartCrest({ initials, unlocking }) {
           opacity="0.55"
           transform="translate(4 4) scale(0.92)"
         />
+        <path
+          d="M50 74 C46 71 38 66 38 59 C38 55 41 52 45 52 C47 52 49 53.5 50 55.5 C51 53.5 53 52 55 52 C59 52 62 55 62 59 C62 66 54 71 50 74 Z"
+          fill="none"
+          stroke="#f4e0ac"
+          strokeWidth="0.7"
+          opacity="0.35"
+        />
       </svg>
 
       <motion.div
         animate={{ y: [0, -5, 0] }}
         transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
-        className="relative z-10 flex flex-col items-center px-4 text-center"
+        className="relative z-10 flex flex-col items-center px-3 text-center"
       >
-        <span className="font-display text-[clamp(2rem,10vw,3.6rem)] font-semibold uppercase leading-none tracking-[0.14em] text-gold-300 drop-shadow-[0_0_18px_rgba(227,181,74,0.65)]">
-          {initials}
+        <motion.span
+          animate={{ scale: [1, 1.16, 1], opacity: [0.7, 1, 0.7] }}
+          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+          className="mb-1 text-[clamp(9px,2.6vw,13px)] leading-none text-gold-300 drop-shadow-[0_0_10px_rgba(227,181,74,0.8)]"
+          aria-hidden="true"
+        >
+          {"\u2665"}
+        </motion.span>
+
+        <div className="flex items-end justify-center leading-none">
+          <span
+            className="animate-shimmer bg-[linear-gradient(100deg,#fff8e1_0%,#f4dc9a_28%,#c8942f_50%,#f4dc9a_72%,#fff8e1_100%)] bg-[length:220%_auto] bg-clip-text font-serif text-[clamp(2.2rem,11.5vw,4.1rem)] font-normal tracking-[0.04em] text-transparent"
+            style={{
+              filter:
+                "drop-shadow(0 2px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 16px rgba(227,181,74,0.55))"
+            }}
+          >
+            {groomInitial}
+          </span>
+
+          <span
+            className="-mx-[0.06em] mb-[0.16em] font-script text-[clamp(1.35rem,6.4vw,2.5rem)] leading-none text-rosegold-300"
+            style={{
+              filter:
+                "drop-shadow(0 2px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 14px rgba(223,168,144,0.6))"
+            }}
+            aria-hidden="true"
+          >
+            {"\u0026"}
+          </span>
+
+          <span
+            className="animate-shimmer bg-[linear-gradient(100deg,#fff8e1_0%,#f4dc9a_28%,#c8942f_50%,#f4dc9a_72%,#fff8e1_100%)] bg-[length:220%_auto] bg-clip-text font-serif text-[clamp(2.2rem,11.5vw,4.1rem)] font-normal tracking-[0.04em] text-transparent"
+            style={{
+              filter:
+                "drop-shadow(0 2px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 16px rgba(227,181,74,0.55))"
+            }}
+          >
+            {brideInitial}
+          </span>
+        </div>
+
+        <span className="mt-2.5 flex items-center gap-2">
+          <span className="h-px w-7 bg-gradient-to-r from-transparent via-gold-300/60 to-gold-300/90 sm:w-9" />
+          <span className="text-[7px] leading-none text-gold-300/90">{"\u2666"}</span>
+          <span className="h-px w-7 bg-gradient-to-l from-transparent via-gold-300/60 to-gold-300/90 sm:w-9" />
         </span>
-        <span className="mt-2.5 h-px w-12 bg-gradient-to-r from-transparent via-gold-300 to-transparent" />
-        <span className="mt-2 font-sans text-[clamp(7px,2.4vw,10px)] uppercase tracking-[0.4em] text-gold-200/80">
+
+        <span className="mt-1.5 font-serif text-[clamp(7px,2.3vw,10px)] uppercase tracking-[0.48em] text-gold-200/90">
           Wedding
         </span>
       </motion.div>
 
-      <div className="pointer-events-none absolute -left-3 -top-1 sm:-left-5">
-        <Flower size={32} rotate={-18} />
+      <div className="pointer-events-none absolute -left-4 -top-2 sm:-left-6">
+        <Flower size={30} rotate={-18} />
       </div>
-      <div className="pointer-events-none absolute -right-3 -top-1 sm:-right-5">
-        <Flower size={27} petal="#dfa890" rotate={24} />
+      <div className="pointer-events-none absolute -right-4 -top-2 sm:-right-6">
+        <Flower size={25} petal="#dfa890" rotate={24} />
       </div>
-      <div className="pointer-events-none absolute -bottom-2 left-1/2 -translate-x-1/2">
-        <Flower size={25} petal="#f4e0ac" rotate={8} />
+      <div className="pointer-events-none absolute -bottom-3 left-1/2 -translate-x-1/2">
+        <Flower size={23} petal="#f4e0ac" rotate={8} />
       </div>
-      <Leaf className="pointer-events-none absolute -left-6 top-9 sm:-left-8" rotate={-30} />
-      <Leaf className="pointer-events-none absolute -right-6 top-9 sm:-right-8" rotate={210} />
-      <Leaf className="pointer-events-none absolute -bottom-4 left-4" rotate={40} />
-      <Leaf className="pointer-events-none absolute -bottom-4 right-4" rotate={140} />
+      <Leaf className="pointer-events-none absolute -left-7 top-10 sm:-left-9" rotate={-30} />
+      <Leaf className="pointer-events-none absolute -right-7 top-10 sm:-right-9" rotate={210} />
+      <Leaf className="pointer-events-none absolute -bottom-5 left-4" rotate={40} />
+      <Leaf className="pointer-events-none absolute -bottom-5 right-4" rotate={140} />
+
+      {/* jewel drop */}
+      <motion.span
+        animate={{ y: [0, 4, 0], opacity: [0.7, 1, 0.7] }}
+        transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
+        className="pointer-events-none absolute -bottom-7 left-1/2 h-3 w-3 -translate-x-1/2 rotate-45 bg-gradient-to-br from-gold-200 to-gold-600 shadow-[0_0_14px_rgba(227,181,74,0.8)]"
+      />
     </motion.div>
   );
 }
 
-function PetalBurst({ active }) {
-  const petals = useMemo(
-    () =>
-      Array.from({ length: 14 }, (_, i) => {
-        const angle = (Math.PI * 2 * i) / 14 + Math.random() * 0.25;
-        const dist = 120 + Math.random() * 160;
-        return {
-          id: i,
-          x: Math.cos(angle) * dist,
-          y: Math.sin(angle) * dist + 130,
-          rot: Math.random() * 360 - 180,
-          scale: 0.8 + Math.random() * 0.4,
-          color: ["#eccb77", "#dfa890", "#f4e0ac", "#cc8f75"][i % 4],
-          delay: Math.random() * 0.25
-        };
-      }),
-    []
-  );
-
+function CurtainPanel({ side, unlocked }) {
+  const isLeft = side === "left";
   return (
-    <div className="pointer-events-none absolute inset-0 z-[35] flex items-center justify-center overflow-hidden">
-      <AnimatePresence>
-        {active &&
-          petals.map((p) => (
-            <motion.span
-              key={p.id}
-              initial={{ x: 0, y: 0, opacity: 0, scale: 0.3, rotate: 0 }}
-              animate={{
-                x: p.x,
-                y: p.y,
-                opacity: [0, 1, 1, 0],
-                scale: [0.3, p.scale, p.scale],
-                rotate: p.rot
-              }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 1.6, delay: p.delay, ease: "easeOut" }}
-              className="absolute h-3 w-3 rounded-[80%_0_80%_0]"
-              style={{ background: p.color }}
-            />
-          ))}
-      </AnimatePresence>
+    <motion.div
+      animate={unlocked ? { scaleX: 0.12, x: isLeft ? "-6%" : "6%" } : { scaleX: 1, x: "0%" }}
+      transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.15 }}
+      style={{ ...curtainFabric, transformOrigin: isLeft ? "left center" : "right center" }}
+      className={`relative h-full w-1/2 will-change-transform ${
+        isLeft ? "border-r" : "border-l"
+      } border-gold-500/40`}
+    >
+      <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-black/50 via-black/15 to-transparent" />
+
+      {/* embroidered arch */}
+      <svg
+        viewBox="0 0 100 100"
+        preserveAspectRatio="none"
+        className={`absolute inset-0 h-full w-full ${isLeft ? "" : "-scale-x-100"}`}
+        fill="none"
+        aria-hidden="true"
+      >
+        <path
+          d="M14 100 V40 C14 22 30 10 50 8"
+          stroke="#e3b54a"
+          strokeWidth="0.5"
+          opacity="0.35"
+        />
+        <path
+          d="M26 100 V46 C26 32 36 22 50 20"
+          stroke="#f4e0ac"
+          strokeWidth="0.3"
+          opacity="0.22"
+        />
+        <path
+          d="M14 100 V40 C14 22 30 10 50 8"
+          stroke="#f4e0ac"
+          strokeWidth="2.2"
+          strokeLinecap="round"
+          strokeDasharray="0.1 6"
+          opacity="0.3"
+        />
+      </svg>
+
+      {/* embroidered hearts down the inner edge */}
+      {[34, 50, 66].map((top, i) => (
+        <div
+          key={top}
+          className={`absolute ${isLeft ? "right-8 sm:right-12" : "left-8 sm:left-12"}`}
+          style={{ top: `${top}%` }}
+        >
+          <HeartMotif size={12 - i} opacity={0.5 - i * 0.1} />
+        </div>
+      ))}
+
+      {/* gathered rosette tie-back */}
+      <div
+        className={`absolute top-[58%] ${isLeft ? "right-2 sm:right-3" : "left-2 sm:left-3"}`}
+        style={{ transform: "translateY(-50%)" }}
+      >
+        <Flower size={26} petal="#eccb77" rotate={isLeft ? -12 : 12} />
+      </div>
+
+      {/* beaded gold trim on the inner edge */}
+      <div
+        className={`absolute inset-y-0 ${isLeft ? "right-0" : "left-0"} w-[3px] bg-gradient-to-b from-gold-300 via-gold-500 to-gold-700`}
+      />
+      <div
+        className={`absolute inset-y-0 ${isLeft ? "right-[5px]" : "left-[5px]"} w-[9px] opacity-80`}
+        style={{
+          backgroundImage:
+            "radial-gradient(circle at 50% 50%, #f4e0ac 0 1.6px, #946427 1.6px 2.4px, transparent 2.4px)",
+          backgroundSize: "9px 12px"
+        }}
+      />
+      {/* hem shadow */}
+      <div
+        className={`absolute bottom-0 ${isLeft ? "right-0" : "left-0"} h-16 w-full bg-gradient-to-t from-black/55 to-transparent`}
+      />
+      <div className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-gold-700 via-gold-300 to-gold-700" />
+    </motion.div>
+  );
+}
+
+function SwagRow({ count = 9 }) {
+  return (
+    <div className="absolute inset-x-0 -bottom-6 flex justify-center">
+      {Array.from({ length: count }).map((_, i) => (
+        <div key={i} className="relative h-8 flex-1 sm:h-10">
+          <div
+            className="h-full w-full rounded-b-[100%] border-b-2 border-gold-400/60"
+            style={{
+              background:
+                "radial-gradient(ellipse at 50% 0%, #1b5a41 0%, #0d3a2b 55%, #04180f 100%)",
+              boxShadow: "inset 0 -8px 16px rgba(0,0,0,0.6)"
+            }}
+          />
+          <span className="absolute left-1/2 top-1.5 h-1 w-1 -translate-x-1/2 rotate-45 bg-gold-300/80" />
+          <span className="absolute bottom-0 left-1/2 h-[7px] w-[7px] -translate-x-1/2 translate-y-1/2 rounded-full bg-gold-300 shadow-[0_0_10px_rgba(227,181,74,0.9)]" />
+        </div>
+      ))}
     </div>
   );
 }
@@ -237,55 +474,223 @@ function PetalBurst({ active }) {
 function Valance({ lifting }) {
   return (
     <motion.div
-      animate={lifting ? { y: "-110%" } : { y: "0%" }}
+      animate={lifting ? { y: "-112%" } : { y: "0%" }}
       transition={{ duration: 1.4, ease: [0.76, 0, 0.24, 1], delay: 0.35 }}
       className="absolute inset-x-0 top-0 z-10 pt-[env(safe-area-inset-top)] will-change-transform"
     >
       <div
         className="relative w-full"
         style={{
-          backgroundImage: `repeating-linear-gradient(90deg, rgba(0,0,0,0.52) 0px, rgba(0,0,0,0.34) 8px, rgba(240,212,138,0.12) 16px, rgba(240,212,138,0.24) 22px, rgba(0,0,0,0.34) 30px, rgba(0,0,0,0.52) 38px), linear-gradient(180deg, #164734 0%, #0b2a20 100%)`,
+          backgroundImage: `repeating-linear-gradient(90deg, rgba(0,0,0,0.52) 0px, rgba(0,0,0,0.34) 8px, rgba(240,212,138,0.12) 16px, rgba(240,212,138,0.24) 22px, rgba(0,0,0,0.34) 30px, rgba(0,0,0,0.52) 38px), linear-gradient(180deg, #1a5741 0%, #0d3a2b 52%, #061e15 100%)`,
           boxShadow: "0 20px 44px rgba(0,0,0,0.6)"
         }}
       >
-        <div className="relative h-14 w-full sm:h-[4.5rem]">
+        <div className="relative h-16 w-full sm:h-20">
           <div className="absolute inset-x-0 top-0 h-[3px] bg-gradient-to-r from-gold-700 via-gold-300 to-gold-700" />
           <div className="absolute inset-x-0 bottom-0 h-[3px] bg-gradient-to-r from-gold-700 via-gold-300 to-gold-700" />
 
-          <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-around px-3 sm:px-8">
-            {Array.from({ length: 11 }).map((_, i) => (
+          <div className="absolute inset-x-0 top-1/2 flex -translate-y-1/2 items-center justify-around px-2 opacity-80 sm:px-10">
+            {Array.from({ length: 9 }).map((_, i) => (
               <React.Fragment key={i}>
-                {i % 2 === 0 ? (
-                  <Flower
-                    size={i === 5 ? 36 : 24}
-                    rotate={(i * 41) % 360}
-                    petal={i % 4 === 0 ? "#eccb77" : "#dfa890"}
-                  />
+                {i % 3 === 1 ? (
+                  <Leaf rotate={i % 2 ? -22 : 202} />
                 ) : (
-                  <Leaf rotate={i % 4 === 1 ? -22 : 202} />
+                  <Flower
+                    size={i === 4 ? 28 : 19}
+                    rotate={(i * 41) % 360}
+                    petal={i % 3 === 0 ? "#dfa890" : "#eccb77"}
+                  />
                 )}
               </React.Fragment>
             ))}
           </div>
 
-          <Tassel className="absolute left-4 top-full -translate-x-1/2 sm:left-8" />
-          <Tassel className="absolute right-4 top-full translate-x-1/2 sm:right-8" />
+          {/* central heart medallion */}
+          <div className="absolute left-1/2 top-1/2 flex h-14 w-14 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-gold-300/70 bg-ink-950/70 shadow-[0_0_22px_rgba(227,181,74,0.45)] sm:h-16 sm:w-16">
+            <svg width="54%" height="54%" viewBox="0 0 100 92" fill="none" aria-hidden="true">
+              <path d={HEART_PATH} fill="rgba(227,181,74,0.14)" stroke="#f4e0ac" strokeWidth="5" />
+            </svg>
+          </div>
+
+          <Tassel className="absolute left-3 top-full -translate-x-1/2 sm:left-8" />
+          <Tassel className="absolute right-3 top-full translate-x-1/2 sm:right-8" />
         </div>
 
-        <div className="absolute inset-x-0 -bottom-4 flex justify-between px-0.5">
-          {Array.from({ length: 16 }).map((_, i) => (
-            <span
-              key={i}
-              className="block h-7 w-7 rounded-full sm:h-8 sm:w-8"
-              style={{
-                background: "radial-gradient(circle at 50% 0%, #164734 0%, #0b2a20 72%)",
-                boxShadow: "inset 0 -5px 9px rgba(0,0,0,0.55)"
-              }}
-            />
-          ))}
-        </div>
+        <SwagRow count={9} />
       </div>
     </motion.div>
+  );
+}
+
+function CelebrationBurst({ active }) {
+  const { petals, flowers } = useMemo(() => {
+    const petals = Array.from({ length: 26 }, (_, i) => {
+      const angle = (Math.PI * 2 * i) / 26 + Math.random() * 0.3;
+      const dist = 120 + Math.random() * 180;
+      return {
+        id: i,
+        x: Math.cos(angle) * dist,
+        y: Math.sin(angle) * dist + 140,
+        rot: Math.random() * 540 - 270,
+        scale: 0.7 + Math.random() * 0.6,
+        color: PETAL_COLORS[i % PETAL_COLORS.length],
+        delay: Math.random() * 0.22,
+        duration: 1.3 + Math.random() * 0.5
+      };
+    });
+
+    const flowers = Array.from({ length: 12 }, (_, i) => {
+      const angle = (Math.PI * 2 * i) / 12 - Math.PI / 2;
+      const dist = 110 + Math.random() * 80;
+      return {
+        id: i,
+        x: Math.cos(angle) * dist,
+        y: Math.sin(angle) * dist,
+        size: 16 + Math.random() * 14,
+        rot: Math.random() * 320 - 160,
+        petal: i % 3 === 0 ? "#dfa890" : "#eccb77",
+        delay: Math.random() * 0.18,
+        duration: 1.4 + Math.random() * 0.4
+      };
+    });
+
+    return { petals, flowers };
+  }, []);
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[45] flex items-center justify-center overflow-hidden">
+      <AnimatePresence>
+        {active && (
+          <>
+            {flowers.map((f) => (
+              <motion.span
+                key={`f-${f.id}`}
+                initial={{ x: 0, y: 0, opacity: 0, scale: 0.2, rotate: 0 }}
+                animate={{
+                  x: f.x,
+                  y: f.y,
+                  opacity: [0, 1, 1, 0],
+                  scale: [0.2, 1, 0.9],
+                  rotate: f.rot
+                }}
+                transition={{ duration: f.duration, delay: f.delay, ease: "easeOut" }}
+                className="absolute"
+              >
+                <Flower size={f.size} petal={f.petal} />
+              </motion.span>
+            ))}
+            {petals.map((p) => (
+              <motion.span
+                key={`p-${p.id}`}
+                initial={{ x: 0, y: 0, opacity: 0, scale: 0.3, rotate: 0 }}
+                animate={{
+                  x: p.x,
+                  y: p.y,
+                  opacity: [0, 1, 1, 0],
+                  scale: [0.3, p.scale, p.scale],
+                  rotate: p.rot
+                }}
+                transition={{ duration: p.duration, delay: p.delay, ease: "easeOut" }}
+                className="absolute h-3 w-3 rounded-[80%_0_80%_0]"
+                style={{ background: p.color }}
+              />
+            ))}
+          </>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function Balloon({ color, size }) {
+  return (
+    <svg width={size} height={size * 1.5} viewBox="0 0 40 60" aria-hidden="true">
+      <ellipse cx="20" cy="19" rx="15" ry="18" fill={color} />
+      <ellipse cx="14.5" cy="12.5" rx="4.2" ry="6.4" fill="#ffffff" opacity="0.38" />
+      <ellipse cx="25" cy="26" rx="3" ry="5" fill="#000000" opacity="0.12" />
+      <path d="M20 37.5 l-3.4 5.2 h6.8 z" fill={color} />
+      <path
+        d="M20 43 C15 47 25 50 19.5 57"
+        stroke="#f4e0ac"
+        strokeWidth="0.9"
+        fill="none"
+        opacity="0.75"
+      />
+    </svg>
+  );
+}
+
+function Balloons({ active }) {
+  const balloons = useMemo(
+    () =>
+      Array.from({ length: 16 }, (_, i) => ({
+        id: i,
+        left: 3 + Math.random() * 94,
+        size: 24 + Math.random() * 26,
+        delay: Math.random() * 0.35,
+        duration: 1.35 + Math.random() * 0.55,
+        sway: (Math.random() - 0.5) * 70,
+        tilt: (Math.random() - 0.5) * 16,
+        color: BALLOON_COLORS[i % BALLOON_COLORS.length]
+      })),
+    []
+  );
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[34] overflow-hidden">
+      <AnimatePresence>
+        {active &&
+          balloons.map((b) => (
+            <motion.div
+              key={b.id}
+              className="absolute bottom-[-18%]"
+              style={{ left: `${b.left}%` }}
+              initial={{ y: 0, x: 0, opacity: 0, rotate: 0 }}
+              animate={{ y: "-122vh", x: [0, b.sway, 0], opacity: [0, 1, 1, 0.9], rotate: [b.tilt, -b.tilt] }}
+              transition={{ duration: b.duration, delay: b.delay, ease: "easeOut" }}
+            >
+              <Balloon color={b.color} size={b.size} />
+            </motion.div>
+          ))}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function FlowerRain({ active }) {
+  const flowers = useMemo(
+    () =>
+      Array.from({ length: 22 }, (_, i) => ({
+        id: i,
+        left: 2 + Math.random() * 96,
+        size: 13 + Math.random() * 16,
+        delay: Math.random() * 0.3,
+        duration: 1.35 + Math.random() * 0.5,
+        drift: (Math.random() - 0.5) * 60,
+        rot: 180 + Math.random() * 360,
+        petal: PETAL_COLORS[i % PETAL_COLORS.length]
+      })),
+    []
+  );
+
+  return (
+    <div className="pointer-events-none absolute inset-0 z-[44] overflow-hidden">
+      <AnimatePresence>
+        {active &&
+          flowers.map((f) => (
+            <motion.div
+              key={f.id}
+              className="absolute top-[-12%]"
+              style={{ left: `${f.left}%` }}
+              initial={{ y: 0, x: 0, opacity: 0, rotate: 0 }}
+              animate={{ y: "118vh", x: [0, f.drift, 0], opacity: [0, 1, 1, 0.85], rotate: f.rot }}
+              transition={{ duration: f.duration, delay: f.delay, ease: "easeIn" }}
+            >
+              <Flower size={f.size} petal={f.petal} />
+            </motion.div>
+          ))}
+      </AnimatePresence>
+    </div>
   );
 }
 
@@ -293,9 +698,8 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
   const { couple } = data;
   const [isUnlocked, setIsUnlocked] = useState(false);
 
-  const initials = `${(couple.groom.name || "M").charAt(0)} & ${(couple.bride.name || "A").charAt(
-    0
-  )}`.toUpperCase();
+  const groomInitial = (couple.groom.name || "M").trim().charAt(0).toUpperCase();
+  const brideInitial = (couple.bride.name || "A").trim().charAt(0).toUpperCase();
 
   const handleUnlock = () => {
     if (isUnlocked) return;
@@ -319,12 +723,12 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
       style={{ WebkitTapHighlightColor: "transparent" }}
     >
       {/* backdrop */}
-      <div className="absolute inset-0 z-0 bg-gradient-to-b from-ink-950 via-ink-800 to-ink-950" />
+      <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_50%_42%,#123f30_0%,#0a2e23_48%,#041a12_100%)]" />
       <div
         className="pointer-events-none absolute inset-0 z-0"
         style={{
           background:
-            "radial-gradient(ellipse 55% 42% at 50% 45%, rgba(227,181,74,0.22) 0%, rgba(227,181,74,0) 70%)"
+            "radial-gradient(ellipse 55% 42% at 50% 45%, rgba(240,212,138,0.26) 0%, rgba(240,212,138,0) 70%)"
         }}
       />
       <div className="absolute inset-0 z-0 flex items-center justify-center opacity-[0.07]">
@@ -334,37 +738,35 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
         <GoldenParticles count={55} />
       </div>
 
-      {/* arch frame stays while the curtains part */}
+      {/* gate frame stays while the curtains part */}
       <div className="absolute inset-0 z-[25] flex items-center justify-center">
         <ArchFrame />
       </div>
 
-      <PetalBurst active={isUnlocked} />
+      <Balloons active={isUnlocked} />
+      <FlowerRain active={isUnlocked} />
+
+      {/* golden flash on unlock */}
+      <AnimatePresence>
+        {isUnlocked && (
+          <motion.div
+            key="flash"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 0.9, 0] }}
+            transition={{ duration: 1.1, ease: "easeOut" }}
+            className="pointer-events-none absolute inset-0 z-[33] bg-[radial-gradient(circle_at_50%_45%,rgba(255,235,185,0.75)_0%,rgba(255,225,160,0.18)_34%,transparent_62%)]"
+          />
+        )}
+      </AnimatePresence>
 
       {/* curtains */}
       <div className="pointer-events-none absolute inset-0 z-30 flex">
-        <motion.div
-          animate={isUnlocked ? { scaleX: 0.12, x: "-6%" } : { scaleX: 1, x: "0%" }}
-          transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.15 }}
-          style={{ ...curtainFabric, transformOrigin: "left center" }}
-          className="relative h-full w-1/2 border-r border-gold-500/40 will-change-transform"
-        >
-          <div className="absolute inset-y-0 right-0 w-[3px] bg-gradient-to-b from-gold-400 via-gold-500 to-gold-700" />
-          <div className="absolute bottom-0 right-0 h-12 w-full bg-gradient-to-t from-black/55 to-transparent" />
-        </motion.div>
-
-        <motion.div
-          animate={isUnlocked ? { scaleX: 0.12, x: "6%" } : { scaleX: 1, x: "0%" }}
-          transition={{ duration: 2, ease: [0.76, 0, 0.24, 1], delay: 0.15 }}
-          style={{ ...curtainFabric, transformOrigin: "right center" }}
-          className="relative h-full w-1/2 border-l border-gold-500/40 will-change-transform"
-        >
-          <div className="absolute inset-y-0 left-0 w-[3px] bg-gradient-to-b from-gold-400 via-gold-500 to-gold-700" />
-          <div className="absolute bottom-0 left-0 h-12 w-full bg-gradient-to-t from-black/55 to-transparent" />
-        </motion.div>
-
+        <CurtainPanel side="left" unlocked={isUnlocked} />
+        <CurtainPanel side="right" unlocked={isUnlocked} />
         <Valance lifting={isUnlocked} />
       </div>
+
+      <CelebrationBurst active={isUnlocked} />
 
       {/* crest + hint */}
       <motion.div
@@ -374,13 +776,17 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
         style={{ pointerEvents: isUnlocked ? "none" : "auto" }}
         className="absolute inset-0 z-40 flex flex-col items-center justify-center px-6 pb-[env(safe-area-inset-bottom)]"
       >
-        <HeartCrest initials={initials} unlocking={isUnlocked} />
+        <HeartCrest
+          groomInitial={groomInitial}
+          brideInitial={brideInitial}
+          unlocking={isUnlocked}
+        />
 
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1.1, duration: 0.8 }}
-          className="mt-6 flex flex-col items-center gap-2.5 sm:mt-8"
+          className="mt-7 flex flex-col items-center gap-2.5 sm:mt-9"
         >
           <motion.span
             animate={{ opacity: [0.5, 1, 0.5] }}
@@ -391,9 +797,9 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
           </motion.span>
 
           <motion.span
-            animate={{ scale: [1, 1.35, 1], opacity: [0.6, 1, 0.6] }}
+            animate={{ scale: [1, 1.32, 1], opacity: [0.65, 1, 0.65] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/60 bg-ink-900/50 sm:h-12 sm:w-12"
+            className="relative flex h-11 w-11 items-center justify-center rounded-full border border-gold-400/60 bg-ink-900/50 shadow-[0_0_20px_rgba(227,181,74,0.35)] sm:h-12 sm:w-12"
             aria-hidden="true"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
@@ -405,9 +811,14 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
                 strokeLinejoin="round"
               />
             </svg>
+            <span className="absolute -right-1 -top-1 text-[9px] text-gold-300/90">{"\u2665"}</span>
           </motion.span>
 
-          <span className="h-px w-24 bg-gradient-to-r from-transparent via-gold-400/70 to-transparent" />
+          <span className="flex items-center gap-2">
+            <span className="h-px w-10 bg-gradient-to-r from-transparent via-gold-400/70 to-transparent" />
+            <span className="text-[8px] text-gold-300/80">{"\u2665"}</span>
+            <span className="h-px w-10 bg-gradient-to-r from-transparent via-gold-400/70 to-transparent" />
+          </span>
         </motion.div>
       </motion.div>
     </motion.div>

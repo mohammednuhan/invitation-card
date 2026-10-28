@@ -47,17 +47,17 @@ export default function Hero({ data }) {
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#03140e]">
         {/* Ambient fill so the screen stays covered edge to edge */}
         <img
-          src="/images/hero-couple.jpg?v=11"
+          src="/images/hero-couple.jpg?v=12"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 h-full w-full scale-[1.12] object-cover object-[50%_30%] blur-[6px]"
+          className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[50%_28%] blur-[3px]"
         />
-        <div className="absolute inset-0 bg-emerald-950/62" />
+        <div className="absolute inset-0 bg-emerald-950/16" />
 
         {/* Full-bleed photograph centered on screen */}
         <img
-          src="/images/hero-couple.jpg?v=11"
-          srcSet="/images/hero-couple-mobile.jpg?v=11 1400w, /images/hero-couple.jpg?v=11 2286w"
+          src="/images/hero-couple.jpg?v=12"
+          srcSet="/images/hero-couple-mobile.jpg?v=12 1400w, /images/hero-couple.jpg?v=12 2286w"
           sizes="100vw"
           alt=""
           loading="eager"
@@ -66,25 +66,25 @@ export default function Hero({ data }) {
           className="absolute inset-0 h-full w-full object-cover object-center"
           style={{
             maskImage:
-              "linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%)",
+              "linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%)",
             WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, #000 9%, #000 91%, transparent 100%)"
+              "linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%)"
           }}
         />
 
-        <div className="absolute inset-0 bg-gradient-to-b from-[#03140e] via-transparent to-[#03140e]" />
-        <div className="absolute inset-0 bg-[linear-gradient(90deg,#03140e_0%,rgba(3,20,14,0.28)_12%,transparent_30%,transparent_70%,rgba(3,20,14,0.28)_88%,#03140e_100%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_48%_42%_at_50%_44%,rgba(3,20,14,0.16)_0%,rgba(3,20,14,0.05)_55%,transparent_78%)]" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#041a12]/48 via-transparent to-[#041a12]/62" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,#041a12_0%,rgba(4,26,18,0.14)_12%,transparent_32%,transparent_68%,rgba(4,26,18,0.14)_88%,#041a12_100%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_52%_48%_at_50%_42%,rgba(4,26,18,0.06)_0%,rgba(4,26,18,0.02)_58%,transparent_78%)]" />
       </div>
 
       <div className="pointer-events-none absolute inset-0 opacity-[0.05]">
-        <IslamicPattern variant="star" className="h-full w-full" color="#f0d48a" />
+        <IslamicPattern variant="star" className="h-full w-full" color="#ffd89c" />
       </div>
       <div
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(ellipse 60% 45% at 50% 18%, rgba(227,181,74,0.18) 0%, rgba(227,181,74,0) 70%)"
+            "radial-gradient(ellipse 62% 48% at 50% 16%, rgba(255,216,156,0.32) 0%, rgba(255,216,156,0) 72%)"
         }}
       />
       <GoldenParticles count={70} />
@@ -99,7 +99,8 @@ export default function Hero({ data }) {
         >
           <motion.p
             variants={itemBlur}
-            className="mb-8 font-serif text-xs uppercase tracking-[0.5em] text-[#ffe9a8] drop-shadow-[0_0_22px_rgba(255,215,128,0.75)] md:text-base"
+            className="mb-8 font-serif text-xs uppercase tracking-[0.5em] text-[#fff3d0] md:text-base"
+            style={{ textShadow: "0 2px 14px rgba(0,0,0,0.9), 0 0 26px rgba(255,214,140,0.6)" }}
           >
             With the blessings of Allah
           </motion.p>
@@ -110,7 +111,13 @@ export default function Hero({ data }) {
           {/* Names stacked below on their own row */}
           <motion.div variants={itemFadeUp} className="mb-4 flex w-full max-w-2xl flex-col items-center px-1">
             <h1 className="flex w-full flex-col items-center font-script leading-tight">
-              <span className="max-w-full break-words bg-gradient-to-r from-[#fff7dc] via-[#ffd89c] to-[#fff7dc] bg-clip-text text-center text-3xl text-transparent drop-shadow-[0_4px_32px_rgba(255,216,156,0.5)] sm:text-5xl md:text-6xl">
+              <span
+                className="max-w-full break-words text-center text-3xl text-[#fff8e1] sm:text-5xl md:text-6xl"
+                style={{
+                  textShadow:
+                    "0 3px 22px rgba(0,0,0,0.92), 0 0 34px rgba(255,214,140,0.55), 0 0 70px rgba(255,196,90,0.28)"
+                }}
+              >
                 {couple.groom.fullName || couple.groom.name}
               </span>
 
@@ -121,7 +128,10 @@ export default function Hero({ data }) {
                   <span className="h-1 w-1 shrink-0 rotate-45 bg-[#b89a3a]/80" />
                 </span>
 
-                <span className="mr-[-0.45em] shrink-0 whitespace-nowrap bg-gradient-to-r from-[#ffd89c] via-[#fff7dc] to-[#ffd89c] bg-clip-text font-serif text-[11px] font-medium uppercase italic tracking-[0.45em] text-transparent drop-shadow-[0_0_18px_rgba(255,216,156,0.6)] sm:text-sm">
+                <span
+                  className="mr-[-0.45em] shrink-0 whitespace-nowrap font-serif text-[11px] font-medium uppercase italic tracking-[0.45em] text-[#ffe6ad] sm:text-sm"
+                  style={{ textShadow: "0 2px 14px rgba(0,0,0,0.9), 0 0 24px rgba(255,214,140,0.5)" }}
+                >
                   weds to
                 </span>
 
@@ -131,7 +141,13 @@ export default function Hero({ data }) {
                 </span>
               </span>
 
-              <span className="max-w-full break-words bg-gradient-to-r from-[#fff7dc] via-[#ffd89c] to-[#fff7dc] bg-clip-text text-center text-3xl text-transparent drop-shadow-[0_4px_32px_rgba(255,216,156,0.5)] sm:text-5xl md:text-6xl">
+              <span
+                className="max-w-full break-words text-center text-3xl text-[#fff8e1] sm:text-5xl md:text-6xl"
+                style={{
+                  textShadow:
+                    "0 3px 22px rgba(0,0,0,0.92), 0 0 34px rgba(255,214,140,0.55), 0 0 70px rgba(255,196,90,0.28)"
+                }}
+              >
                 {couple.bride.fullName || couple.bride.name}
               </span>
             </h1>
@@ -159,7 +175,10 @@ export default function Hero({ data }) {
         transition={{ delay: 1.8, duration: 1 }}
         className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 flex-col items-center gap-1.5 sm:bottom-6 sm:gap-2"
       >
-        <span className="hidden font-serif text-[9px] uppercase tracking-[0.35em] text-[#ffd89c] drop-shadow-[0_0_16px_rgba(255,216,156,0.6)] sm:block sm:text-[10px]">
+        <span
+          className="hidden font-serif text-[9px] uppercase tracking-[0.35em] text-[#fff3d0] sm:block sm:text-[10px]"
+          style={{ textShadow: "0 2px 12px rgba(0,0,0,0.9)" }}
+        >
           Scroll to explore
         </span>
         <motion.div

@@ -17,10 +17,10 @@ export default {
           900: "#684524"
         },
         cream: {
-          50: "#fdfbf4",
-          100: "#f7f2e3",
-          200: "#ede2c9",
-          300: "#dfcea8"
+          50: "#fffefa",
+          100: "#fdf9ee",
+          200: "#f8f0dc",
+          300: "#efe2c6"
         },
         rosegold: {
           300: "#ecc4b3",

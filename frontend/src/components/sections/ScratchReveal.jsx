@@ -405,7 +405,7 @@ export default function ScratchReveal({ data, onReveal }) {
   return (
     <section
       id="scratch"
-      className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-50 py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white to-cream-50 py-24"
     >
       <GoldenParticles count={30} />
       <div className="relative z-10 mx-auto max-w-4xl px-6">

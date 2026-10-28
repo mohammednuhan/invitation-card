@@ -26,7 +26,7 @@ export default function Family({ data }) {
   return (
     <section
       id="family"
-      className="relative overflow-hidden bg-gradient-to-b from-cream-50 to-cream-100 py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white/70 to-cream-100 py-24"
     >
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionTitle

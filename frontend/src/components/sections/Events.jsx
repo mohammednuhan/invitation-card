@@ -27,7 +27,7 @@ export default function Events({ data }) {
   return (
     <section
       id="events"
-      className="relative overflow-hidden bg-cream-50 py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white to-cream-50 py-24"
     >
       <div className="pointer-events-none absolute inset-0 opacity-[0.03]">
         <img src="/images/floral-bg.png" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />

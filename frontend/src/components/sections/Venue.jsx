@@ -35,7 +35,7 @@ export default function Venue({ data }) {
   return (
     <section
       id="venue"
-      className="relative overflow-hidden bg-gradient-to-b from-cream-100 to-cream-50 py-24"
+      className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white/60 to-cream-100 py-24"
     >
       <div className="relative z-10 mx-auto max-w-6xl px-6">
         <SectionTitle
