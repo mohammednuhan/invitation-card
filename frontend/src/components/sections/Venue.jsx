@@ -55,7 +55,7 @@ export default function Venue({ data }) {
             <motion.div
               key={v.name}
               variants={itemFadeUp}
-              className="overflow-hidden rounded-3xl gold-border luxury-shadow bg-white/70 backdrop-blur"
+              className="overflow-hidden rounded-3xl gold-border luxury-shadow bg-white/85"
             >
               <div className="relative h-[280px] w-full">
                 <iframe

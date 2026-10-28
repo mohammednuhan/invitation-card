@@ -19,7 +19,8 @@ export default function GoldenParticles({
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      const dpr = window.devicePixelRatio || 1;
+      // Cap the pixel ratio: full 3x canvases are a big fill-rate cost on phones
+      const dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       canvas.width = Math.max(1, Math.round(rect.width * dpr));
       canvas.height = Math.max(1, Math.round(rect.height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -41,6 +42,7 @@ export default function GoldenParticles({
       vx: (Math.random() - 0.5) * 0.2,
       color: colors[Math.floor(Math.random() * colors.length)],
       alpha: 0.4 + Math.random() * 0.6,
+      baseAlpha: 0.4 + Math.random() * 0.6,
       twinkle: Math.random() * Math.PI * 2
     });
 
@@ -51,13 +53,12 @@ export default function GoldenParticles({
 
     const draw = () => {
       if (!running) return;
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, size.width, size.height);
       particles.forEach((p, i) => {
         p.x += p.vx;
         p.y += p.vy;
         p.twinkle += 0.02;
-        p.alpha =
-          (0.4 + Math.random() * 0.4) * (0.7 + 0.3 * Math.sin(p.twinkle));
+        p.alpha = p.baseAlpha * (0.7 + 0.3 * Math.sin(p.twinkle));
 
         if (p.y < -10 || p.x < -10 || p.x > size.width + 10) {
           particles[i] = createParticle();

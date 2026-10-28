@@ -46,9 +46,56 @@ function HeartDate({ n, className = "" }) {
   );
 }
 
+function CountdownTiles({ date }) {
+  const countdown = useCountdown(date);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 40 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className="mt-12 sm:mt-16"
+    >
+      <p className="mb-4 font-serif text-xs uppercase tracking-[0.4em] text-gold-600 sm:text-sm">
+        Counting down to forever
+      </p>
+
+      <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6">
+        {[
+          { label: "Days", value: countdown.days },
+          { label: "Hours", value: countdown.hours },
+          { label: "Minutes", value: countdown.minutes },
+          { label: "Seconds", value: countdown.seconds }
+        ].map((t, i) => (
+          <motion.div
+            key={t.label}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.7 + i * 0.1 }}
+            className="relative flex flex-col items-center"
+          >
+            <div className="flex h-20 w-16 flex-col items-center justify-center rounded-2xl glass-dark shadow-luxury sm:h-28 sm:w-24 sm:rounded-3xl md:h-36 md:w-32">
+              <span className="font-display text-3xl font-bold text-gold-300 sm:text-5xl md:text-6xl">
+                {String(t.value).padStart(2, "0")}
+              </span>
+              <span className="mt-1 font-sans text-[8px] uppercase tracking-[0.2em] text-cream-200/70 sm:mt-2 sm:text-[11px] sm:tracking-[0.3em]">
+                {t.label}
+              </span>
+            </div>
+            {i < 3 && (
+              <span className="absolute -right-2 top-1/2 -translate-y-1/2 font-display text-lg text-gold-400/60 sm:-right-4 sm:text-2xl md:-right-6 md:text-3xl">
+                :
+              </span>
+            )}
+          </motion.div>
+        ))}
+      </div>
+    </motion.div>
+  );
+}
+
 function DateReveal({ data }) {
   const { couple } = data;
-  const countdown = useCountdown(couple.date);
   const weddingDate = new Date(couple.date);
   const validDate = !Number.isNaN(weddingDate.getTime());
 
@@ -96,11 +143,11 @@ function DateReveal({ data }) {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white to-cream-50 py-16 sm:py-24">
-      <GoldenParticles count={40} />
+      <GoldenParticles count={22} />
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <motion.div
-          initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="flex flex-col items-center"
         >
@@ -253,47 +300,7 @@ function DateReveal({ data }) {
           </div>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-12 sm:mt-16"
-        >
-          <p className="mb-4 font-serif text-xs uppercase tracking-[0.4em] text-gold-600 sm:text-sm">
-            Counting down to forever
-          </p>
-
-          <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 md:gap-6">
-            {[
-              { label: "Days", value: countdown.days },
-              { label: "Hours", value: countdown.hours },
-              { label: "Minutes", value: countdown.minutes },
-              { label: "Seconds", value: countdown.seconds }
-            ].map((t, i) => (
-              <motion.div
-                key={t.label}
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.7 + i * 0.1 }}
-                className="relative flex flex-col items-center"
-              >
-                <div className="flex h-20 w-16 flex-col items-center justify-center rounded-2xl glass-dark shadow-luxury sm:h-28 sm:w-24 sm:rounded-3xl md:h-36 md:w-32">
-                  <span className="font-display text-3xl font-bold text-gold-300 sm:text-5xl md:text-6xl">
-                    {String(t.value).padStart(2, "0")}
-                  </span>
-                  <span className="mt-1 font-sans text-[8px] uppercase tracking-[0.2em] text-cream-200/70 sm:mt-2 sm:text-[11px] sm:tracking-[0.3em]">
-                    {t.label}
-                  </span>
-                </div>
-                {i < 3 && (
-                  <span className="absolute -right-2 top-1/2 -translate-y-1/2 font-display text-lg text-gold-400/60 sm:-right-4 sm:text-2xl md:-right-6 md:text-3xl">
-                    :
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+        <CountdownTiles date={couple.date} />
       </div>
     </section>
   );

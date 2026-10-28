@@ -214,16 +214,18 @@ body::before {
     border-width: 1px;
   }
 
-  /* Cheaper blur: full-strength backdrop-filter repaints on every scroll
-     frame and is a major jank source on mobile GPUs. */
+  /* Drop backdrop blur entirely on phones: it forces a repaint of the area
+     behind the element on every scroll frame and is a major jank source. */
   .glass {
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(253, 251, 244, 0.86);
   }
 
   .glass-dark {
-    backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(11, 42, 32, 0.8);
   }
 
   /* Promote animated layers to their own compositor layer */

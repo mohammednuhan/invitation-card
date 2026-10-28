@@ -276,13 +276,6 @@ function HeartCrest({ groomInitial, brideInitial, unlocking }) {
           opacity="0.55"
           transform="translate(4 4) scale(0.92)"
         />
-        <path
-          d="M50 74 C46 71 38 66 38 59 C38 55 41 52 45 52 C47 52 49 53.5 50 55.5 C51 53.5 53 52 55 52 C59 52 62 55 62 59 C62 66 54 71 50 74 Z"
-          fill="none"
-          stroke="#f4e0ac"
-          strokeWidth="0.7"
-          opacity="0.35"
-        />
       </svg>
 
       <motion.div
@@ -290,55 +283,42 @@ function HeartCrest({ groomInitial, brideInitial, unlocking }) {
         transition={{ duration: 3.6, repeat: Infinity, ease: "easeInOut" }}
         className="relative z-10 flex flex-col items-center px-3 text-center"
       >
-        <motion.span
-          animate={{ scale: [1, 1.16, 1], opacity: [0.7, 1, 0.7] }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          className="mb-1 text-[clamp(9px,2.6vw,13px)] leading-none text-gold-300 drop-shadow-[0_0_10px_rgba(227,181,74,0.8)]"
-          aria-hidden="true"
-        >
-          {"\u2665"}
-        </motion.span>
-
-        <div className="flex items-end justify-center leading-none">
+        <div className="flex items-center justify-center gap-1.5 sm:gap-3">
           <span
-            className="animate-shimmer bg-[linear-gradient(100deg,#fff8e1_0%,#f4dc9a_28%,#c8942f_50%,#f4dc9a_72%,#fff8e1_100%)] bg-[length:220%_auto] bg-clip-text font-serif text-[clamp(2.2rem,11.5vw,4.1rem)] font-normal tracking-[0.04em] text-transparent"
+            className="font-display text-[clamp(2.4rem,12vw,4rem)] font-semibold uppercase leading-none tracking-[0.02em] text-[#fff3d2]"
             style={{
-              filter:
-                "drop-shadow(0 2px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 16px rgba(227,181,74,0.55))"
+              textShadow:
+                "0 2px 8px rgba(0,0,0,0.65), 0 0 20px rgba(255,214,140,0.6), 0 0 38px rgba(227,181,74,0.35)"
             }}
           >
             {groomInitial}
           </span>
 
           <span
-            className="-mx-[0.06em] mb-[0.16em] font-script text-[clamp(1.35rem,6.4vw,2.5rem)] leading-none text-rosegold-300"
-            style={{
-              filter:
-                "drop-shadow(0 2px 6px rgba(0,0,0,0.5)) drop-shadow(0 0 14px rgba(223,168,144,0.6))"
-            }}
-            aria-hidden="true"
+            className="font-serif text-[clamp(1.1rem,5vw,1.8rem)] italic leading-none text-rosegold-300"
+            style={{ textShadow: "0 2px 8px rgba(0,0,0,0.5), 0 0 14px rgba(223,168,144,0.6)" }}
           >
             {"\u0026"}
           </span>
 
           <span
-            className="animate-shimmer bg-[linear-gradient(100deg,#fff8e1_0%,#f4dc9a_28%,#c8942f_50%,#f4dc9a_72%,#fff8e1_100%)] bg-[length:220%_auto] bg-clip-text font-serif text-[clamp(2.2rem,11.5vw,4.1rem)] font-normal tracking-[0.04em] text-transparent"
+            className="font-display text-[clamp(2.4rem,12vw,4rem)] font-semibold uppercase leading-none tracking-[0.02em] text-[#fff3d2]"
             style={{
-              filter:
-                "drop-shadow(0 2px 6px rgba(0,0,0,0.55)) drop-shadow(0 0 16px rgba(227,181,74,0.55))"
+              textShadow:
+                "0 2px 8px rgba(0,0,0,0.65), 0 0 20px rgba(255,214,140,0.6), 0 0 38px rgba(227,181,74,0.35)"
             }}
           >
             {brideInitial}
           </span>
         </div>
 
-        <span className="mt-2.5 flex items-center gap-2">
-          <span className="h-px w-7 bg-gradient-to-r from-transparent via-gold-300/60 to-gold-300/90 sm:w-9" />
-          <span className="text-[7px] leading-none text-gold-300/90">{"\u2666"}</span>
-          <span className="h-px w-7 bg-gradient-to-l from-transparent via-gold-300/60 to-gold-300/90 sm:w-9" />
+        <span className="mt-3 flex items-center gap-2">
+          <span className="h-px w-8 bg-gradient-to-r from-transparent via-gold-300/60 to-gold-300/85" />
+          <span className="h-1 w-1 rotate-45 bg-gold-300/70" />
+          <span className="h-px w-8 bg-gradient-to-l from-transparent via-gold-300/60 to-gold-300/85" />
         </span>
 
-        <span className="mt-1.5 font-serif text-[clamp(7px,2.3vw,10px)] uppercase tracking-[0.48em] text-gold-200/90">
+        <span className="mt-1.5 font-sans text-[clamp(6.5px,2.2vw,9px)] uppercase tracking-[0.5em] text-gold-200/90">
           Wedding
         </span>
       </motion.div>
@@ -735,7 +715,7 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
         <IslamicPattern variant="star" className="h-full w-full" color="#f0d48a" />
       </div>
       <div className="absolute inset-0 z-[1] opacity-70">
-        <GoldenParticles count={55} />
+        <GoldenParticles count={30} />
       </div>
 
       {/* gate frame stays while the curtains part */}

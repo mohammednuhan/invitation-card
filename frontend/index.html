@@ -23,6 +23,22 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
     <link rel="manifest" href="/manifest.webmanifest" />
+    <link
+      rel="preload"
+      as="image"
+      media="(max-width: 640px)"
+      href="/images/hero-couple-portrait.jpg?v=14"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      media="(min-width: 641px)"
+      href="/images/hero-couple.jpg?v=14"
+      imagesrcset="/images/hero-couple-mobile.jpg?v=14 1200w, /images/hero-couple.jpg?v=14 1920w"
+      imagesizes="100vw"
+      fetchpriority="high"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link

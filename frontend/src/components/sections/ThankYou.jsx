@@ -19,13 +19,12 @@ export default function ThankYou({ data }) {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         ref.current.querySelectorAll("[data-thank]"),
-        { opacity: 0, y: 40, filter: "blur(8px)" },
+        { opacity: 0, y: 40 },
         {
           opacity: 1,
           y: 0,
-          filter: "blur(0px)",
-          duration: 1.4,
-          stagger: 0.25,
+          duration: 1.2,
+          stagger: 0.22,
           scrollTrigger: { trigger: ref.current, start: "top 70%" }
         }
       );
@@ -39,9 +38,9 @@ export default function ThankYou({ data }) {
       ref={ref}
       className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a3325] via-[#155540] to-[#082a1e] py-16 text-center sm:py-24"
     >
-      <GoldenParticles count={90} />
-      <FallingPetals count={16} />
-      <FloatingHearts count={10} />
+      <GoldenParticles count={40} />
+      <FallingPetals count={8} />
+      <FloatingHearts count={6} />
 
       <div className="relative z-10 mx-auto max-w-3xl px-6">
         <motion.div

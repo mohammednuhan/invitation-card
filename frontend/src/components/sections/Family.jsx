@@ -43,7 +43,7 @@ export default function Family({ data }) {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.2 }}
-              className="rounded-3xl gold-border luxury-shadow bg-white/60 p-8 backdrop-blur"
+              className="rounded-3xl gold-border luxury-shadow bg-white/85 p-8"
             >
               <div className="mb-8 text-center">
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-gold">

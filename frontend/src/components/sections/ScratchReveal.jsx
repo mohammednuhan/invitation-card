@@ -218,6 +218,8 @@ function drawCover(ctx, w, h, couple) {
 export default function ScratchReveal({ data, onReveal }) {
   const canvasRef = useRef(null);
   const maskRef = useRef(null);
+  const maskSampleRef = useRef(null);
+  const sampleCanvasRef = useRef(null);
   const drawing = useRef(false);
   const lastPoint = useRef(null);
   const percentRef = useRef(0);
@@ -239,18 +241,29 @@ export default function ScratchReveal({ data, onReveal }) {
   };
 
   const scratchPercent = (ctx, w, h) => {
-    const mask = maskRef.current;
-    if (!mask) return 0;
-    const mctx = mask.getContext("2d");
-    const img = ctx.getImageData(0, 0, w, h);
-    const mimg = mctx.getImageData(0, 0, w, h);
-    const px = img.data;
-    const mp = mimg.data;
+    const maskData = maskSampleRef.current;
+    if (!maskData) return 0;
+
+    // Sample a tiny downscaled copy instead of reading millions of pixels on
+    // every scratch move — this keeps the reveal buttery smooth on phones.
+    const SW = 120;
+    const SH = 160;
+    let sample = sampleCanvasRef.current;
+    if (!sample) {
+      sample = document.createElement("canvas");
+      sample.width = SW;
+      sample.height = SH;
+      sampleCanvasRef.current = sample;
+    }
+    const sctx = sample.getContext("2d");
+    sctx.clearRect(0, 0, SW, SH);
+    sctx.drawImage(ctx.canvas, 0, 0, SW, SH);
+
+    const px = sctx.getImageData(0, 0, SW, SH).data;
     let cleared = 0;
     let total = 0;
-    const step = 32;
-    for (let i = 0; i < px.length; i += 4 * step) {
-      if (mp[i] > 128) {
+    for (let i = 0; i < px.length; i += 4) {
+      if (maskData[i] > 128) {
         total++;
         if (px[i + 3] === 0) cleared++;
       }
@@ -270,6 +283,14 @@ export default function ScratchReveal({ data, onReveal }) {
     const ctx = canvas.getContext("2d");
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
     maskRef.current = buildMask(w, h);
+
+    const maskSample = document.createElement("canvas");
+    maskSample.width = 120;
+    maskSample.height = 160;
+    const msctx = maskSample.getContext("2d");
+    msctx.drawImage(maskRef.current, 0, 0, 120, 160);
+    maskSampleRef.current = msctx.getImageData(0, 0, 120, 160).data;
+
     drawCover(ctx, rect.width, rect.height, couple);
   };
 
@@ -407,7 +428,7 @@ export default function ScratchReveal({ data, onReveal }) {
       id="scratch"
       className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white to-cream-50 py-24"
     >
-      <GoldenParticles count={30} />
+      <GoldenParticles count={18} />
       <div className="relative z-10 mx-auto max-w-4xl px-6">
         <SectionTitle
           eyebrow="A moment of magic"

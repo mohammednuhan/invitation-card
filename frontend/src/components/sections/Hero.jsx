@@ -45,32 +45,29 @@ export default function Hero({ data }) {
     >
       {/* Bride & groom photograph blended into a dark emerald backdrop */}
       <div aria-hidden="true" className="absolute inset-0 overflow-hidden bg-[#03140e]">
-        {/* Ambient fill so the screen stays covered edge to edge */}
-        <img
-          src="/images/hero-couple.jpg?v=12"
-          alt=""
-          aria-hidden="true"
-          className="absolute inset-0 h-full w-full scale-[1.08] object-cover object-[50%_28%] blur-[3px]"
-        />
-        <div className="absolute inset-0 bg-emerald-950/16" />
-
         {/* Full-bleed photograph centered on screen */}
-        <img
-          src="/images/hero-couple.jpg?v=12"
-          srcSet="/images/hero-couple-mobile.jpg?v=12 1400w, /images/hero-couple.jpg?v=12 2286w"
-          sizes="100vw"
-          alt=""
-          loading="eager"
-          decoding="async"
-          fetchPriority="high"
-          className="absolute inset-0 h-full w-full object-cover object-center"
-          style={{
-            maskImage:
-              "linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(to bottom, transparent 0%, #000 8%, #000 92%, transparent 100%)"
-          }}
-        />
+        <picture>
+          <source
+            media="(max-width: 640px)"
+            srcSet="/images/hero-couple-portrait.jpg?v=14"
+          />
+          <img
+            src="/images/hero-couple.jpg?v=14"
+            srcSet="/images/hero-couple-mobile.jpg?v=14 1200w, /images/hero-couple.jpg?v=14 1920w"
+            sizes="100vw"
+            alt=""
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
+            className="absolute inset-0 h-full w-full object-cover object-center"
+            style={{
+              maskImage:
+                "linear-gradient(to bottom, transparent 0%, #000 6%, #000 94%, transparent 100%)",
+              WebkitMaskImage:
+                "linear-gradient(to bottom, transparent 0%, #000 6%, #000 94%, transparent 100%)"
+            }}
+          />
+        </picture>
 
         <div className="absolute inset-0 bg-gradient-to-b from-[#041a12]/48 via-transparent to-[#041a12]/62" />
         <div className="absolute inset-0 bg-[linear-gradient(90deg,#041a12_0%,rgba(4,26,18,0.14)_12%,transparent_32%,transparent_68%,rgba(4,26,18,0.14)_88%,#041a12_100%)]" />
@@ -87,8 +84,8 @@ export default function Hero({ data }) {
             "radial-gradient(ellipse 62% 48% at 50% 16%, rgba(255,216,156,0.32) 0%, rgba(255,216,156,0) 72%)"
         }}
       />
-      <GoldenParticles count={70} />
-      <FallingPetals count={12} />
+      <GoldenParticles count={34} />
+      <FallingPetals count={7} />
 
       <div ref={parallaxRef} className="relative z-10 flex flex-col items-center px-6 text-center">
         <motion.div
@@ -99,10 +96,15 @@ export default function Hero({ data }) {
         >
           <motion.p
             variants={itemBlur}
-            className="mb-8 font-serif text-xs uppercase tracking-[0.5em] text-[#fff3d0] md:text-base"
-            style={{ textShadow: "0 2px 14px rgba(0,0,0,0.9), 0 0 26px rgba(255,214,140,0.6)" }}
+            className="mb-7 inline-flex items-center gap-2.5 rounded-full border border-[#f0d48a]/45 bg-[#03140e]/55 px-4 py-1.5 font-serif text-[11px] uppercase tracking-[0.34em] text-[#fff9e0] sm:mb-8 sm:px-5 sm:py-2 sm:text-sm sm:tracking-[0.42em]"
+            style={{
+              textShadow: "0 1px 8px rgba(0,0,0,0.8)",
+              boxShadow: "0 0 26px rgba(255,214,140,0.22), inset 0 0 18px rgba(255,214,140,0.08)"
+            }}
           >
+            <span className="text-[7px] leading-none text-[#f0d48a]">{"\u25C6"}</span>
             With the blessings of Allah
+            <span className="text-[7px] leading-none text-[#f0d48a]">{"\u25C6"}</span>
           </motion.p>
 
           {/* Portraits side-by-side on all screens */}
@@ -112,10 +114,10 @@ export default function Hero({ data }) {
           <motion.div variants={itemFadeUp} className="mb-4 flex w-full max-w-2xl flex-col items-center px-1">
             <h1 className="flex w-full flex-col items-center font-script leading-tight">
               <span
-                className="max-w-full break-words text-center text-3xl text-[#fff8e1] sm:text-5xl md:text-6xl"
+                className="max-w-full break-words text-center text-[2.25rem] leading-[1.12] text-[#fffbe8] sm:text-6xl md:text-7xl"
                 style={{
                   textShadow:
-                    "0 3px 22px rgba(0,0,0,0.92), 0 0 34px rgba(255,214,140,0.55), 0 0 70px rgba(255,196,90,0.28)"
+                    "0 2px 6px rgba(0,0,0,0.95), 0 0 18px rgba(255,205,110,0.7), 0 0 46px rgba(255,190,90,0.35)"
                 }}
               >
                 {couple.groom.fullName || couple.groom.name}
@@ -142,10 +144,10 @@ export default function Hero({ data }) {
               </span>
 
               <span
-                className="max-w-full break-words text-center text-3xl text-[#fff8e1] sm:text-5xl md:text-6xl"
+                className="max-w-full break-words text-center text-[2.25rem] leading-[1.12] text-[#fffbe8] sm:text-6xl md:text-7xl"
                 style={{
                   textShadow:
-                    "0 3px 22px rgba(0,0,0,0.92), 0 0 34px rgba(255,214,140,0.55), 0 0 70px rgba(255,196,90,0.28)"
+                    "0 2px 6px rgba(0,0,0,0.95), 0 0 18px rgba(255,205,110,0.7), 0 0 46px rgba(255,190,90,0.35)"
                 }}
               >
                 {couple.bride.fullName || couple.bride.name}

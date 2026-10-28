@@ -10,7 +10,7 @@ export default function Loader({ text = "Starting in the name of Allah" }) {
       transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[90] flex flex-col items-center justify-center overflow-hidden bg-ink-900"
     >
-      <GoldenParticles count={80} />
+      <GoldenParticles count={40} />
       <div className="relative flex flex-col items-center">
         <motion.div
           animate={{ rotate: 360 }}

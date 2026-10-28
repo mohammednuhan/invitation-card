@@ -53,7 +53,7 @@ export default function Events({ data }) {
                 key={i}
                 variants={itemFadeUp}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-3xl gold-border luxury-shadow bg-white/70 backdrop-blur"
+                className="group relative overflow-hidden rounded-3xl gold-border luxury-shadow bg-white/85"
               >
                 <CornerOrnament
                   color="#d4a03c"
