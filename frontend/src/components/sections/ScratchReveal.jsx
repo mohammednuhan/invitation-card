@@ -286,10 +286,10 @@ export default function ScratchReveal({ data, onReveal }) {
     const rect = canvas.getBoundingClientRect();
     const dpr = window.devicePixelRatio || 1;
     const ctx = canvas.getContext("2d");
-    const size = Math.max(28, Math.min(rect.width, rect.height) * 0.06) * dpr;
+    const size = Math.max(36, Math.min(rect.width, rect.height) * 0.09) * dpr;
     ctx.globalCompositeOperation = "destination-out";
     ctx.beginPath();
-    ctx.arc(x * dpr, y * dpr, size, 0, Math.PI * 2);
+    ctx.rect((x - size / dpr) * dpr, (y - size / dpr) * dpr, size * 2, size * 2);
     ctx.fill();
     ctx.globalCompositeOperation = "source-over";
   };
@@ -298,14 +298,15 @@ export default function ScratchReveal({ data, onReveal }) {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const rect = canvas.getBoundingClientRect();
+    const dpr = window.devicePixelRatio || 1;
     const ctx = canvas.getContext("2d");
     const isMobile = window.innerWidth < 768;
-    const radius = (isMobile ? 40 : 28) + Math.min(rect.width, rect.height) * 0.06;
+    const radius = (isMobile ? 48 : 36) + Math.min(rect.width, rect.height) * 0.08;
 
     ctx.globalCompositeOperation = "destination-out";
     ctx.lineWidth = radius * 2;
-    ctx.lineCap = "round";
-    ctx.lineJoin = "round";
+    ctx.lineCap = "square";
+    ctx.lineJoin = "miter";
     ctx.beginPath();
     ctx.moveTo(from.x, from.y);
     ctx.lineTo(to.x, to.y);
@@ -424,59 +425,16 @@ export default function ScratchReveal({ data, onReveal }) {
           </svg>
 
           <div
-            className={`absolute inset-0 overflow-hidden ${
-              revealed ? "" : "blur-[1px]"
-            }`}
+            className="absolute inset-0 overflow-hidden"
             style={{ clipPath: "url(#scratchArchClip)" }}
           >
-            <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-[#124d36] via-[#0a2e23] to-[#03160e] px-4 text-center">
-              {/* Groom side */}
-              <div className="mb-4 flex flex-col items-center">
-                <div className="relative">
-                  <div className="h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-28 sm:w-24">
-                    <img
-                      src={couple.groom.image}
-                      alt={couple.groom.name}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                      onError={(e) => (e.target.src = "/images/groom.svg")}
-                    />
-                  </div>
-                </div>
-                <p className="mt-3 font-script text-2xl text-gold-200 sm:text-3xl">
-                  {couple.groom.name.split(" ").pop()}
-                </p>
-              </div>
-
-              {/* Heart divider */}
-              <div className="my-2 flex items-center gap-3">
-                <span className="h-px w-12 bg-gold-400/40" />
-                <span className="font-script text-2xl text-gold-300">{"\u2661"}</span>
-                <span className="h-px w-12 bg-gold-400/40" />
-              </div>
-
-              {/* Bride side */}
-              <div className="mt-4 flex flex-col items-center">
-                <div className="relative">
-                  <div className="h-24 w-20 overflow-hidden rounded-t-full rounded-b-2xl border-2 border-gold-400/60 shadow-glow sm:h-28 sm:w-24">
-                    <img
-                      src={couple.bride.image}
-                      alt={couple.bride.name}
-                      loading="lazy"
-                      decoding="async"
-                      className="h-full w-full object-cover"
-                      onError={(e) => (e.target.src = "/images/bride.svg")}
-                    />
-                  </div>
-                </div>
-                <p className="mt-3 font-script text-2xl text-gold-200 sm:text-3xl">
-                  {couple.bride.name.split(" ")[0]}
-                </p>
-              </div>
-
-              <p className="mt-4 font-serif text-[9px] uppercase tracking-[0.35em] text-gold-400/80">
-                Nikah {"\u2022"} Valima
+            <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-b from-[#0f3f2d] via-[#0a2e23] to-[#03160e] px-4 text-center">
+              <p className="font-script text-2xl text-gold-200 sm:text-3xl">
+                {couple.groom.name}
+              </p>
+              <p className="my-2 font-serif text-sm uppercase tracking-[0.4em] text-gold-300">weds</p>
+              <p className="font-script text-2xl text-gold-200 sm:text-3xl">
+                {couple.bride.name}
               </p>
             </div>
           </div>
