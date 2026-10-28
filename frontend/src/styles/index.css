@@ -204,6 +204,65 @@ body::before {
   overflow: hidden;
 }
 
+/* Hero artwork framing: the photo is shown in full (never cropped), so the
+   screen behind it is filled with a soft, blurred copy of the same image and
+   the photo's edges dissolve into it — no visible frame, no hard crop. */
+.hero-fill {
+  background-size: cover;
+  background-position: 50% 50%;
+  filter: blur(56px) saturate(1.06);
+  transform: scale(1.18);
+  opacity: 0.92;
+}
+
+.hero-frame {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(100%, calc(100dvh * 1472 / 1566));
+  aspect-ratio: 1472 / 1566;
+  transform: translateX(-50%);
+}
+
+.hero-scene {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, #000 16%, #000 100%);
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .hero-frame {
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    height: min(100%, calc(100vw * 1566 / 1472));
+    width: auto;
+    aspect-ratio: 1472 / 1566;
+  }
+
+  .hero-scene {
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, #000 13%, #000 87%, transparent 100%);
+  }
+}
+
+/* Lift the names off the couple: the stage fills the lower half of the frame,
+   so the copy sits in the empty space above it. */
+.hero-copy {
+  transform: translateY(0);
+}
+
+@media (max-aspect-ratio: 1/1) {
+  .hero-copy {
+    transform: translateY(-13vh);
+  }
+}
+
+@media (min-aspect-ratio: 1/1) {
+  .hero-copy {
+    transform: translateY(-15vh);
+  }
+}
+
 /* Mobile optimizations */
 @media (max-width: 768px) {
   .luxury-shadow {

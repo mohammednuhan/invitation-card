@@ -1,0 +1,336 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="1400" viewBox="0 0 1400 1400" preserveAspectRatio="xMidYMid slice">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#03130d"/>
+      <stop offset="0.42" stop-color="#0a2c20"/>
+      <stop offset="1" stop-color="#020e09"/>
+    </linearGradient>
+
+    <radialGradient id="halo" cx="0.5" cy="0.6" r="0.55">
+      <stop offset="0" stop-color="#f6d79a" stop-opacity="0.34"/>
+      <stop offset="0.5" stop-color="#d9a24a" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#d9a24a" stop-opacity="0"/>
+    </radialGradient>
+
+    <radialGradient id="orb">
+      <stop offset="0" stop-color="#ffe9bd" stop-opacity="0.85"/>
+      <stop offset="0.45" stop-color="#f3cf87" stop-opacity="0.32"/>
+      <stop offset="1" stop-color="#f3cf87" stop-opacity="0"/>
+    </radialGradient>
+
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f9edc9"/>
+      <stop offset="0.42" stop-color="#e3b54a"/>
+      <stop offset="1" stop-color="#9c6a25"/>
+    </linearGradient>
+
+    <linearGradient id="curtain" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0a2f22"/>
+      <stop offset="0.16" stop-color="#17573f"/>
+      <stop offset="0.32" stop-color="#0b3527"/>
+      <stop offset="0.5" stop-color="#1b6146"/>
+      <stop offset="0.68" stop-color="#0a3024"/>
+      <stop offset="0.86" stop-color="#154e39"/>
+      <stop offset="1" stop-color="#072019"/>
+    </linearGradient>
+
+    <linearGradient id="velvet" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1a5c44"/>
+      <stop offset="0.55" stop-color="#0f3d2e"/>
+      <stop offset="1" stop-color="#07251a"/>
+    </linearGradient>
+
+    <linearGradient id="dress" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#fffdf6"/>
+      <stop offset="0.6" stop-color="#f4e8cf"/>
+      <stop offset="1" stop-color="#e2d0ad"/>
+    </linearGradient>
+
+    <linearGradient id="suit" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1d2a33"/>
+      <stop offset="1" stop-color="#0b1319"/>
+    </linearGradient>
+
+    <linearGradient id="stage" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#123f2e"/>
+      <stop offset="0.5" stop-color="#0a2c20"/>
+      <stop offset="1" stop-color="#04140e"/>
+    </linearGradient>
+
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffe6ae" stop-opacity="0.16"/>
+      <stop offset="1" stop-color="#ffe6ae" stop-opacity="0"/>
+    </linearGradient>
+
+    <g id="bloom">
+      <circle cx="0" cy="-9" r="7.5" fill="currentColor"/>
+      <circle cx="8.5" cy="-3" r="7.5" fill="currentColor"/>
+      <circle cx="5.5" cy="7.5" r="7.5" fill="currentColor"/>
+      <circle cx="-5.5" cy="7.5" r="7.5" fill="currentColor"/>
+      <circle cx="-8.5" cy="-3" r="7.5" fill="currentColor"/>
+      <circle cx="0" cy="0" r="4.6" fill="#e3b54a"/>
+    </g>
+
+    <g id="leaf">
+      <path d="M0,0 C5,-7 15,-7 20,0 C15,7 5,7 0,0 Z" fill="currentColor"/>
+    </g>
+
+    <g id="curtainSide">
+      <path d="M0,0 H300 C286,140 312,270 300,400 C288,530 314,660 302,790 C290,920 312,1030 300,1140 H0 Z" fill="url(#curtain)"/>
+      <path d="M60,0 C46,150 74,300 62,450 C50,600 76,760 64,910 C56,1010 70,1080 64,1140" fill="none" stroke="#04120c" stroke-opacity="0.45" stroke-width="10"/>
+      <path d="M140,0 C126,150 154,300 142,450 C130,600 156,760 144,910 C136,1010 150,1080 144,1140" fill="none" stroke="#04120c" stroke-opacity="0.4" stroke-width="12"/>
+      <path d="M220,0 C206,150 234,300 222,450 C210,600 236,760 224,910 C216,1010 230,1080 224,1140" fill="none" stroke="#04120c" stroke-opacity="0.35" stroke-width="14"/>
+      <path d="M300,0 C286,140 312,270 300,400 C288,530 314,660 302,790 C290,920 312,1030 300,1140" fill="none" stroke="url(#gold)" stroke-opacity="0.75" stroke-width="5"/>
+      <path d="M0,0 H300 V40 H0 Z" fill="#0b2a20" opacity="0.55"/>
+      <g transform="translate(300 700)">
+        <circle r="9" fill="url(#gold)"/>
+        <path d="M-2,8 L2,8 L0,64 Z" fill="url(#gold)" opacity="0.9"/>
+        <path d="M-9,14 C-4,30 4,30 9,14" fill="none" stroke="url(#gold)" stroke-width="3"/>
+      </g>
+    </g>
+  </defs>
+
+  <!-- backdrop -->
+  <rect width="1400" height="1400" fill="url(#sky)"/>
+  <rect width="1400" height="1400" fill="url(#halo)"/>
+
+  <!-- stage light beams -->
+  <path d="M300,0 L560,1140 L440,1140 L150,0 Z" fill="url(#beam)"/>
+  <path d="M1100,0 L840,1140 L960,1140 L1250,0 Z" fill="url(#beam)"/>
+  <path d="M700,0 L780,1140 L620,1140 Z" fill="url(#beam)" opacity="0.7"/>
+
+  <!-- bokeh -->
+  <g fill="url(#orb)">
+    <circle cx="180" cy="220" r="46" opacity="0.5"/>
+    <circle cx="330" cy="120" r="30" opacity="0.4"/>
+    <circle cx="470" cy="260" r="22" opacity="0.35"/>
+    <circle cx="930" cy="250" r="24" opacity="0.35"/>
+    <circle cx="1080" cy="140" r="34" opacity="0.4"/>
+    <circle cx="1220" cy="300" r="48" opacity="0.45"/>
+    <circle cx="120" cy="520" r="26" opacity="0.25"/>
+    <circle cx="1290" cy="600" r="30" opacity="0.25"/>
+    <circle cx="640" cy="150" r="18" opacity="0.3"/>
+    <circle cx="790" cy="200" r="14" opacity="0.3"/>
+    <circle cx="260" cy="820" r="20" opacity="0.2"/>
+    <circle cx="1140" cy="840" r="22" opacity="0.2"/>
+  </g>
+
+  <!-- string lights -->
+  <g fill="none" stroke="#e3b54a" stroke-opacity="0.35" stroke-width="2">
+    <path d="M-20,90 C220,190 480,190 700,120 C920,190 1180,190 1420,90"/>
+    <path d="M-20,190 C240,280 470,280 700,215 C930,280 1160,280 1420,190"/>
+  </g>
+  <g fill="url(#orb)">
+    <circle cx="120" cy="128" r="9"/><circle cx="260" cy="163" r="8"/>
+    <circle cx="400" cy="172" r="8"/><circle cx="540" cy="156" r="8"/>
+    <circle cx="700" cy="124" r="9"/><circle cx="860" cy="156" r="8"/>
+    <circle cx="1000" cy="172" r="8"/><circle cx="1140" cy="163" r="8"/>
+    <circle cx="1280" cy="128" r="9"/>
+    <circle cx="200" cy="238" r="7"/><circle cx="360" cy="266" r="7"/>
+    <circle cx="520" cy="262" r="7"/><circle cx="700" cy="220" r="8"/>
+    <circle cx="880" cy="262" r="7"/><circle cx="1040" cy="266" r="7"/>
+    <circle cx="1200" cy="238" r="7"/>
+  </g>
+
+  <!-- hanging lanterns -->
+  <g>
+    <path d="M470,0 V232" stroke="#b9832c" stroke-width="2" opacity="0.7"/>
+    <circle cx="470" cy="288" r="48" fill="url(#orb)"/>
+    <path d="M470,232 V246" stroke="#e3b54a" stroke-width="3"/>
+    <path d="M452,246 H488 L483,260 H457 Z" fill="url(#gold)"/>
+    <path d="M457,260 H483 L489,300 C489,309 480,315 470,315 C460,315 451,309 451,300 Z" fill="#f6dda0" opacity="0.94"/>
+    <path d="M451,300 H489" stroke="#b9832c" stroke-width="2" opacity="0.55"/>
+    <path d="M470,260 V315" stroke="#b9832c" stroke-width="1.4" opacity="0.35"/>
+    <path d="M470,315 V330" stroke="#e3b54a" stroke-width="3"/>
+    <circle cx="470" cy="333" r="4" fill="url(#gold)"/>
+
+    <path d="M930,0 V232" stroke="#b9832c" stroke-width="2" opacity="0.7"/>
+    <circle cx="930" cy="288" r="48" fill="url(#orb)"/>
+    <path d="M930,232 V246" stroke="#e3b54a" stroke-width="3"/>
+    <path d="M912,246 H948 L943,260 H917 Z" fill="url(#gold)"/>
+    <path d="M917,260 H943 L949,300 C949,309 940,315 930,315 C920,315 911,309 911,300 Z" fill="#f6dda0" opacity="0.94"/>
+    <path d="M911,300 H949" stroke="#b9832c" stroke-width="2" opacity="0.55"/>
+    <path d="M930,260 V315" stroke="#b9832c" stroke-width="1.4" opacity="0.35"/>
+    <path d="M930,315 V330" stroke="#e3b54a" stroke-width="3"/>
+    <circle cx="930" cy="333" r="4" fill="url(#gold)"/>
+  </g>
+
+  <!-- curtains -->
+  <use href="#curtainSide"/>
+  <use href="#curtainSide" transform="translate(1400 0) scale(-1 1)"/>
+
+  <!-- inner drapes framing the stage (these stay visible on phones) -->
+  <g id="innerDrape">
+    <path d="M336,0 H470 C452,160 476,320 458,480 C440,640 468,820 450,980 C442,1060 452,1108 446,1140 H336 Z" fill="url(#curtain)"/>
+    <path d="M470,0 C452,160 476,320 458,480 C440,640 468,820 450,980 C442,1060 452,1108 446,1140" fill="none" stroke="url(#gold)" stroke-width="4" opacity="0.72"/>
+    <path d="M392,0 C376,180 400,360 384,540 C368,720 396,900 380,1080" fill="none" stroke="#04120c" stroke-opacity="0.35" stroke-width="9"/>
+    <g transform="translate(458 520)">
+      <circle r="8" fill="url(#gold)"/>
+      <path d="M-2,7 L2,7 L0,56 Z" fill="url(#gold)" opacity="0.9"/>
+      <path d="M-8,12 C-4,26 4,26 8,12" fill="none" stroke="url(#gold)" stroke-width="3"/>
+    </g>
+  </g>
+  <use href="#innerDrape" transform="translate(1400 0) scale(-1 1)"/>
+
+  <!-- inner sheer drapes -->
+  <path d="M300,0 C330,180 316,360 340,540 C360,700 336,900 352,1140 H300 Z" fill="#f6e7c6" opacity="0.06"/>
+  <path d="M1100,0 C1070,180 1084,360 1060,540 C1040,700 1064,900 1048,1140 H1100 Z" fill="#f6e7c6" opacity="0.06"/>
+
+  <!-- floral arch -->
+  <path d="M500,1010 C500,760 570,656 700,656 C830,656 900,760 900,1010" fill="none" stroke="#1d5945" stroke-width="10" stroke-opacity="0.55"/>
+  <g>
+    <use href="#leaf" transform="translate(486 940) rotate(-58)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(492 840) rotate(-68)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(516 750) rotate(-46)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(566 690) rotate(-24)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(640 660) rotate(-6)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(760 660) rotate(6)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(834 690) rotate(24)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(884 750) rotate(46)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(908 840) rotate(68)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(914 940) rotate(58)" color="#1d5945"/>
+
+    <use href="#bloom" x="500" y="900" color="#f7e6c4"/>
+    <use href="#bloom" x="508" y="800" color="#dfa890"/>
+    <use href="#bloom" x="540" y="720" color="#f7e6c4"/>
+    <use href="#bloom" x="600" y="675" color="#e8b9a4"/>
+    <use href="#bloom" x="660" y="658" color="#f7e6c4"/>
+    <use href="#bloom" x="700" y="650" color="#f2d59c"/>
+    <use href="#bloom" x="740" y="658" color="#f7e6c4"/>
+    <use href="#bloom" x="800" y="675" color="#e8b9a4"/>
+    <use href="#bloom" x="860" y="720" color="#f7e6c4"/>
+    <use href="#bloom" x="892" y="800" color="#dfa890"/>
+    <use href="#bloom" x="900" y="900" color="#f7e6c4"/>
+  </g>
+
+  <!-- throne chair -->
+  <g>
+    <ellipse cx="700" cy="1000" rx="190" ry="160" fill="url(#orb)" opacity="0.3"/>
+    <path d="M566,1060 V886 C566,838 610,812 700,812 C790,812 834,838 834,886 V1060 Z" fill="url(#velvet)" stroke="url(#gold)" stroke-width="8"/>
+    <path d="M590,1060 V894 C590,852 632,834 700,834 C768,834 810,852 810,894 V1060 Z" fill="#0b3326" stroke="#d9a24a" stroke-opacity="0.4" stroke-width="2"/>
+    <path d="M572,890 C620,872 780,872 828,890" fill="none" stroke="#e3b54a" stroke-width="5" opacity="0.6"/>
+    <g fill="#e3b54a" opacity="0.3">
+      <path d="M646,882 l6,10 -6,10 -6,-10 Z"/>
+      <path d="M700,882 l6,10 -6,10 -6,-10 Z"/>
+      <path d="M754,882 l6,10 -6,10 -6,-10 Z"/>
+      <path d="M672,942 l6,10 -6,10 -6,-10 Z"/>
+      <path d="M728,942 l6,10 -6,10 -6,-10 Z"/>
+      <path d="M700,1002 l6,10 -6,10 -6,-10 Z"/>
+    </g>
+    <path d="M700,758 l16,26 -16,30 -16,-30 Z" fill="url(#gold)"/>
+    <path d="M670,806 C670,784 730,784 730,806" fill="none" stroke="#e3b54a" stroke-width="4" opacity="0.75"/>
+    <rect x="540" y="1044" width="320" height="68" rx="20" fill="url(#velvet)" stroke="url(#gold)" stroke-width="7"/>
+    <path d="M548,1052 C500,1050 486,1018 492,984" fill="none" stroke="url(#gold)" stroke-width="12" stroke-linecap="round"/>
+    <path d="M852,1052 C900,1050 914,1018 908,984" fill="none" stroke="url(#gold)" stroke-width="12" stroke-linecap="round"/>
+    <circle cx="492" cy="980" r="8" fill="url(#gold)"/>
+    <circle cx="908" cy="980" r="8" fill="url(#gold)"/>
+    <rect x="556" y="1104" width="18" height="14" rx="4" fill="#b9832c"/>
+    <rect x="826" y="1104" width="18" height="14" rx="4" fill="#b9832c"/>
+  </g>
+
+  <!-- couple -->
+  <g transform="translate(700 1112) scale(1.1) translate(-700 -1112)">
+    <!-- bride veil -->
+    <path d="M742,924 C806,948 818,1046 792,1112 L742,1112 Z" fill="#fffdf6" opacity="0.14"/>
+    <!-- groom -->
+    <g>
+      <path d="M652,1044 L652,1002 C652,976 662,962 672,962 C682,962 692,976 692,1002 L692,1044 Z" fill="url(#suit)"/>
+      <path d="M666,962 L672,1006 L678,962 Z" fill="#f6efdd"/>
+      <path d="M666,970 L672,982 L678,970 L672,976 Z" fill="#6f1a25"/>
+      <path d="M658,1000 C662,1012 682,1012 686,1000" fill="none" stroke="#2a3945" stroke-width="2"/>
+      <rect x="660" y="1040" width="11" height="66" rx="4" fill="#111a21"/>
+      <rect x="674" y="1040" width="11" height="66" rx="4" fill="#0d151b"/>
+      <ellipse cx="664" cy="1108" rx="9" ry="4" fill="#080d11"/>
+      <ellipse cx="681" cy="1108" rx="9" ry="4" fill="#080d11"/>
+      <rect x="668" y="946" width="9" height="20" rx="3" fill="#c99272"/>
+      <circle cx="672" cy="936" r="16" fill="#d7a382"/>
+      <path d="M656,934 C656,914 688,914 688,934 C688,922 681,916 672,916 C663,916 656,922 656,934 Z" fill="#1a120c"/>
+      <path d="M660,948 C664,956 680,956 684,948 C682,958 662,958 660,948 Z" fill="#3a2418" opacity="0.45"/>
+    </g>
+    <!-- bride -->
+    <g>
+      <path d="M742,1002 L700,1112 C716,1104 768,1104 784,1112 Z" fill="url(#dress)"/>
+      <path d="M742,1002 L722,1112 M742,1002 L762,1112" stroke="#d9c6a2" stroke-width="1.4" opacity="0.7"/>
+      <path d="M730,972 L754,972 L760,1010 L724,1010 Z" fill="url(#dress)"/>
+      <path d="M730,972 C734,984 750,984 754,972" fill="none" stroke="#e3b54a" stroke-width="2" opacity="0.8"/>
+      <rect x="738" y="952" width="8" height="22" rx="3" fill="#d7a382"/>
+      <circle cx="742" cy="942" r="15" fill="#dcab8a"/>
+      <path d="M727,940 C727,920 757,920 757,940 C757,928 750,922 742,922 C734,922 727,928 727,940 Z" fill="#241610"/>
+      <circle cx="742" cy="918" r="8" fill="#241610"/>
+      <path d="M742,1014 C730,1014 726,1024 730,1034 C734,1028 750,1028 754,1034 C758,1024 754,1014 742,1014 Z" fill="#f7e6c4"/>
+      <g transform="translate(742 1032) scale(0.62)">
+        <use href="#bloom" color="#f2d59c"/>
+      </g>
+      <path d="M742,1046 C748,1040 752,1044 748,1050" stroke="#2a6b52" stroke-width="2" fill="none"/>
+    </g>
+  </g>
+
+  <!-- stage -->
+  <rect x="0" y="1112" width="1400" height="26" fill="#123f2e"/>
+  <path d="M0,1112 H1400" stroke="url(#gold)" stroke-width="4" opacity="0.85"/>
+  <rect x="0" y="1138" width="1400" height="82" fill="url(#stage)"/>
+  <path d="M0,1138 H1400" stroke="#e3b54a" stroke-opacity="0.35" stroke-width="2"/>
+  <path d="M120,1138 C130,1180 118,1200 128,1220 M320,1138 C330,1180 318,1200 328,1220 M520,1138 C530,1180 518,1200 528,1220 M720,1138 C730,1180 718,1200 728,1220 M920,1138 C930,1180 918,1200 928,1220 M1120,1138 C1130,1180 1118,1200 1128,1220 M1300,1138 C1310,1180 1298,1200 1308,1220" stroke="#04120c" stroke-opacity="0.45" stroke-width="10"/>
+
+  <!-- garland across the stage front -->
+  <g>
+    <use href="#leaf" transform="translate(470 1160) rotate(-10)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(540 1172) rotate(8)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(860 1172) rotate(-8)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(930 1160) rotate(10)" color="#1d5945"/>
+    <use href="#bloom" x="480" y="1176" color="#f7e6c4"/>
+    <use href="#bloom" x="556" y="1188" color="#e8b9a4"/>
+    <use href="#bloom" x="640" y="1194" color="#f7e6c4"/>
+    <use href="#bloom" x="760" y="1194" color="#f7e6c4"/>
+    <use href="#bloom" x="844" y="1188" color="#e8b9a4"/>
+    <use href="#bloom" x="920" y="1176" color="#f7e6c4"/>
+  </g>
+
+  <!-- steps -->
+  <path d="M240,1220 H1160 V1262 H240 Z" fill="#0a2c20"/>
+  <path d="M240,1220 H1160" stroke="url(#gold)" stroke-width="3" opacity="0.55"/>
+  <path d="M170,1262 H1230 V1306 H170 Z" fill="#08231a"/>
+  <path d="M170,1262 H1230" stroke="#e3b54a" stroke-opacity="0.35" stroke-width="2"/>
+  <rect x="0" y="1306" width="1400" height="94" fill="#04120c"/>
+
+  <!-- foreground florals -->
+  <g>
+    <use href="#leaf" transform="translate(120 1330) rotate(-20)" color="#1d5945"/>
+    <use href="#leaf" transform="translate(230 1360) rotate(10)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(1150 1360) rotate(-10)" color="#2a6b52"/>
+    <use href="#leaf" transform="translate(1260 1330) rotate(20)" color="#1d5945"/>
+    <use href="#bloom" x="90" y="1352" color="#dfa890"/>
+    <use href="#bloom" x="170" y="1382" color="#f7e6c4"/>
+    <use href="#bloom" x="250" y="1348" color="#e8b9a4"/>
+    <use href="#bloom" x="310" y="1386" color="#f7e6c4"/>
+    <use href="#bloom" x="1090" y="1386" color="#f7e6c4"/>
+    <use href="#bloom" x="1150" y="1348" color="#e8b9a4"/>
+    <use href="#bloom" x="1230" y="1382" color="#f7e6c4"/>
+    <use href="#bloom" x="1310" y="1352" color="#dfa890"/>
+    <use href="#bloom" x="420" y="1372" color="#f2d59c"/>
+    <use href="#bloom" x="980" y="1372" color="#f2d59c"/>
+  </g>
+
+  <!-- candle stands -->
+  <g>
+    <rect x="468" y="992" width="4" height="120" fill="#b9832c" opacity="0.85"/>
+    <path d="M458,1112 H482" stroke="#b9832c" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="470" cy="980" r="20" fill="url(#orb)"/>
+    <path d="M470,968 C476,976 476,984 470,990 C464,984 464,976 470,968 Z" fill="#ffe9b8"/>
+
+    <rect x="928" y="992" width="4" height="120" fill="#b9832c" opacity="0.85"/>
+    <path d="M918,1112 H942" stroke="#b9832c" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="930" cy="980" r="20" fill="url(#orb)"/>
+    <path d="M930,968 C936,976 936,984 930,990 C924,984 924,976 930,968 Z" fill="#ffe9b8"/>
+  </g>
+
+  <!-- scattered petals -->
+  <g fill="#e8b9a4" opacity="0.55">
+    <ellipse cx="520" cy="1300" rx="7" ry="4" transform="rotate(-24 520 1300)"/>
+    <ellipse cx="880" cy="1296" rx="7" ry="4" transform="rotate(18 880 1296)"/>
+    <ellipse cx="640" cy="1330" rx="6" ry="3.5" transform="rotate(-12 640 1330)"/>
+    <ellipse cx="760" cy="1344" rx="6" ry="3.5" transform="rotate(22 760 1344)"/>
+    <ellipse cx="600" cy="1250" rx="5" ry="3" transform="rotate(30 600 1250)"/>
+    <ellipse cx="800" cy="1258" rx="5" ry="3" transform="rotate(-18 800 1258)"/>
+  </g>
+</svg>
