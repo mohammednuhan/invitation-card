@@ -300,9 +300,6 @@ body::before {
     padding-bottom: var(--sab);
   }
 
-  .fa-stack {
-    bottom: calc(1rem + var(--sab)) !important;
-  }
   .fa-install {
     bottom: calc(5.25rem + var(--sab)) !important;
   }

@@ -13,7 +13,6 @@ import Events from "../components/sections/Events";
 import Family from "../components/sections/Family";
 import Venue, { VALIMA_VENUE } from "../components/sections/Venue";
 import ThankYou from "../components/sections/ThankYou";
-import FloatingActions from "../components/ui/FloatingActions";
 import InstallPrompt from "../components/ui/InstallPrompt";
 import MusicToggle from "../components/ui/MusicToggle";
 import LazySection from "../components/ui/LazySection";
@@ -460,8 +459,6 @@ export default function Invitation() {
                 </>
               )}
             </AnimatePresence>
-
-            <FloatingActions />
 
             {gateState === "done" && <InstallPrompt />}
             {gateState === "done" && <MusicToggle />}
