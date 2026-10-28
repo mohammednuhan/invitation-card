@@ -6,7 +6,7 @@ import FallingPetals from "../effects/FallingPetals";
 import { IslamicPattern } from "../effects/Ornaments";
 import { itemFadeUp, itemBlur, container } from "../../animations/variants";
 
-export default function Hero({ data }) {
+export default function Hero({ data, paused = false }) {
   const { couple } = data;
   const heroRef = useRef(null);
   const parallaxRef = useRef(null);
@@ -84,8 +84,8 @@ export default function Hero({ data }) {
             "radial-gradient(ellipse 62% 48% at 50% 16%, rgba(255,216,156,0.32) 0%, rgba(255,216,156,0) 72%)"
         }}
       />
-      <GoldenParticles count={34} />
-      <FallingPetals count={7} />
+      <GoldenParticles count={34} paused={paused} />
+      <FallingPetals count={7} paused={paused} />
 
       <div ref={parallaxRef} className="relative z-10 flex flex-col items-center px-6 text-center">
         <motion.div
@@ -114,7 +114,7 @@ export default function Hero({ data }) {
           <motion.div variants={itemFadeUp} className="mb-4 flex w-full max-w-2xl flex-col items-center px-1">
             <h1 className="flex w-full flex-col items-center font-script leading-tight">
               <span
-                className="max-w-full break-words text-center text-[2.25rem] leading-[1.12] text-[#fffbe8] sm:text-6xl md:text-7xl"
+                className="max-w-full break-words text-center text-[2.5rem] leading-[1.12] text-[#fffbe8] sm:text-6xl md:text-7xl"
                 style={{
                   textShadow:
                     "0 2px 6px rgba(0,0,0,0.95), 0 0 18px rgba(255,205,110,0.7), 0 0 46px rgba(255,190,90,0.35)"
@@ -144,7 +144,7 @@ export default function Hero({ data }) {
               </span>
 
               <span
-                className="max-w-full break-words text-center text-[2.25rem] leading-[1.12] text-[#fffbe8] sm:text-6xl md:text-7xl"
+                className="max-w-full break-words text-center text-[2.5rem] leading-[1.12] text-[#fffbe8] sm:text-6xl md:text-7xl"
                 style={{
                   textShadow:
                     "0 2px 6px rgba(0,0,0,0.95), 0 0 18px rgba(255,205,110,0.7), 0 0 46px rgba(255,190,90,0.35)"

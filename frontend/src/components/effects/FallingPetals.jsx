@@ -7,14 +7,14 @@ const PETAL_COLORS = [
   "rgba(255,244,215,0.95)"
 ];
 
-export default function FallingPetals({ count: countProp = 16, className = "" }) {
+export default function FallingPetals({ count: countProp = 16, className = "", paused = false }) {
   const containerRef = useRef(null);
 
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+    if (reduce || paused) return;
 
     const io = new IntersectionObserver((entries) => {
       container.style.animationPlayState = "";
@@ -61,7 +61,7 @@ export default function FallingPetals({ count: countProp = 16, className = "" })
       petals.forEach((p) => p.remove());
       resize();
     };
-  }, [countProp]);
+  }, [countProp, paused]);
 
   return (
     <div

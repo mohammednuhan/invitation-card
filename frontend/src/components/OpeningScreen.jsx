@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GoldenParticles from "./effects/GoldenParticles";
 import { IslamicPattern } from "./effects/Ornaments";
@@ -504,7 +504,8 @@ function Valance({ lifting }) {
 
 function CelebrationBurst({ active }) {
   const { petals, flowers } = useMemo(() => {
-    const petals = Array.from({ length: 26 }, (_, i) => {
+    const isMobile = window.innerWidth < 768;
+    const petals = Array.from({ length: isMobile ? 14 : 26 }, (_, i) => {
       const angle = (Math.PI * 2 * i) / 26 + Math.random() * 0.3;
       const dist = 120 + Math.random() * 180;
       return {
@@ -519,7 +520,7 @@ function CelebrationBurst({ active }) {
       };
     });
 
-    const flowers = Array.from({ length: 12 }, (_, i) => {
+    const flowers = Array.from({ length: isMobile ? 6 : 12 }, (_, i) => {
       const angle = (Math.PI * 2 * i) / 12 - Math.PI / 2;
       const dist = 110 + Math.random() * 80;
       return {
@@ -601,20 +602,19 @@ function Balloon({ color, size }) {
 }
 
 function Balloons({ active }) {
-  const balloons = useMemo(
-    () =>
-      Array.from({ length: 16 }, (_, i) => ({
-        id: i,
-        left: 3 + Math.random() * 94,
-        size: 24 + Math.random() * 26,
-        delay: Math.random() * 0.35,
-        duration: 1.35 + Math.random() * 0.55,
-        sway: (Math.random() - 0.5) * 70,
-        tilt: (Math.random() - 0.5) * 16,
-        color: BALLOON_COLORS[i % BALLOON_COLORS.length]
-      })),
-    []
-  );
+  const balloons = useMemo(() => {
+    const isMobile = window.innerWidth < 768;
+    return Array.from({ length: isMobile ? 8 : 16 }, (_, i) => ({
+      id: i,
+      left: 3 + Math.random() * 94,
+      size: 24 + Math.random() * 26,
+      delay: Math.random() * 0.35,
+      duration: 1.35 + Math.random() * 0.55,
+      sway: (Math.random() - 0.5) * 70,
+      tilt: (Math.random() - 0.5) * 16,
+      color: BALLOON_COLORS[i % BALLOON_COLORS.length]
+    }));
+  }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0 z-[34] overflow-hidden">
@@ -638,20 +638,19 @@ function Balloons({ active }) {
 }
 
 function FlowerRain({ active }) {
-  const flowers = useMemo(
-    () =>
-      Array.from({ length: 22 }, (_, i) => ({
-        id: i,
-        left: 2 + Math.random() * 96,
-        size: 13 + Math.random() * 16,
-        delay: Math.random() * 0.3,
-        duration: 1.35 + Math.random() * 0.5,
-        drift: (Math.random() - 0.5) * 60,
-        rot: 180 + Math.random() * 360,
-        petal: PETAL_COLORS[i % PETAL_COLORS.length]
-      })),
-    []
-  );
+  const flowers = useMemo(() => {
+    const isMobile = window.innerWidth < 768;
+    return Array.from({ length: isMobile ? 10 : 22 }, (_, i) => ({
+      id: i,
+      left: 2 + Math.random() * 96,
+      size: 13 + Math.random() * 16,
+      delay: Math.random() * 0.3,
+      duration: 1.35 + Math.random() * 0.5,
+      drift: (Math.random() - 0.5) * 60,
+      rot: 180 + Math.random() * 360,
+      petal: PETAL_COLORS[i % PETAL_COLORS.length]
+    }));
+  }, []);
 
   return (
     <div className="pointer-events-none absolute inset-0 z-[44] overflow-hidden">
@@ -677,6 +676,15 @@ function FlowerRain({ active }) {
 export default function OpeningScreen({ data, onOpening, onOpen }) {
   const { couple } = data;
   const [isUnlocked, setIsUnlocked] = useState(false);
+  const [celebrate, setCelebrate] = useState(false);
+
+  // Let the curtain start moving before mounting dozens of animated props,
+  // otherwise the tap frame does all the work at once and stutters on phones.
+  useEffect(() => {
+    if (!isUnlocked) return;
+    const t = setTimeout(() => setCelebrate(true), 120);
+    return () => clearTimeout(t);
+  }, [isUnlocked]);
 
   const groomInitial = (couple.groom.name || "M").trim().charAt(0).toUpperCase();
   const brideInitial = (couple.bride.name || "A").trim().charAt(0).toUpperCase();
@@ -723,8 +731,8 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
         <ArchFrame />
       </div>
 
-      <Balloons active={isUnlocked} />
-      <FlowerRain active={isUnlocked} />
+      <Balloons active={celebrate} />
+      <FlowerRain active={celebrate} />
 
       {/* golden flash on unlock */}
       <AnimatePresence>
@@ -746,7 +754,7 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
         <Valance lifting={isUnlocked} />
       </div>
 
-      <CelebrationBurst active={isUnlocked} />
+      <CelebrationBurst active={celebrate} />
 
       {/* crest + hint */}
       <motion.div

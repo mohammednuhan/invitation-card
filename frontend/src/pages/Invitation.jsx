@@ -389,7 +389,7 @@ export default function Invitation() {
           aria-hidden={gateState !== "done"}
           style={{ pointerEvents: gateState === "done" ? "auto" : "none" }}
         >
-            <Hero data={data} />
+            <Hero data={data} paused={gateState !== "done"} />
 
             <ScratchReveal data={data} onReveal={handleScratchReveal} />
 

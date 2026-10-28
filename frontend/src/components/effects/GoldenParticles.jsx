@@ -3,7 +3,8 @@ import React, { useEffect, useRef } from "react";
 export default function GoldenParticles({
   count = 60,
   className = "",
-  speed = 0.4
+  speed = 0.4,
+  paused = false
 }) {
   const canvasRef = useRef(null);
 
@@ -76,7 +77,7 @@ export default function GoldenParticles({
     };
 
     const start = () => {
-      if (running || reduce) return;
+      if (running || reduce || paused) return;
       running = true;
       raf = requestAnimationFrame(draw);
     };
@@ -114,7 +115,7 @@ export default function GoldenParticles({
       stop();
       window.removeEventListener("resize", resize);
     };
-  }, [count, speed]);
+  }, [count, speed, paused]);
 
   return (
     <canvas
