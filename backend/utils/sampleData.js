@@ -43,7 +43,7 @@ export const SAMPLE_EVENTS = [
     title: "Haldi",
     icon: "flower",
     date: "17 Dec 2026",
-    time: "8:00 PM",
+    time: "08:00 PM",
     venue: "Home"
   },
   {
