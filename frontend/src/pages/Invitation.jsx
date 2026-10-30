@@ -119,7 +119,7 @@ function DateReveal({ data }) {
     {
       label: "Nikah",
       day,
-      time: data.events?.find((e) => e.title === "Nikah")?.time || "11:30 AM",
+      time: data.events?.find((e) => e.title === "Nikah")?.time || "12:30 PM",
       venue: couple.venueName,
       address: couple.venueAddress,
       mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(

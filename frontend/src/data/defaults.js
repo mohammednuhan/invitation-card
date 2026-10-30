@@ -52,7 +52,7 @@ export const DEFAULT_DATA = {
       title: "Nikah",
       icon: "rings",
       date: "20 Dec 2026",
-      time: "11:30 AM",
+      time: "12:30 PM",
       venue: "Bantara Bhavana, Koppa"
     },
     {
