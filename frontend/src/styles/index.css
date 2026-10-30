@@ -312,6 +312,138 @@ body::before {
   }
 }
 
+/* Animated finger hint that invites people to scratch the card */
+.scratch-hint {
+  position: absolute;
+  left: 50%;
+  top: 58%;
+  width: 0;
+  height: 0;
+}
+
+.scratch-hint-motion {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  animation: scratch-hint-rub 4.2s cubic-bezier(0.45, 0.05, 0.55, 0.95) infinite;
+}
+
+.scratch-hint-glow {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 86px;
+  height: 86px;
+  margin: -43px 0 0 -43px;
+  border-radius: 9999px;
+  background: radial-gradient(
+    circle,
+    rgba(240, 212, 138, 0.5) 0%,
+    rgba(240, 212, 138, 0.16) 45%,
+    rgba(240, 212, 138, 0) 72%
+  );
+  animation: scratch-hint-breathe 2.1s ease-in-out infinite;
+}
+
+.scratch-hint-hand {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50px;
+  height: 50px;
+  color: #fff4d6;
+  transform: translateX(-50%) rotate(0deg);
+  filter: drop-shadow(0 3px 8px rgba(0, 0, 0, 0.65));
+}
+
+.scratch-hint-ring {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 40px;
+  height: 40px;
+  margin: -20px 0 0 -20px;
+  border-radius: 9999px;
+  border: 1px solid rgba(247, 231, 189, 0.7);
+  animation: scratch-hint-ripple 2.4s ease-out infinite;
+}
+
+.scratch-hint-ring--late {
+  animation-delay: 1.2s;
+}
+
+@media (min-width: 640px) {
+  .scratch-hint-hand {
+    width: 60px;
+    height: 60px;
+  }
+
+  .scratch-hint-glow {
+    width: 132px;
+    height: 132px;
+    margin: -66px 0 0 -66px;
+  }
+}
+
+@keyframes scratch-hint-rub {
+  0% {
+    transform: translate(-34px, -12px) rotate(-9deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  28% {
+    transform: translate(26px, -6px) rotate(5deg);
+  }
+  46% {
+    transform: translate(-28px, -1px) rotate(-7deg);
+  }
+  64% {
+    transform: translate(30px, 4px) rotate(6deg);
+  }
+  82% {
+    transform: translate(-10px, 9px) rotate(-4deg);
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(10px, 12px) rotate(0deg);
+    opacity: 0;
+  }
+}
+
+@keyframes scratch-hint-breathe {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+
+@keyframes scratch-hint-ripple {
+  0% {
+    transform: scale(0.35);
+    opacity: 0.85;
+  }
+  70% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
 /* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -321,6 +453,22 @@ body::before {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  .scratch-hint-motion {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .scratch-hint-glow {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .scratch-hint-ring {
+    display: none !important;
   }
 }
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import confetti from "canvas-confetti";
+import { FaHandPointer } from "react-icons/fa";
 import GoldenParticles from "../effects/GoldenParticles";
 
 const ARCH_PATH =
@@ -502,6 +503,7 @@ export default function ScratchReveal({ data, onReveal }) {
   const lastCheckRef = useRef(0);
   const [revealed, setRevealed] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [showHint, setShowHint] = useState(true);
   const { couple } = data;
   const groomInitial = (couple?.groom?.name || "M").trim().charAt(0).toUpperCase();
   const brideInitial = (couple?.bride?.name || "A").trim().charAt(0).toUpperCase();
@@ -637,6 +639,7 @@ export default function ScratchReveal({ data, onReveal }) {
 
   const start = (e) => {
     e.preventDefault();
+    setShowHint(false);
     touchedRef.current = true;
     isScratching.current = true;
     drawing.current = true;
@@ -1004,6 +1007,28 @@ export default function ScratchReveal({ data, onReveal }) {
                   onPointerUp={end}
                   onPointerLeave={end}
                 />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {!revealed && showHint && (
+              <motion.div
+                key="scratch-hint"
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.45 }}
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-0 z-[25] overflow-hidden"
+                style={{ clipPath: "url(#scratchArchClip)" }}
+              >
+                <div className="scratch-hint">
+                  <div className="scratch-hint-motion">
+                    <span className="scratch-hint-glow" />
+                    <span className="scratch-hint-ring" />
+                    <span className="scratch-hint-ring scratch-hint-ring--late" />
+                    <FaHandPointer className="scratch-hint-hand" />
+                  </div>
+                </div>
               </motion.div>
             )}
           </AnimatePresence>
