@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import GoldenParticles from "./effects/GoldenParticles";
 import { IslamicPattern } from "./effects/Ornaments";
-import { playMusic, preloadMusic } from "../lib/music";
+
 
 const HEART_PATH =
   "M50 88 C20 66 4 47 4 28 C4 12 16 3 28 3 C38 3 46 10 50 19 C54 10 62 3 72 3 C84 3 96 12 96 28 C96 47 80 66 50 88 Z";
@@ -215,11 +215,7 @@ function HeartCrest({ groomInitial, brideInitial, unlocking }) {
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.72 }}
-      animate={
-        unlocking
-          ? { opacity: 0, scale: 1.5, filter: "blur(14px)" }
-          : { opacity: 1, scale: 1, filter: "blur(0px)" }
-      }
+      animate={unlocking ? { opacity: 0, scale: 1.55 } : { opacity: 1, scale: 1 }}
       transition={{ duration: unlocking ? 0.7 : 1.1, ease: [0.22, 1, 0.36, 1] }}
       className="relative flex h-[clamp(9.5rem,min(44vw,34vh),16rem)] w-[clamp(9.5rem,min(44vw,34vh),16rem)] items-center justify-center"
     >
@@ -506,7 +502,7 @@ function Valance({ lifting }) {
 function CelebrationBurst({ active }) {
   const { petals, flowers } = useMemo(() => {
     const isMobile = window.innerWidth < 768;
-    const petals = Array.from({ length: isMobile ? 14 : 26 }, (_, i) => {
+    const petals = Array.from({ length: isMobile ? 12 : 24 }, (_, i) => {
       const angle = (Math.PI * 2 * i) / 26 + Math.random() * 0.3;
       const dist = 120 + Math.random() * 180;
       return {
@@ -516,12 +512,12 @@ function CelebrationBurst({ active }) {
         rot: Math.random() * 540 - 270,
         scale: 0.7 + Math.random() * 0.6,
         color: PETAL_COLORS[i % PETAL_COLORS.length],
-        delay: Math.random() * 0.22,
+        delay: Math.random() * 0.2,
         duration: 1.3 + Math.random() * 0.5
       };
     });
 
-    const flowers = Array.from({ length: isMobile ? 6 : 12 }, (_, i) => {
+    const flowers = Array.from({ length: isMobile ? 5 : 10 }, (_, i) => {
       const angle = (Math.PI * 2 * i) / 12 - Math.PI / 2;
       const dist = 110 + Math.random() * 80;
       return {
@@ -531,7 +527,7 @@ function CelebrationBurst({ active }) {
         size: 16 + Math.random() * 14,
         rot: Math.random() * 320 - 160,
         petal: i % 3 === 0 ? "#dfa890" : "#eccb77",
-        delay: Math.random() * 0.18,
+        delay: Math.random() * 0.16,
         duration: 1.4 + Math.random() * 0.4
       };
     });
@@ -539,47 +535,41 @@ function CelebrationBurst({ active }) {
     return { petals, flowers };
   }, []);
 
+  if (!active) return null;
+
   return (
     <div className="pointer-events-none absolute inset-0 z-[45] flex items-center justify-center overflow-hidden">
-      <AnimatePresence>
-        {active && (
-          <>
-            {flowers.map((f) => (
-              <motion.span
-                key={`f-${f.id}`}
-                initial={{ x: 0, y: 0, opacity: 0, scale: 0.2, rotate: 0 }}
-                animate={{
-                  x: f.x,
-                  y: f.y,
-                  opacity: [0, 1, 1, 0],
-                  scale: [0.2, 1, 0.9],
-                  rotate: f.rot
-                }}
-                transition={{ duration: f.duration, delay: f.delay, ease: "easeOut" }}
-                className="absolute"
-              >
-                <Flower size={f.size} petal={f.petal} />
-              </motion.span>
-            ))}
-            {petals.map((p) => (
-              <motion.span
-                key={`p-${p.id}`}
-                initial={{ x: 0, y: 0, opacity: 0, scale: 0.3, rotate: 0 }}
-                animate={{
-                  x: p.x,
-                  y: p.y,
-                  opacity: [0, 1, 1, 0],
-                  scale: [0.3, p.scale, p.scale],
-                  rotate: p.rot
-                }}
-                transition={{ duration: p.duration, delay: p.delay, ease: "easeOut" }}
-                className="absolute h-3 w-3 rounded-[80%_0_80%_0]"
-                style={{ background: p.color }}
-              />
-            ))}
-          </>
-        )}
-      </AnimatePresence>
+      {flowers.map((f) => (
+        <span
+          key={`f-${f.id}`}
+          className="gate-burst absolute"
+          style={{
+            "--x": `${f.x}px`,
+            "--y": `${f.y}px`,
+            "--rot": `${f.rot}deg`,
+            "--scale": "1",
+            "--dur": `${f.duration}s`,
+            "--delay": `${f.delay}s`
+          }}
+        >
+          <Flower size={f.size} petal={f.petal} />
+        </span>
+      ))}
+      {petals.map((p) => (
+        <span
+          key={`p-${p.id}`}
+          className="gate-burst absolute h-3 w-3 rounded-[80%_0_80%_0]"
+          style={{
+            "--x": `${p.x}px`,
+            "--y": `${p.y}px`,
+            "--rot": `${p.rot}deg`,
+            "--scale": `${p.scale}`,
+            "--dur": `${p.duration}s`,
+            "--delay": `${p.delay}s`,
+            background: p.color
+          }}
+        />
+      ))}
     </div>
   );
 }
@@ -605,35 +595,37 @@ function Balloon({ color, size }) {
 function Balloons({ active }) {
   const balloons = useMemo(() => {
     const isMobile = window.innerWidth < 768;
-    return Array.from({ length: isMobile ? 8 : 16 }, (_, i) => ({
+    return Array.from({ length: isMobile ? 7 : 14 }, (_, i) => ({
       id: i,
       left: 3 + Math.random() * 94,
       size: 24 + Math.random() * 26,
-      delay: Math.random() * 0.35,
-      duration: 1.35 + Math.random() * 0.55,
+      delay: Math.random() * 0.3,
+      duration: 1.45 + Math.random() * 0.55,
       sway: (Math.random() - 0.5) * 70,
       tilt: (Math.random() - 0.5) * 16,
       color: BALLOON_COLORS[i % BALLOON_COLORS.length]
     }));
   }, []);
 
+  if (!active) return null;
+
   return (
     <div className="pointer-events-none absolute inset-0 z-[34] overflow-hidden">
-      <AnimatePresence>
-        {active &&
-          balloons.map((b) => (
-            <motion.div
-              key={b.id}
-              className="absolute bottom-[-18%]"
-              style={{ left: `${b.left}%` }}
-              initial={{ y: 0, x: 0, opacity: 0, rotate: 0 }}
-              animate={{ y: "-122vh", x: [0, b.sway, 0], opacity: [0, 1, 1, 0.9], rotate: [b.tilt, -b.tilt] }}
-              transition={{ duration: b.duration, delay: b.delay, ease: "easeOut" }}
-            >
-              <Balloon color={b.color} size={b.size} />
-            </motion.div>
-          ))}
-      </AnimatePresence>
+      {balloons.map((b) => (
+        <div
+          key={b.id}
+          className="gate-balloon absolute bottom-[-18%]"
+          style={{
+            left: `${b.left}%`,
+            "--tx": `${b.sway}px`,
+            "--rot": `${b.tilt}deg`,
+            "--dur": `${b.duration}s`,
+            "--delay": `${b.delay}s`
+          }}
+        >
+          <Balloon color={b.color} size={b.size} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -641,35 +633,37 @@ function Balloons({ active }) {
 function FlowerRain({ active }) {
   const flowers = useMemo(() => {
     const isMobile = window.innerWidth < 768;
-    return Array.from({ length: isMobile ? 10 : 22 }, (_, i) => ({
+    return Array.from({ length: isMobile ? 8 : 18 }, (_, i) => ({
       id: i,
       left: 2 + Math.random() * 96,
       size: 13 + Math.random() * 16,
-      delay: Math.random() * 0.3,
-      duration: 1.35 + Math.random() * 0.5,
+      delay: Math.random() * 0.28,
+      duration: 1.4 + Math.random() * 0.5,
       drift: (Math.random() - 0.5) * 60,
       rot: 180 + Math.random() * 360,
       petal: PETAL_COLORS[i % PETAL_COLORS.length]
     }));
   }, []);
 
+  if (!active) return null;
+
   return (
     <div className="pointer-events-none absolute inset-0 z-[44] overflow-hidden">
-      <AnimatePresence>
-        {active &&
-          flowers.map((f) => (
-            <motion.div
-              key={f.id}
-              className="absolute top-[-12%]"
-              style={{ left: `${f.left}%` }}
-              initial={{ y: 0, x: 0, opacity: 0, rotate: 0 }}
-              animate={{ y: "118vh", x: [0, f.drift, 0], opacity: [0, 1, 1, 0.85], rotate: f.rot }}
-              transition={{ duration: f.duration, delay: f.delay, ease: "easeIn" }}
-            >
-              <Flower size={f.size} petal={f.petal} />
-            </motion.div>
-          ))}
-      </AnimatePresence>
+      {flowers.map((f) => (
+        <div
+          key={f.id}
+          className="gate-flower absolute top-[-12%]"
+          style={{
+            left: `${f.left}%`,
+            "--tx": `${f.drift}px`,
+            "--rot": `${f.rot}deg`,
+            "--dur": `${f.duration}s`,
+            "--delay": `${f.delay}s`
+          }}
+        >
+          <Flower size={f.size} petal={f.petal} />
+        </div>
+      ))}
     </div>
   );
 }

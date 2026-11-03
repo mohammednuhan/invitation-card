@@ -157,7 +157,7 @@ function DateReveal({ data }) {
             We are getting married
           </p>
 
-          <h2 className="bg-gradient-to-b from-gold-700 via-gold-500 to-gold-700 bg-clip-text font-script text-5xl text-transparent drop-shadow-[0_2px_14px_rgba(212,160,60,0.35)] sm:text-6xl md:text-7xl">
+          <h2 className="bg-gradient-to-b from-gold-700 via-gold-500 to-gold-700 bg-clip-text px-4 pb-5 pt-4 font-script text-5xl leading-[1.15] text-transparent drop-shadow-[0_2px_14px_rgba(212,160,60,0.35)] sm:text-6xl md:text-7xl">
             Save the Date
           </h2>
 

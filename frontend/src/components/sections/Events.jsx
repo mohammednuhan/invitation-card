@@ -33,11 +33,13 @@ export default function Events({ data }) {
         <img src="/images/floral-bg.png" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />
       </div>
       <div className="relative z-10 mx-auto max-w-6xl px-6">
-        <SectionTitle
-          eyebrow="Mark your calendar"
-          title="Wedding Events"
-          subtitle="Three beautiful ceremonies to celebrate our union."
-        />
+        <div className="-mt-4">
+          <SectionTitle
+            eyebrow="Mark your calendar"
+            title="Wedding Events"
+            subtitle="Three beautiful ceremonies to celebrate our union."
+          />
+        </div>
 
         <motion.div
           variants={container(0.12)}

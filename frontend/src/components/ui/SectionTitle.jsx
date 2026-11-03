@@ -29,7 +29,7 @@ export default function SectionTitle({
       )}
       <motion.h2
         variants={itemBlur}
-        className={`font-script text-5xl md:text-6xl ${
+        className={`overflow-visible px-2 py-2 font-script text-5xl leading-[1.2] md:text-6xl md:leading-[1.2] ${
           light ? "text-cream-100" : "gold-text"
         }`}
       >

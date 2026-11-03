@@ -32,7 +32,7 @@ export default function App() {
         }
       >
         <Routes>
-          <Route path="/" element={<Navigate to="/nuhan" replace />} />
+          <Route path="/" element={<Navigate to="/Invitation card" replace />} />
           <Route path="/:slug" element={<Invitation />} />
           <Route path="/admin" element={<AdminLogin />} />
           <Route
@@ -43,7 +43,7 @@ export default function App() {
               </ProtectedRoute>
             }
           />
-          <Route path="*" element={<Navigate to="/nuhan" replace />} />
+          <Route path="*" element={<Navigate to="/Invitation card" replace />} />
         </Routes>
       </Suspense>
     </>

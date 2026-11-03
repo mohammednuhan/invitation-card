@@ -381,24 +381,93 @@ function drawSeal(ctx, cx, cy, R, gInit, bInit) {
   ctx.lineWidth = Math.max(1, sealR * 0.022);
   ctx.stroke();
 
-  const textGrad = ctx.createLinearGradient(cx, cy - sealR * 0.5, cx, cy + sealR * 0.5);
+  // ---- Monogram -----------------------------------------------------------
+  // Drawn on an offscreen canvas first, then the *painted pixels* are centred
+  // on the seal. Script fonts report unreliable swash bearings through
+  // measureText(), which is what made the group sit off-centre in the ring.
+  const offW = Math.ceil(sealR * 3.4);
+  const offH = Math.ceil(sealR * 2.4);
+  const dpr = Math.min(window.devicePixelRatio || 1, 3);
+  const off = document.createElement("canvas");
+  off.width = Math.ceil(offW * dpr);
+  off.height = Math.ceil(offH * dpr);
+  const o = off.getContext("2d");
+  o.scale(dpr, dpr);
+  o.textAlign = "left";
+  o.textBaseline = "alphabetic";
+
+  const measure = (font, text) => {
+    o.font = font;
+    const m = o.measureText(text);
+    return {
+      width: m.width,
+      ascent: m.actualBoundingBoxAscent || 0,
+      descent: m.actualBoundingBoxDescent || 0
+    };
+  };
+
+  const initFont = (s) => `${s}px 'Great Vibes', 'Playfair Display', cursive`;
+  const ampFont = (s) => `italic ${s}px 'Cormorant Garamond', Georgia, serif`;
+
+  const gap = sealR * 0.07;
+  const maxWidth = sealR * 1.38;
+  let initSize = sealR * 0.6;
+  let ampSize = sealR * 0.56;
+  let g = measure(initFont(initSize), gInit);
+  let b = measure(initFont(initSize), bInit);
+  let amp = measure(ampFont(ampSize), "\u0026");
+
+  const groupWidth = () => g.width + amp.width + b.width + gap * 2;
+  if (groupWidth() > maxWidth) {
+    const k = maxWidth / groupWidth();
+    initSize *= k;
+    ampSize *= k;
+    g = measure(initFont(initSize), gInit);
+    b = measure(initFont(initSize), bInit);
+    amp = measure(ampFont(ampSize), "\u0026");
+  }
+
+  const ascent = Math.max(g.ascent, b.ascent);
+  const descent = Math.max(g.descent, b.descent);
+  const baseline = offH * 0.58;
+
+  let x = (offW - groupWidth()) / 2;
+
+  // Draw shadow separately to avoid shifting bounds
+  o.save();
+  o.shadowColor = "rgba(0,0,0,0.5)";
+  o.shadowBlur = sealR * 0.08;
+  o.font = initFont(initSize);
+  o.fillStyle = "rgba(0,0,0,0.01)";
+  o.fillText(gInit, x, baseline);
+  let x2 = x + g.width + gap;
+  o.font = ampFont(ampSize);
+  o.fillText("\u0026", x2, baseline - ascent * 0.42 + (amp.ascent - amp.descent) / 2);
+  x2 += amp.width + gap;
+  o.font = initFont(initSize);
+  o.fillText(bInit, x2, baseline);
+  o.restore();
+
+  // Draw actual text
+  const textGrad = o.createLinearGradient(0, baseline - ascent, 0, baseline + descent);
   textGrad.addColorStop(0, "#fff8e1");
   textGrad.addColorStop(0.55, "#f0d48a");
   textGrad.addColorStop(1, "#c08f2e");
 
-  ctx.textAlign = "center";
-  ctx.textBaseline = "middle";
-  ctx.font = `600 ${sealR * 0.52}px 'Playfair Display', Georgia, serif`;
-  ctx.fillStyle = textGrad;
-  ctx.shadowColor = "rgba(0,0,0,0.5)";
-  ctx.shadowBlur = sealR * 0.08;
-  ctx.fillText(gInit, cx - sealR * 0.46, cy + sealR * 0.02);
-  ctx.fillText(bInit, cx + sealR * 0.46, cy + sealR * 0.02);
-  ctx.shadowBlur = 0;
+  o.font = initFont(initSize);
+  o.fillStyle = textGrad;
+  o.fillText(gInit, x, baseline);
+  x += g.width + gap;
+  o.font = ampFont(ampSize);
+  o.fillStyle = "#dfa890";
+  o.fillText("\u0026", x, baseline - ascent * 0.42 + (amp.ascent - amp.descent) / 2);
+  x += amp.width + gap;
+  o.font = initFont(initSize);
+  o.fillStyle = textGrad;
+  o.fillText(bInit, x, baseline);
 
-  ctx.font = `italic ${sealR * 0.3}px 'Cormorant Garamond', Georgia, serif`;
-  ctx.fillStyle = "#dfa890";
-  ctx.fillText("\u0026", cx, cy + sealR * 0.08);
+  // Center by the geometric center of the seal ring
+  ctx.drawImage(off, cx - offW / 2, cy - offH / 2, offW, offH);
 
   ctx.restore();
 }
@@ -472,14 +541,29 @@ function drawCover(ctx, w, h, couple) {
 
   drawDivider(ctx, cx, h * 0.655, w * 0.5);
 
-  // Simple, clean prompt — one line of plain serif text.
+  // Elegant script prompt in gold, auto-fitted to the card width.
+  const prompt = "Scratch to Reveal";
+  let promptSize = Math.max(20, w * 0.13);
+  const fitPrompt = () => {
+    ctx.font = `${promptSize}px 'Great Vibes', 'Playfair Display', cursive`;
+    while (ctx.measureText(prompt).width > w * 0.84 && promptSize > 12) {
+      promptSize -= 1;
+      ctx.font = `${promptSize}px 'Great Vibes', 'Playfair Display', cursive`;
+    }
+  };
+
   ctx.textAlign = "center";
   ctx.textBaseline = "middle";
-  ctx.fillStyle = "#f5e5bb";
-  ctx.shadowColor = "rgba(0,0,0,0.45)";
-  ctx.shadowBlur = R * 0.03;
-  ctx.font = `500 ${Math.max(18, w * 0.082)}px 'Playfair Display', Georgia, serif`;
-  ctx.fillText("Scratch to Reveal", cx, h * 0.755);
+  fitPrompt();
+
+  const promptGrad = ctx.createLinearGradient(cx, h * 0.71, cx, h * 0.79);
+  promptGrad.addColorStop(0, "#fff8e4");
+  promptGrad.addColorStop(0.55, "#f0d48a");
+  promptGrad.addColorStop(1, "#c08f2e");
+  ctx.fillStyle = promptGrad;
+  ctx.shadowColor = "rgba(227,181,74,0.45)";
+  ctx.shadowBlur = R * 0.07;
+  ctx.fillText(prompt, cx, h * 0.757);
   ctx.shadowBlur = 0;
 
   drawSprig(ctx, cx, h * 0.835, R * 0.11);
@@ -736,7 +820,7 @@ export default function ScratchReveal({ data, onReveal }) {
             A moment of magic
           </p>
 
-          <h2 className="mt-4 font-display text-[2rem] font-medium leading-tight text-ink-900 sm:text-4xl md:text-5xl">
+          <h2 className="mt-3 bg-gradient-to-b from-gold-700 via-gold-500 to-gold-700 bg-clip-text px-3 pb-3 pt-1 font-script text-[2.7rem] leading-[1.15] text-transparent drop-shadow-[0_2px_14px_rgba(212,160,60,0.3)] sm:text-5xl md:text-6xl">
             Scratch to Reveal
           </h2>
 
