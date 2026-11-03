@@ -37,7 +37,7 @@ export default function AdminDashboard() {
 
   return (
     <div className="min-h-screen bg-cream-100">
-      <header className="sticky top-0 z-40 border-b border-gold-200/60 bg-cream-50/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-gold-200/60 bg-cream-50/95">
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4">
           <div className="flex items-center gap-3">
             <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-gold-400 to-gold-600 text-white shadow-gold">

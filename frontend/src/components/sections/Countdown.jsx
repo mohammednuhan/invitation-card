@@ -70,7 +70,7 @@ export default function Countdown({ data }) {
                   whileHover={{ scale: 1.08 }}
                   className="relative flex flex-col items-center"
                 >
-                  <div className={`flex h-20 w-16 flex-col items-center justify-center rounded-2xl border-2 ${c.ring} bg-gradient-to-b ${c.bg} ${c.glow} backdrop-blur-md sm:h-28 sm:w-24 sm:rounded-3xl md:h-36 md:w-32`}>
+                  <div className={`flex h-20 w-16 flex-col items-center justify-center rounded-2xl border-2 ${c.ring} bg-gradient-to-b ${c.bg} ${c.glow} sm:h-28 sm:w-24 sm:rounded-3xl md:h-36 md:w-32`}>
                     <span className={`font-display text-3xl font-bold ${c.num} sm:text-5xl md:text-6xl`}>
                       {String(u.value).padStart(2, "0")}
                     </span>

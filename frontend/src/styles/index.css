@@ -106,16 +106,12 @@ body::before {
   }
 
   .glass {
-    background: rgba(253, 251, 244, 0.6);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(253, 251, 244, 0.85);
     border: 1px solid rgba(212, 160, 60, 0.3);
   }
 
   .glass-dark {
-    background: rgba(11, 42, 32, 0.55);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(11, 42, 32, 0.7);
     border: 1px solid rgba(240, 212, 138, 0.25);
   }
 
