@@ -48,7 +48,7 @@ export default function GoldenParticles({
     });
 
     particles = Array.from(
-      { length: window.innerWidth < 768 ? Math.max(8, Math.ceil(count * 0.35)) : count },
+      { length: window.innerWidth < 768 ? Math.max(6, Math.ceil(count * 0.25)) : Math.min(count, 40) },
       () => createParticle(true)
     );
 

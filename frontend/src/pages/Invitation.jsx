@@ -122,6 +122,7 @@ function DateReveal({ data }) {
       time: data.events?.find((e) => e.title === "Nikah")?.time || "12:30 PM",
       venue: couple.venueName,
       address: couple.venueAddress,
+      hijri: "(11th Rajab 1448 AH)",
       mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
         couple.venueAddress || couple.venueName || "Bantara Bhavana, Koppa"
       )}`
@@ -132,6 +133,7 @@ function DateReveal({ data }) {
       time: data.events?.find((e) => e.title === "Valima")?.time || "01:00 PM",
       venue: VALIMA_VENUE.venue,
       address: VALIMA_VENUE.address,
+      hijri: "(12th Rajab 1448 AH)",
       mapUrl: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
         VALIMA_VENUE.address
       )}`
@@ -145,7 +147,7 @@ function DateReveal({ data }) {
 
   return (
     <section className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-white to-cream-50 py-16 sm:py-24">
-      <GoldenParticles count={22} />
+      <GoldenParticles count={14} />
       <div className="relative z-10 mx-auto max-w-4xl px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -198,8 +200,8 @@ function DateReveal({ data }) {
                       <span className="block font-serif text-[11px] uppercase tracking-[0.26em] text-gold-700 sm:text-xs">
                         {monthName}
                       </span>
-                      <span className="block font-sans text-[10px] font-light tracking-[0.3em] text-ink-800/60 sm:text-[11px]">
-                        {year}
+                      <span className="block font-sans text-[10px] font-light tracking-[0.25em] text-ink-800/60 sm:text-[11px]">
+                        {year} {row.hijri && <span className="tracking-[0.18em]">{row.hijri}</span>}
                       </span>
                     </span>
                   </div>

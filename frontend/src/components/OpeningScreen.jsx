@@ -720,7 +720,7 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
         <IslamicPattern variant="star" className="h-full w-full" color="#f0d48a" />
       </div>
       <div className="absolute inset-0 z-[1] opacity-70">
-        <GoldenParticles count={30} />
+        <GoldenParticles count={16} />
       </div>
 
       {/* gate frame stays while the curtains part */}

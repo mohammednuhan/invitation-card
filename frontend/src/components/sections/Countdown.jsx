@@ -26,7 +26,7 @@ export default function Countdown({ data }) {
       id="countdown"
       className="relative flex min-h-[60vh] items-center justify-center overflow-hidden bg-gradient-to-b from-[#0f1b2e] via-[#162133] to-[#0f1b2e] py-16 sm:min-h-[70vh] sm:py-24"
     >
-      <GoldenParticles count={90} />
+      <GoldenParticles count={20} />
       <FallingPetals count={8} />
       <div className="pointer-events-none absolute inset-0 opacity-[0.06]">
         <img src="/images/islamic-bg.png" alt="" loading="lazy" decoding="async" className="h-full w-full object-cover" />

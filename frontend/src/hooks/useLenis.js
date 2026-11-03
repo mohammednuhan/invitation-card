@@ -14,11 +14,11 @@ export function useLenis() {
         const Lenis = (await import("lenis")).default;
 
         lenis = new Lenis({
-          lerp: 0.14,
+          lerp: 0.1,
           smoothWheel: true,
           smoothTouch: false,
           syncTouch: false,
-          wheelMultiplier: 1.05,
+          wheelMultiplier: 1.0,
           autoRaf: false
         });
 
