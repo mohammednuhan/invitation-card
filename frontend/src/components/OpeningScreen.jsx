@@ -673,11 +673,7 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [celebrate, setCelebrate] = useState(false);
 
-  // Warm the audio cache while the guest is looking at the gate, so the track
-  // starts instantly on the tap.
-  useEffect(() => {
-    preloadMusic();
-  }, []);
+
 
   // Let the curtain start moving before mounting dozens of animated props,
   // otherwise the tap frame does all the work at once and stutters on phones.
@@ -692,9 +688,6 @@ export default function OpeningScreen({ data, onOpening, onOpen }) {
 
   const handleUnlock = () => {
     if (isUnlocked) return;
-    // Must happen inside the tap handler: mobile browsers only allow audio
-    // to start from a real user gesture.
-    playMusic();
     setIsUnlocked(true);
     onOpening?.();
     setTimeout(() => onOpen?.(), 2400);

@@ -14,10 +14,10 @@ import Family from "../components/sections/Family";
 import Venue, { VALIMA_VENUE } from "../components/sections/Venue";
 import ThankYou from "../components/sections/ThankYou";
 import InstallPrompt from "../components/ui/InstallPrompt";
-import MusicToggle from "../components/ui/MusicToggle";
+
 import LazySection from "../components/ui/LazySection";
 import GoldenParticles from "../components/effects/GoldenParticles";
-import { stopMusic } from "../lib/music";
+
 
 function HeartDate({ n, className = "" }) {
   return (
@@ -322,8 +322,7 @@ export default function Invitation() {
     return () => clearTimeout(t);
   }, []);
 
-  // Stop the music if the guest leaves the invitation (e.g. opens admin).
-  useEffect(() => () => stopMusic(), []);
+
 
   // Pre-mount the invitation behind the gate so tapping "Open" doesn't have to
   // build the whole page (Hero canvas, scratch canvas, etc.) in the same frame.
@@ -461,7 +460,7 @@ export default function Invitation() {
             </AnimatePresence>
 
             {gateState === "done" && <InstallPrompt />}
-            {gateState === "done" && <MusicToggle />}
+
 
             <footer className="relative overflow-hidden bg-ink-900 py-10 text-center">
               <GoldenParticles count={20} />
