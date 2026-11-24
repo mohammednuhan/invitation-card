@@ -38,7 +38,7 @@ export default function ThankYou({ data }) {
       ref={ref}
       className="relative flex min-h-[100dvh] flex-col items-center justify-center overflow-hidden bg-gradient-to-b from-[#0a3325] via-[#155540] to-[#082a1e] py-16 text-center sm:py-24"
     >
-      <GoldenParticles count={40} />
+      <GoldenParticles count={18} />
       <FallingPetals count={8} />
       <FloatingHearts count={6} />
 

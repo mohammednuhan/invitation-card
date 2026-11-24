@@ -34,7 +34,7 @@ export default function AdminLogin() {
 
   return (
     <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-gradient-to-b from-ink-950 via-ink-800 to-ink-950 px-6">
-      <GoldenParticles count={50} />
+      <GoldenParticles count={20} />
       <motion.div
         initial={{ opacity: 0, y: 40, scale: 0.95 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}

@@ -206,9 +206,9 @@ body::before {
 .hero-fill {
   background-size: cover;
   background-position: 50% 50%;
-  filter: blur(56px) saturate(1.06);
-  transform: scale(1.18);
-  opacity: 0.92;
+  filter: blur(24px) saturate(1.04);
+  transform: scale(1.12);
+  opacity: 0.95;
 }
 
 .hero-frame {
@@ -518,6 +518,11 @@ body::before {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+
+  /* Reduce continuous paint cost on phones. */
+  .gold-text-animated {
+    animation: none !important;
   }
 
   .scratch-hint-motion {
