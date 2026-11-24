@@ -20,7 +20,7 @@ export const DEFAULT_COUPLE = {
 export const SAMPLE_STORY = [
   {
     title: "Haldi",
-    date: "December 17, 2026",
+    date: "December 18, 2026",
     text: "A joyful celebration filled with turmeric, laughter, and blessings as we prepare for the big day.",
     image: ""
   },
@@ -42,7 +42,7 @@ export const SAMPLE_EVENTS = [
   {
     title: "Haldi",
     icon: "flower",
-    date: "17 Dec 2026",
+    date: "18 Dec 2026",
     time: "07:00 PM",
     venue: "Home"
   },
