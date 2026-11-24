@@ -130,7 +130,7 @@ function DateReveal({ data }) {
     {
       label: "Valima",
       day: valimaDay,
-      time: data.events?.find((e) => e.title === "Valima")?.time || "01:00 PM",
+      time: data.events?.find((e) => /^(valima|walima)$/i.test(e.title || ""))?.time || "07:30 PM",
       venue: VALIMA_VENUE.venue,
       address: VALIMA_VENUE.address,
       hijri: "(12th Rajab 1448 AH)",

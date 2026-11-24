@@ -57,7 +57,7 @@ export const SAMPLE_EVENTS = [
     title: "Valima",
     icon: "plate",
     date: "21 Dec 2026",
-    time: "01:00 PM",
+    time: "07:30 PM",
     venue: "CN Windsor, Chikmagaluru"
   }
 ];
